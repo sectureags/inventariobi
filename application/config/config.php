@@ -224,7 +224,11 @@ $config['cache_path'] = '';
 | MUST set an encryption key.  See the user guide for info.
 |
 */
+<<<<<<< HEAD
 $config['encryption_key'] = 'WhqgLb23ztGmZQ0xe7cb56afqt8FR2ul';
+=======
+$config['encryption_key'] = '';
+>>>>>>> 73757135c572fb6053f983703bddf50a44f67303
 
 /*
 |--------------------------------------------------------------------------
@@ -244,12 +248,21 @@ $config['encryption_key'] = 'WhqgLb23ztGmZQ0xe7cb56afqt8FR2ul';
 | 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
 |
 */
+<<<<<<< HEAD
 $config['sess_cookie_name']		= 'ci_sessions';
 $config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= FALSE;
 $config['sess_use_database']	= TRUE;
 $config['sess_table_name']		= 'ci_sessions';
+=======
+$config['sess_cookie_name']		= 'ci_session';
+$config['sess_expiration']		= 7200;
+$config['sess_expire_on_close']	= TRUE;
+$config['sess_encrypt_cookie']	= FALSE;
+$config['sess_use_database']	= TRUE;
+$config['sess_table_name']		= 'tbl_user';
+>>>>>>> 73757135c572fb6053f983703bddf50a44f67303
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;

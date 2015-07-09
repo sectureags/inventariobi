@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*<---ESTILO DEL FONDO DE LA PAGINA--->*/
 body
 {
@@ -290,4 +291,296 @@ img.icon
 .nav
 {
 	display:inline-block;
+=======
+/*<---ESTILO DEL FONDO DE LA PAGINA--->*/
+body
+{
+	margin: 0 auto;
+	width: 90%;
+	height: auto;
+	/*background-color: white;*/
+	font-size: 90%;
+}
+
+/*<---ESTILO DEL ENCABEZADO DE LAS PAGINAS--->*/
+#encabezado 
+{
+	width: 100%;
+	border: 1px dotted black;
+	text-align: center;
+	margin:50px 0px 5px 0px;
+	color: #FFFAF0;
+	background-color: #006400;
+}
+
+/*<---ESTILO DEL CONTENIDO DE LA PAGINA INDEX (LADO IZQUIERDO)--->*/
+#contenido
+{
+	width: 70%;
+	
+	height: auto;/*Es automatico para que se adapte al contenido que tiene la pag*/
+	float: left;
+}
+
+/*<---ESTILO DEL LADO LATERAL DE LA PAGINA INDEX (LADO DERECHO)--->*/
+#lateral
+{
+	width: 30%;
+	
+	height: auto;
+	float: left;
+}
+
+/*<---ESTILO DEL FOOTER DE LAS PAGINAS--->*/
+#pie
+{
+	clear: both;/*Ajustar despues de dos diviciones*/
+	border: 1px dotted black;
+	color:#FFFAF0;
+	height: 50px;
+	text-align: center;
+	background-color: red;
+}
+
+/*<---ESTILO Y TAMAÑO DE ARTICULOS Y ASDE DE LA PAGINA INDEX--->*/
+.Btexto, .Bimagen, .Ingresar
+{
+	width: 93%;
+	padding: 2%;
+	margin: 1%;
+	border: 1px dotted black;
+}
+
+/*<---ESTILO DEL ARTICULO PARA EL FORMULARIO DE LA PAGINA INDEX--->*/
+#Iform
+{
+	width: 80%;
+	height: auto;
+	margin: 15% 10%;
+	border: 1px dotted black;
+	text-align: center;
+	background-color: #FFA500;
+	border-radius: 6px;
+}
+
+/*<---ESTILO DEL ARTICULO PARA LA IMAGEN LOGO DE LA PAGINA INDEX--->*/
+#Ilogo
+{
+	height: 120px;
+	margin: 5%;
+	border: 1px dotted black;
+	text-align: center;
+	background-color: #C0C0C0;
+	border-radius: 6px;
+}
+
+/*<---ESTILO INTERNO DEL ARTICULO SUPERIOR DEL CONTENIDO (LADO IZQUIERDO)--->*/
+#cont1
+{
+	background-color: #87CEEB;
+}
+
+/*<---ESTILO INTERNO DEL ARTICULO INFERIOR DEL CONTENIDO (LADO IZQUIERDO)--->*/
+#cont2
+{
+	height: 250px;
+	background: url(../img/img1.jpg);
+	background-size: 100% 100%;
+
+}
+
+/*@media all and (max-width: 500px)
+{
+	#contenido
+	{
+	font-size: 130%;
+	width: 100%;
+	height: auto;/*Es automatico para que se adapte al contenido que tiene la pag*/
+	/*border: 1px dotted black;
+	float: left;
+	}
+
+	#lateral
+	{
+	width: 100%;
+	border: 1px dotted black;
+	float: left;
+	}
+
+/*}*/
+
+/*<---------INICIO ESTILOS PARA EL MENU PRNCIPAL--------->*/
+#menu1 ul
+{
+	margin: 30px auto;
+	width: 1024px;
+	height: 65px;
+	background-color: red;
+	font-family: verdana;
+	padding: 0;
+	list-style: none;
+}
+
+#menu1_1 li.contenedor
+{
+	width: 20%;
+	float: left;
+	-webkit-transition:height .4s;	
+}
+
+#menu1_1 #seguridad
+{
+	background-color: rgb(233,147,26);
+}
+#menu1_1 #inventario
+{
+	background-color: rgb(22,145,190);
+} 
+#menu1_1 #reportes
+{
+	background-color: rgb(208,101,3);
+}
+#menu1_1 #empleados
+{
+	background-color: rgb(22,107,162);
+}
+#menu1_1 #salir
+{
+	background-color: rgb(172,31,45);
+}
+
+#menu1_1 li.contenedor:hover 
+{
+	height: 75px;
+	float: left;
+}
+
+p.texto
+{
+	font-size: 1em;
+	color: white;
+	text-align: center;
+	padding-top: 0px;
+	opacity: .4;
+	-webkit-transition:padding-top .4s;
+
+}
+
+#menu1_1 li.contenedor:hover p.texto
+{
+	padding-top: 0px;
+	opacity: 1;
+	/*float: left;*/
+}
+
+#menu1_1 li.contenedor:hover img.icon
+{
+	-webkit-box-shadow: 0px 0px 0px 0px rgba(255,255,255,.6);
+}
+
+#menu1_1 li.contenedor:hover ul
+{
+	display: block;
+	width: 100%;
+	padding: 0;
+	text-align: center;
+	
+}
+#menu1_1 li.contenedor:hover a
+{
+	text-decoration: none;
+	font-size: 1em;
+	color: white;
+	padding-top: 0px;
+	opacity: .4;
+	-webkit-transition:padding-top .4s;
+}
+
+
+img.icon
+	{
+		display: block;
+		margin: 5px auto;
+		background-color: rgba(255,255,255,0.15);
+		width: 25px;
+		padding: 2px;
+		-webkit-border-radius:30%;
+		-webkit-box-shadow:0px 0px 0px 20px rgba(255,255,255,0);
+		-webkit-transition:box-shadow .4s;
+	}
+/*<---------FIN ESTILOS PARA EL MENU PRNCIPAL--------->*/
+
+/*<---ESTILO PARA LA DIVICION CAROUSEL EN LA PAGINA MENU PRINCIPAL--->*/
+#myCarousel
+{
+	width: 90%;
+	margin:50px 50px;
+	height: 350px;
+	position: relative;
+	background-size: 100% 100%;
+}
+
+/*<---------INICIO ESTILOS PARA EL MENU SECUNDARIO (MENU INVENTARIOS)--------->*/
+#menu2
+{
+	margin: 0 auto;
+	text-align: center;
+
+}
+
+#menu2 ul
+{
+	padding: 0;
+}
+
+#menu2 ul li
+{
+	display:inline-block;
+	cursor: pointer;
+	list-style: none;
+	color:#F5FFFA;
+	background: #FFA07A;
+	padding: 1px;
+	transition: all 1s linear; /*Genera transicion de color...*/
+	-moz-transition: all 1s linear; /*Genera transicion de color...*/
+	-o-transition: all 1s linear; /*Genera transicion de color...*/
+	-webkit-transition: all 1s linear; /*Genera transicion de color...*/
+	margin:1px;
+	width: 130px;
+	border-radius: 1px;
+}
+
+#menu2 ul li a
+{
+	text-decoration: none;
+	color: white;
+}
+
+#menu2 ul li:hover  /*Al posicionarse SOBRE el botón*/
+{
+	box-shadow: #000000 0px 0px 10px;  /*sombra del botón*/
+	background-color: #FF4500;
+	color: White;
+	width: 130px;
+}
+/*<---------FIN ESTILOS PARA EL MENU SECUNDARIO (MENU INVENTARIOS)--------->*/
+
+
+#content_menu
+{
+ 	width: 20%;
+ 	height: auto;
+	/*background-color: #87CEEB;*/
+	/*border: 1px dotted black;*/
+	float: left;
+}
+
+#content_contenido
+{
+	width: 80%;
+	height: auto;
+	/*background-color: #87CEEB;*/
+	/*border: 1px dotted black;*/
+	float: left;
+>>>>>>> 73757135c572fb6053f983703bddf50a44f67303
 }
