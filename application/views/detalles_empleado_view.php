@@ -12,7 +12,7 @@
 
 
 
-	<div class="well col-md-9">
+	<div class="well col-md-8">
  
 
 		
