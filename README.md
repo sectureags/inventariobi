@@ -1,5 +1,5 @@
 VERSION DESARROLLO
-1.0.1
+1.2.2
 # inventariobi
 Proyecto de Administracion de Bienes Informaticos para la Secretaria de Turismo del Estado de Aguascalientes
 
