@@ -1,6 +1,6 @@
-<div id="container">	
-<div class="row well">
-        
+<div id="container">
+<div class="row well">        
+	<?php echo $username; ?>
 	  </div>
 		<div>
 		  <ul class="nav navbar-nav navbar-left">

@@ -15,7 +15,7 @@ class Permisos_model extends CI_Model {
     $this->db->order_by('permiso','desc');
     $this->db->order_by('componente','asc');
     $this->db->order_by('recurso','asc');
-    $q = $this->db->get('permisos');
+    $q = $this->db->get('tbl_permisos');
     if ( $q->num_rows > 0 ){
       return $q->result();
     }
@@ -23,24 +23,26 @@ class Permisos_model extends CI_Model {
   }
   function insert_entry()
   {
-      $this->rol           = $_POST['rol'];
-      $this->componente    = $_POST['componente'];
-      $this->recurso       = $_POST['recurso'];
-      
-      $this->db->insert('permisos', $this);
+    $data = array(
+          'rol' => $_POST['rol'],
+          'componente' => $_POST['componente'],
+          'recurso' => $_POST['recurso'],
+          'permiso' => 1      
+    );      
+      $this->db->insert('tbl_permisos', $data);
   }
   function delete($id)
   {
-      $this->db->delete('permisos', array('id' => $id)); 
+      $this->db->delete('tbl_permisos', array('id' => $id)); 
       
   }
   function verify_componente($rol,$componente){
     $this->db->where('rol',$rol);
     $this->db->where('componente',$componente);
     //$this->db->where('recurso','/index');
-    $this->db->where('permiso','1');
+    $this->db->where('permiso',TRUE);
     $this->db->limit(1);
-    $q = $this->db->get('permisos');
+    $q = $this->db->get('tbl_permisos');
     if ( $q->num_rows > 0 ){
       return true; //$q->row();
     }
@@ -52,7 +54,7 @@ class Permisos_model extends CI_Model {
     $this->db->where('recurso',$recurso);
     $this->db->where('permiso',TRUE);
     $this->db->limit(1);
-    $q = $this->db->get('permisos');
+    $q = $this->db->get('tbl_permisos');
     if ( $q->num_rows > 0 ){
       return true;
     }
@@ -62,8 +64,8 @@ class Permisos_model extends CI_Model {
     $this->db->select('*');
     $this->db->where('rol',$rol);
     $this->db->where('recurso','/index');
-    $this->db->where('permiso','1');
-    $q = $this->db->get('permisos');
+    $this->db->where('permiso',TRUE);
+    $q = $this->db->get('tbl_permisos');
     if ( $q->num_rows > 0 ){
       return $q->result();
     }
@@ -73,8 +75,8 @@ class Permisos_model extends CI_Model {
     $this->db->select('*');
     $this->db->where('rol',$rol);
     //$this->db->where('componente',$componente);
-    $this->db->where('permiso','1');
-    $q = $this->db->get('permisos');
+    $this->db->where('permiso',TRUE);
+    $q = $this->db->get('tbl_permisos');
     if ( $q->num_rows > 0 ){
       return $q->result();
     }
@@ -84,13 +86,13 @@ class Permisos_model extends CI_Model {
   {
       $data['id']     = $id;
       $data['permiso'] = TRUE;
-      $this->db->update('permisos', $data, array('id' => $id));
+      $this->db->update('tbl_permisos', $data, array('id' => $id));
   }
   function quitar($id)
   {
       $data['id']     = $id;
       $data['permiso'] = FALSE;
-      $this->db->update('permisos', $data, array('id' => $id));
+      $this->db->update('tbl_permisos', $data, array('id' => $id));
   }
 	
 }
