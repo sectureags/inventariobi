@@ -5,8 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Inventario de Bienes Informáticos SECTUR Aguascalientes</title>
 	<!--<link rel="stylesheet" href="http://localhost:8080/inventariobi/css/bootstrap.css">-->
-	<link rel="stylesheet" type="text/css" href="http://localhost:8080/inventariobi/css/estilo.css">
-	<link rel="stylesheet" href="http://localhost:8080/inventariobi/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="http://localhost/inventariobi/css/estilo.css">
+	<link rel="stylesheet" href="http://localhost/inventariobi/css/bootstrap.min.css">
 </head>
 
 <body><!--Contenido de la pagina principal-->
