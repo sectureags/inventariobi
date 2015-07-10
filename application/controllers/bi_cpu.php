@@ -38,7 +38,6 @@ class Bi_cpu extends CI_Controller {
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_cpu_view',$data);
-			$this->load->view('pie_view');
 			$this->load->view('footer_view');
 		}
 	}
