@@ -106,12 +106,12 @@
 					switch ($fila->id_status) {
 						case FALSE:?>
 							<td> 
-							<img class="icon" src="http://localhost:8080/inventariobi/img/icon/tacha.jpg">  
+							<img class="icon" src="../img/icon/tacha.jpg">  
 		      				</td>
 							<?php break;						
 						case TRUE:?>
 							<td> 
-							<img class="icon" src="http://localhost:8080/inventariobi/img/icon/ploma.png">  
+							<img class="icon" src="../img/icon/ploma.png">  
 		      				</td>
 							<?php break;
 					}

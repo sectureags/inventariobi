@@ -4,9 +4,9 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 	<title>Inventario de Bienes Informáticos SECTUR Aguascalientes</title>
-	<link rel="stylesheet" href="http://localhost:8080/inventariobi/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="http://localhost:8080/inventariobi/css/estilo.css">
-	<link rel="stylesheet" href="http://localhost:8080/inventariobi/css/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/estilo.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>css/bootstrap.min.css">
 </head>
 
 <body><!--Contenido de la pagina principal-->
@@ -75,9 +75,9 @@
 	</footer><!--Fin Pie de pagina-->
 	</div>
 
-	<script src="http://localhost:8080/inventariobi/js/jquery.js"></script>
-	<script src="http://localhost:8080/inventariobi/js/bootstrap.js"></script>
-	<script src="http://localhost:8080/inventariobi/js/bootstrap.min.js"></script>
+	<script src="<?php echo base_url(); ?>js/jquery.js"></script>
+	<script src="<?php echo base_url(); ?>bootstrap.js"></script>
+	<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 
 </body><!--Fin de contenido de la pagina principal-->
 </html>

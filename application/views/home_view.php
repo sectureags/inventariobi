@@ -7,19 +7,19 @@
 
 		  			<div class="carousel-inner">
 		  				<div class="item active">
-		  					<img src="http://localhost:8080/inventariobi/img/img_car/1.jpg" alt="">
+		  					<img src="<?php echo base_url(); ?>img/img_car/1.jpg" alt="">
 		  					<div class="carousel-caption">
 		  				</div>
 		  				</div>
 
 			  			<div class="item">
-			  				<img src="http://localhost:8080/inventariobi/img/img_car/2.jpg" alt="">
+			  				<img src="<?php echo base_url(); ?>img/img_car/2.jpg" alt="">
 			  				<div class="carousel-caption">
 			  				</div>
 			  			</div>
 						
 						<div class="item">
-			  				<img src="http://localhost:8080/inventariobi/img/img_car/3.jpg" alt="">
+			  				<img src="<?php echo base_url(); ?>img/img_car/3.jpg" alt="">
 			  				<div class="carousel-caption">
 			  				</div>
 			  			</div>
