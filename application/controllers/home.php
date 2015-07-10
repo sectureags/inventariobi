@@ -37,7 +37,6 @@ class Home extends CI_Controller {
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('home_view');
-			$this->load->view('pie_view');
 			$this->load->view('footer_view');	
 			}	
 	}
@@ -54,7 +53,6 @@ class Home extends CI_Controller {
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_view');
-			$this->load->view('pie_view');
 			$this->load->view('footer_view');
 		}
 	}
@@ -71,7 +69,6 @@ class Home extends CI_Controller {
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_bi_view');
-			$this->load->view('pie_view');
 			$this->load->view('footer_view');
 		}
 	}

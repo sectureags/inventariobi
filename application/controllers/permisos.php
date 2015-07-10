@@ -36,7 +36,6 @@ class Permisos extends CI_Controller {
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_permisos_view');
-			$this->load->view('pie_view');
 			$this->load->view('footer_view');
 		}
 	}
