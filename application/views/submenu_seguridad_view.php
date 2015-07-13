@@ -1,5 +1,5 @@
-<nav id="menu2">
-	<ul >
+<div>
+	<ul class="nav nav-tab">
 		<li>
 			<a href="<?php echo base_url('users');?>">Usuarios</a>
 		</li>
@@ -10,4 +10,4 @@
 			<a href="../roles">Roles</a>
 		</li>
 	</ul>
-</nav>
+</div>

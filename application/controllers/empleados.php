@@ -140,7 +140,8 @@ class Empleados extends CI_Controller {
 			$this->load->view('header_view');
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('detalles_empleado_view',$data);
+			$this->load->view('menu_detalles_empleado_view',$data);
+			$this->load->view('detalles_empleado_view');
 			$this->load->view('footer_view');
 	}
 	}
