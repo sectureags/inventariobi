@@ -66,6 +66,28 @@ class Bi_cpu extends CI_Controller {
 	{
 		
 	}
+
+	public function cpu_empleado()
+	{
+		$ci_session= $this->session->userdata('username');
+		if (empty($ci_session)===TRUE) {
+			redirect(base_url('welcome/logout')); 
+		}
+		else
+		{
+			$id_empleado=$_POST['id_empleado'];
+
+			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_cpu_empleado'] = $this->tbl_cpu_crud_model->cargar_cpu_empleado($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados(); 
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('contenedor_cpu_view',$data);
+			$this->load->view('footer_view');
+		}
+	}
 }
 
 /* End of file welcome.php */

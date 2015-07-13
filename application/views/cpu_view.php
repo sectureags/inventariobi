@@ -2,7 +2,7 @@
 
 	<div class="row" id="tabla_cpu">
 		<table class="table table-bordered">    
-			<caption><h3>Tabla CPU's</h3></caption>    
+			<caption><h3>CPU's</h3></caption>    
 			<thead>       
 				<tr> 
 					 <th>Id Interno</th>      

@@ -16,10 +16,10 @@ class Permisos extends CI_Controller {
 			redirect(base_url('welcome/logout')); 
 		}
 		// Se Definen constantes para facilitar la programacion
-		define('SUPERROL', 1); // "SuperAdministrador"
+		define("SUPERROL", 1); // "SuperAdministrador"
 		define('ROL',$this->session->userdata('rol'));
 	    define('COMPONENTE',$this->uri->segment(1));
-	    define('USER',strstr($this->session->userdata('username'),'@',true));
+	    define('USER',$this->session->userdata('username'));
 	    //
   		$this->load->model('permisos_model');
 	}
@@ -42,7 +42,8 @@ class Permisos extends CI_Controller {
 			$recurso = $this->uri->segment(2); // Metodo de la URL
 			$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE,$recurso);
 			if ($resource === TRUE) {
-				$data['username'] = $this->session->userdata('username');
+				$data['username'] = USER;
+				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');
 				$this->load->view('cabecera_view');
