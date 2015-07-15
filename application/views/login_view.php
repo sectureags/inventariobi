@@ -37,26 +37,17 @@
 
 				<article id="Iform">
 					<h3>Ingresar</h3>
-					<!--<form action="http://localhost:8080/inventariobi/index.php/welcome" method="post" textalign="center"><!--Formulario para ingresar a la aplicacion, redirecciona al archivo login.php para hacer la validacion-->
-						      <!--  <label>Usuario:</label>
-						        <br>
-						        <input type="text" name="username"><p>
-						        <label>Contraseña:</label>
-						        <br>
-						        <input type="text" name="password"><p>
-						        <input type="submit" value="Ingresar">
-					</form>-->
 					<?php
 						$attributes = array('class' => '', 'textalign' => 'center');
 						echo form_open(base_url('welcome/'),$attributes);
 					?>
-					<div class="form-group">
+					<div class="form-group col-sm-12">
 					<?php
 						echo form_input('username', set_value('username'), 
 							'id="username" class="form-control" placeholder="Usuario"');
 					?>
 					</div>
-					<div class="form-group">
+					<div class="form-group col-sm-12">
 						<?php
 							echo form_password('password', '', 'id="password" class="form-control" placeholder="Contraseña"');
 						?>

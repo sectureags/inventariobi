@@ -124,24 +124,25 @@
 								<div class="modal-content">          
 									<div class="modal-header">             
 										<button type="button" class="close"  data-dismiss="modal" aria-hidden="true">&times;</button>             
-										<h4 class="modal-title" id="myModalLabel">Borar Registro</h4>         
+										<h4 class="modal-title" id="myModalLabel">Borrar Registro</h4>         
 									</div>
 
 									<form action="<?php echo base_url('empleados/eliminar');?>" method="post">
-						 			<div class="modal-body">Se borrara todo el regisro del empleado <?php echo $fila->nombre_completo; ?> de manera permanente, 
-						 				¿estas seguro que deseas eliminar?</div>      
-						    		<div class="modal-footer">           
-						      			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
-						            	
-						            	<button type="submit" class="btn btn-primary">Eliminar</button> 
-						            	
-						            </div>
+										<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
+							 			<div class="modal-body">Se borrara todo el regisro del empleado <?php echo $fila->nombre_completo; ?> de manera permanente, 
+							 				¿estas seguro que deseas eliminar?</div>      
+							    		<div class="modal-footer">           
+							      			<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+							            	
+							            	<button type="submit" class="btn btn-primary">Eliminar</button> 
+							            	
+							            </div>
 						            </form>      
 						        </div>      
 						    </div><!-- /.modal-content --> 
 						</div><!-- /.modal --> 
 
-					<td><a href="<?php echo base_url('empleados/detalles'); ?>" id="<?php echo $fila->id_empleado; ?>">Ver detalles</a></td>
+					<td><a href="<?php echo base_url('empleados/detalles'); ?>/<?php echo $fila->id_empleado; ?>">Ver detalles</a></td>
 						
 					</tr>
 					
