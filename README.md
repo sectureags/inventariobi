@@ -14,7 +14,7 @@ Para el desarrollo estamos usando el siguiente Stack:
 * Git
 * Sublime Text 2
 * Navegadores compatibles (Mozilla Firefox y Chrome)
-* Aplicaciones en línea de colaboración:
-* * Github.com
-* * Slack.com
-* * StoriesonBoard.com
+* Aplicaciones de colaboración en línea:
+* # Github.com
+* # Slack.com
+* # StoriesonBoard.com
