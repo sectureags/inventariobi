@@ -1,7 +1,7 @@
 VERSION DESARROLLO
 1.0.0
 
-# inventariobi
+# Proyecto para Estadías
 Proyecto de Administracion de Bienes Informaticos para la Secretaria de Turismo del Estado de Aguascalientes
 
 Para el desarrollo estamos usando el siguiente Stack:
