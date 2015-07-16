@@ -13,9 +13,9 @@ Para el desarrollo estamos usando el siguiente Stack:
 * Bootstrap 3.2
 * HTML5
 * JQuery 1.11
-* Git
+* Git 1.9.1
 * Sublime Text 2
-* Navegadores compatibles (Mozilla Firefox y Chrome)
+* Todos los Navegadores son compatibles. Para que el usuario tener una mejor experiencia use (Mozilla Firefox y Chrome)
 * Aplicaciones de colaboración en línea:
    * Github.com
    * Slack.com
