@@ -52,6 +52,15 @@ class Tbl_empleado_crud_model extends CI_Model
 		$res=$this->db->get();
 		return $res->result(); 
 	}
+
+	public function cargar_empleado_detalles($id_empleado)
+	{
+		$this->db->select('*');
+		$this->db->where('id_empleado',$id_empleado);
+		$this->db->limit(1);
+		$res=$this->db->get('tbl_empleados');
+		return $res->result(); 
+	}
 } 
 
 ?>

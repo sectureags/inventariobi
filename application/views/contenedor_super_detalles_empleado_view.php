@@ -1,7 +1,7 @@
 <div class="col-md-9">
 		
 	<div class="panel panel-default"> 
-		<?php foreach ($cargar_permiso_internet as $fila) :?>   
+		<?php foreach ($cargar_empleado_detalles as $fila) :?>   
 			<div class="panel-heading">    
 				<div class="panel-body">        
 		      		 <p>Empleado:  <?php echo $fila->nombre_completo; ?></p> 
