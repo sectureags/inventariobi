@@ -15,7 +15,8 @@ class Tbl_empleado_crud_model extends CI_Model
 
 	public function agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo)
 	{
-		$data=array('codigo_empleado' => $codigo_empleado,'nombre_completo' => $nombre_completo,'unidad' => $unidad,'usuario_de_red' => $usuario_de_red,'contrasena' => $contrasena,'area' => $area,'num_extension' => $num_extension, 'correo_electonico'=>$correo_electonico, 'cargo' => $cargo);
+		$data=array('codigo_empleado' => $codigo_empleado,'nombre_completo' => $nombre_completo,'unidad' => $unidad,'usuario_de_red' => $usuario_de_red,
+			'contrasena' => $contrasena,'area' => $area,'num_extension' => $num_extension, 'correo_electonico'=>$correo_electonico, 'cargo' => $cargo);
 		$nuevo = $this->db->insert('tbl_empleados', $data);
 
 	}
@@ -44,14 +45,6 @@ class Tbl_empleado_crud_model extends CI_Model
 		$this->db->delete('tbl_empleados',$data); 
 	}
 
-	public function cargar_permiso_internet($id_empleado)
-	{
-		$this->db->from('tbl_permiso_internet');
-		$this->db->join('tbl_empleados', 'tbl_permiso_internet.id_empleado=tbl_empleados.id_empleado');
-		$this->db->where('tbl_permiso_internet.id_empleado',$id_empleado);
-		$res=$this->db->get();
-		return $res->result(); 
-	}
 
 	public function cargar_empleado_detalles($id_empleado)
 	{
