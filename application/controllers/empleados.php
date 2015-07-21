@@ -77,7 +77,7 @@ class Empleados extends CI_Controller {
 		else
 		{
 		$this->load->model('tbl_empleado_crud_model');
-		$data['editar_empleado']=$this->tbl_user_crud_model->editar_empleado($id_empleado);
+		$data['editar_empleado']=$this->tbl_empleado_crud_model->editar_empleado($id_empleado);
 		$this->load->view();
 		}
 	}
@@ -104,7 +104,7 @@ class Empleados extends CI_Controller {
 		$this->load->model('tbl_empleado_crud_model'); 
 		$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
 		redirect('empleados/');
-	}
+		}
 	}
 
 	public function eliminar()

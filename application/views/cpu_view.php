@@ -2,6 +2,7 @@
 
 	<div class="row" id="tabla_cpu">
 		<table class="table table-bordered">    
+			<caption><h3>CPU's</h3></caption>    
 			<thead>       
 				<tr> 
 					 <th>Id Interno</th>      
@@ -13,7 +14,9 @@
 					 <th>No. Serie</th> 
 					 <th>Tipo</th> 
 					 <th>Ubicacion</th>
-					 
+					 <th>Accion</th>
+					 <th>Detalles</th> 
+
 				</tr>   
 			</thead>    
 			<tbody> 
@@ -29,6 +32,8 @@
 					<td> <?php	echo $fila->num_serie; ?></td>
 					<td> <?php	echo $fila->tipo; ?></td>
 					<td> <?php	echo $fila->ubicacion; ?></td>
+					<td>YYYYY</td>
+					<td><a href="">Ver detalles</a></td>
 					
 				<?php endforeach; ?>
 			</tbody> 

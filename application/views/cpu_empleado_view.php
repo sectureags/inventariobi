@@ -4,8 +4,7 @@
 			<div class="row" id="tabla_cpu">
 				<table class="table table-bordered">  
 					<thead>       
-						<tr> 
-							 <th>Id Interno</th>      
+						<tr>      
 							 <th>No. Inventario</th>         
 							 <th>Categoria</th>          
 							 <th>Marca</th> 
@@ -21,7 +20,6 @@
 						<?php foreach ($cargar_cpu_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
 							
 							<tr>
-							<td> <?php echo $fila->id_cpu; ?></td>
 							<td> <?php echo $fila->num_inventario; ?></td>
 							<td> <?php	echo $fila->categoria; ?></td>
 							<td> <?php	echo $fila->marca; ?></td>
