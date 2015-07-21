@@ -14,7 +14,7 @@
 							 <th>Accion</th>
 							 </tr>   
 					</thead>  
-					
+
 					<tbody> 
 						<?php foreach ($cargar_permiso_internet as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
 							

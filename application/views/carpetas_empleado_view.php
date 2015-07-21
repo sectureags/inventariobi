@@ -9,7 +9,8 @@
 							 <th>Carpeta Imágenes</th>          
 							 <th>Carpeta Excellentia</th> 
 							 <th>Capacidad Correo</th> 
-							 <th>Otros Servicios</th> 
+							 <th>Otros Servicios</th>
+							 <th>Accion</th> 
 					</thead>  
 					
 					<tbody> 

@@ -43,7 +43,6 @@ class Internet extends CI_Controller {
 			$ftp=$_POST['ftp'];
 			$sigue=$_POST['sigue'];
 			$permiso_usuario_local=$_POST['permiso_usuario_local'];
-
 			$this->load->model('tbl_internet_crud_model'); 
 			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
 			
@@ -51,7 +50,7 @@ class Internet extends CI_Controller {
 		}
 	}
 
-	public function exixte()
+	public function existe_permiso($id_empleado)
 	{
 		$ci_session= $this->session->userdata('user_data');
 		if (empty($ci_session)===FALSE) {
@@ -60,16 +59,37 @@ class Internet extends CI_Controller {
 
 		$this->load->model('tbl_internet_crud_model');
 
-		$existe=$this->tbl_internet_crud_model->existe_internet();
+		$existe=$this->tbl_internet_crud_model->existe_internet($id_empleado);
+
 		if ($existe==TRUE) {
 			
-			$this->internet_empleado();
-	
-		}else{
-
-		echo "No existes en la Base de datos. Ve con tu administrador";
-		
+			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('menu_detalles_empleado_view',$data);
+			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('internet_empleado_view',$data);
+			$this->load->view('footer_view');
 		}
+		else
+		{
+			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('menu_detalles_empleado_view',$data);
+			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('sin_internet_empleado_view',$data);
+			$this->load->view('footer_view');
+		}
+		
 	}
 
 	public function editar()
@@ -109,7 +129,6 @@ class Internet extends CI_Controller {
 		}
 		else
 		{
-
 			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
@@ -119,7 +138,6 @@ class Internet extends CI_Controller {
 			$this->load->view('menu_view');
 			$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
-			$this->load->view('internet_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
 	}

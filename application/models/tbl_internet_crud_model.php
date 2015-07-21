@@ -38,25 +38,13 @@ class Tbl_internet_crud_model extends CI_Model
 		
 	}
 
-	/*public function eliminar_internet($id)
-	{
-		$data=array('id' => $id);
-		$this->db->where('id_empleado',$id_empleado);
-		$this->db->delete('tbl_permiso_internet',$data); 
-	}*/
 
-	public function existe_internet($id_empleado, $id, $internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local)
+	public function existe_internet($id_empleado)
 	{
 		$this->db->select('*');
 		$this->db->join('tbl_empleados', 'tbl_permiso_internet.id_empleado=tbl_empleados.id_empleado');
 		$this->db->where('tbl_permiso_internet.id_empleado',$id_empleado);
-		$this->db->where('id',$id);
-		$this->db->where('internet',$internet); 
-		$this->db->where('messenger',$messenger);
-		$this->db->where('redes_sociales',$redes_sociales);
-		$this->db->where('ftp',$ftp);
-		$this->db->where('sigue',$sigue);
-		$this->db->where('permiso_usuario_local',$permiso_usuario_local);
+		$this->db->limit(1);
 		$res=$this->db->get('tbl_permiso_internet');
 
 		if ($res->num_rows>0) {
