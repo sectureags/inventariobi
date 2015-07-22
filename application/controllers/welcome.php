@@ -17,14 +17,16 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	function __construct()
+	function __construct() /*Metodo constructor e inicializacion de librerias
+								session y encrypt*/
 	{
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->library('encrypt');
 	}
 
-	public function index()
+	public function index() /*Metodo principal se realiza la validacion 
+								*/
 	{
 
 		$ci_session= $this->session->userdata('user_data');

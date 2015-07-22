@@ -29,6 +29,8 @@ class Permisos extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
+			$data['username'] = USER;
+			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');
 			$this->load->view('cabecera_view');
@@ -84,7 +86,8 @@ class Permisos extends CI_Controller {
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
-			
+			$data['username'] = USER;
+			$data['rol'] = ROL;			
 			$agregar = $this->permisos_model->insert_entry();
 			//Guarda el registro en la base de datos
 			echo "<strong>CREANDO PERMISO...</strong>!";
@@ -95,9 +98,9 @@ class Permisos extends CI_Controller {
 		{
 			$recurso = $this->uri->segment(2); // Metodo de la URL
 			$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE,$recurso);
-
 			if ($resource === TRUE) {
-
+				$data['username'] = USER;
+				$data['rol'] = ROL;
 		 		$agregar = $this->permisos_model->insert_entry();
 				//Guarda el registro en la base de datos
 				echo "<strong>CREANDO PERMISO...</strong>!";
