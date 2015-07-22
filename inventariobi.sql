@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-07-2015 a las 19:32:35
+-- Tiempo de generación: 22-07-2015 a las 15:26:45
 -- Versión del servidor: 5.6.24
 -- Versión de PHP: 5.5.24
 
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `ci_sessions` (
 --
 
 INSERT INTO `ci_sessions` (`session_id`, `ip_address`, `user_agent`, `last_activity`, `user_data`) VALUES
-('20938c247648407271e45254e1ef8def', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36', 1437149380, 'a:5:{s:9:"user_data";s:0:"";s:8:"username";s:4:"nora";s:3:"rol";s:1:"2";s:9:"id_status";i:1;s:9:"logged_in";b:1;}');
+('317d77880490b1679b895ca96bd8cde0', '::1', 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36', 1437571438, 'a:5:{s:9:"user_data";s:0:"";s:8:"username";s:4:"nora";s:3:"rol";s:1:"2";s:9:"id_status";i:1;s:9:"logged_in";b:1;}');
 
 -- --------------------------------------------------------
 
@@ -58,14 +58,15 @@ CREATE TABLE IF NOT EXISTS `tbl_cpu` (
   `tipo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `ubicacion` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_cpu`
 --
 
 INSERT INTO `tbl_cpu` (`id_cpu`, `num_inventario`, `categoria`, `marca`, `modelo`, `hostname`, `num_serie`, `tipo`, `ubicacion`, `id_empleado`) VALUES
-(1, 123, 'Equipo Prestado', 'Dell', 'GT2369', 'PC1', '123-456-789-123', 'Torre', 'Oficina Luis', 4);
+(1, 123, 'Equipo Prestado', 'Dell', 'GT2369', 'PC1', '123-456-789-123', 'Torre', 'Oficina Luis', 4),
+(3, 9876, 'Equipo Propio', 'Asus', '2489a', 'CP5', '122-799-578', 'Torre', 'Oficina Luis', 1);
 
 -- --------------------------------------------------------
 
@@ -84,7 +85,7 @@ CREATE TABLE IF NOT EXISTS `tbl_empleados` (
   `correo_electonico` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `area` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `cargo` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_empleados`
@@ -111,6 +112,29 @@ CREATE TABLE IF NOT EXISTS `tbl_permisos` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tbl_permiso_carpetas`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_permiso_carpetas` (
+  `id` int(11) NOT NULL,
+  `carpetas_geaco06` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `carpeta_imagenes` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `carpeta_excellentia` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `capacidad_correo` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `otros_servicios` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `id_empleado` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `tbl_permiso_carpetas`
+--
+
+INSERT INTO `tbl_permiso_carpetas` (`id`, `carpetas_geaco06`, `carpeta_imagenes`, `carpeta_excellentia`, `capacidad_correo`, `otros_servicios`, `id_empleado`) VALUES
+(1, 'NO', 'NO', 'NO', 'NO', 'NO', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tbl_permiso_internet`
 --
 
@@ -123,14 +147,14 @@ CREATE TABLE IF NOT EXISTS `tbl_permiso_internet` (
   `sigue` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `permiso_usuario_local` varchar(11) COLLATE utf8_unicode_ci NOT NULL,
   `id_empleado` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `tbl_permiso_internet`
 --
 
 INSERT INTO `tbl_permiso_internet` (`id`, `internet`, `messenger`, `redes_sociales`, `ftp`, `sigue`, `permiso_usuario_local`, `id_empleado`) VALUES
-(5, 'SI', 'SI', 'NO', 'SI', 'NO', 'NO', 1);
+(5, 'NO', 'NO', 'NO', 'NO', 'NO', 'NO', 1);
 
 -- --------------------------------------------------------
 
@@ -230,6 +254,12 @@ ALTER TABLE `tbl_permisos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `tbl_permiso_carpetas`
+--
+ALTER TABLE `tbl_permiso_carpetas`
+  ADD PRIMARY KEY (`id`), ADD KEY `id_empleado` (`id_empleado`);
+
+--
 -- Indices de la tabla `tbl_permiso_internet`
 --
 ALTER TABLE `tbl_permiso_internet`
@@ -261,22 +291,27 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT de la tabla `tbl_cpu`
 --
 ALTER TABLE `tbl_cpu`
-  MODIFY `id_cpu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id_cpu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `tbl_empleados`
 --
 ALTER TABLE `tbl_empleados`
-  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_empleado` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `tbl_permisos`
 --
 ALTER TABLE `tbl_permisos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT de la tabla `tbl_permiso_carpetas`
+--
+ALTER TABLE `tbl_permiso_carpetas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT de la tabla `tbl_permiso_internet`
 --
 ALTER TABLE `tbl_permiso_internet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `tbl_user`
 --
@@ -291,6 +326,12 @@ ALTER TABLE `tbl_user`
 --
 ALTER TABLE `tbl_cpu`
 ADD CONSTRAINT `tbl_cpu_ibfk_1` FOREIGN KEY (`id_empleado`) REFERENCES `tbl_empleados` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `tbl_permiso_carpetas`
+--
+ALTER TABLE `tbl_permiso_carpetas`
+ADD CONSTRAINT `tbl_permiso_carpetas_ibfk_1` FOREIGN KEY (`id`) REFERENCES `tbl_empleados` (`id_empleado`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `tbl_permiso_internet`
