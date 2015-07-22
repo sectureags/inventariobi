@@ -38,29 +38,59 @@
 												<label for="id_empleado">ID Empleado: </label>       
 												<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
 												<label for="carpetas_geaco06">Carpetas GEACO06</label>              
-												<select class="form-control" name="carpetas_geaco06" value="<?php echo $fila->carpetas_geaco06; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
+												<select class="form-control" name="carpetas_geaco06"> 
+												    <?php if($fila->carpetas_geaco06 == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
 												</select> 
 												<label for="carpeta_imagenes">Carpeta Imágenes</label>        
-												<select class="form-control" name="carpeta_imagenes" value="<?php echo $fila->carpeta_imagenes; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
-												</select> 
+												<select class="form-control" name="carpeta_imagenes"> 
+												    <?php if($fila->carpeta_imagenes == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
+												</select>  
 												<label for="carpeta_excellentia">Carpeta Excellentia</label>       
-												<select class="form-control" name="carpeta_excellentia" value="<?php echo $fila->carpeta_excellentia; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
+												<select class="form-control" name="carpeta_excellentia"> 
+												    <?php if($fila->carpeta_excellentia == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
 												</select> 
 												<label for="capacidad_correo">Capacidad Correo</label>       
-												<select class="form-control" name="capacidad_correo" value="<?php echo $fila->capacidad_correo; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
+												<select class="form-control" name="capacidad_correo"> 
+												    <?php if($fila->capacidad_correo == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
 												</select> 
 												<label for="otros_servicios">Otros Servicios</label>        
-												<select class="form-control" name="otros_servicios" value="<?php echo $fila->otros_servicios; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
+												<select class="form-control" name="otros_servicios"> 
+												    <?php if($fila->otros_servicios == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
 												</select> 
 				      						</div>    
 				      						<button type="submit" class="btn btn-default">Guardar</button> 

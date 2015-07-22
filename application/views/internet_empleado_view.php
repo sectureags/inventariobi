@@ -41,35 +41,71 @@
 												<label for="id_empleado">ID Empleado: </label>       
 												<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
 												<label for="internet">Internet</label>              
-												<select class="form-control" name="internet" value="<?php echo $fila->internet; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
-												</select> 
+												<select class="form-control" name="internet"> 
+												    <?php if($fila->internet == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
+												</select>  
 												<label for="messenger">Messenger</label>        
-												<select class="form-control" name="messenger" value="<?php echo $fila->messenger; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
-												</select> 
+												<select class="form-control" name="messenger"> 
+												    <?php if($fila->messenger == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
+												</select>
 												<label for="redes_sociales">Redes Sociales</label>       
-												<select class="form-control" name="redes_sociales" value="<?php echo $fila->redes_sociales; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
-												</select> 
+												<select class="form-control" name="redes_sociales"> 
+												    <?php if($fila->redes_sociales == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
+												</select>
 												<label for="ftp">FTP</label>       
-												<select class="form-control" name="ftp" value="<?php echo $fila->ftp; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
-												</select> 
+												<select class="form-control" name="ftp"> 
+												    <?php if($fila->ftp == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
+												</select>
 												<label for="sigue">Sigue</label>        
-												<select class="form-control" name="sigue" value="<?php echo $fila->sigue; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
+												<select class="form-control" name="sigue"> 
+												    <?php if($fila->sigue == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
 												</select> 
 												<label for="permiso_usuario_local">Permiso Usuario Local</label>       
-				      							<select class="form-control" name="permiso_usuario_local" value="<?php echo $fila->permiso_usuario_local; ?>" selected>          
-												 	<option>SI</option>          
-												 	<option>NO</option>
-												</select> 
+				      							<select class="form-control" name="permiso_usuario_local"> 
+												    <?php if($fila->permiso_usuario_local == 'SI'){  ?>   
+												 	<option value="SI" selected>SI</option>
+												 	<option value="NO">NO</option>
+												 	
+												 	<?php } else {?>
+												 	<option value="NO">NO</option>      
+												 	<option value="SI">SI</option>
+												 	<?php }?>
+												</select>
 				      						</div>    
 				      						<button type="submit" class="btn btn-default">Guardar</button> 
       									</form> 

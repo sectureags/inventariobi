@@ -138,6 +138,7 @@ class Internet extends CI_Controller {
 			$this->load->view('menu_view');
 			$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('internet_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
 	}
