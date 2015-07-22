@@ -58,7 +58,7 @@ class Welcome extends CI_Controller {
 
 				switch ($id_tipo) 
 					{
-					 	case '1'://Rol SuperAdministrador
+					 	case 1://Rol SuperAdministrador
 							$newdata= array(
 								'username' => $username, 
 								'rol' => $id_tipo,
@@ -69,7 +69,7 @@ class Welcome extends CI_Controller {
 					 		redirect('home/');
 					 	break;
 
-					 	case '2'://Rol Administrador
+					 	case 2://Rol Administrador
 					 		$newdata= array(
 								'username' => $username, 
 								'rol' => $id_tipo,
@@ -80,7 +80,7 @@ class Welcome extends CI_Controller {
 					 		redirect('home/');
 					 	break;
 
-					 	case '3'://Rol Capturista
+					 	case 3://Rol Capturista
 					 		$newdata= array(
 								'username' => $username, 
 								'rol' => $id_tipo,

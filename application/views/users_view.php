@@ -156,13 +156,19 @@
 												<?php 
 												switch ($fila->id_status) {
 													case FALSE:?>
-														<input type="checkbox" name="id_status" value="<?php	echo $fila->id_status; ?>">
+														<?php if($fila->id_tipo == FALSE){  ?>
+										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+											 				<?php } else {?>
+											 				<input type="checkbox" name="id_status" value="1">
+										 				<?php }?>														
 														<?php break;						
 													case TRUE:?>
-														
-														<input type="checkbox" name="id_status" value="<?php	echo $fila->id_status; ?>" checked>  
-									      				
-														<?php break;
+														<?php if( $fila->id_tipo == TRUE){  ?>
+										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+											 				<?php } else {?>
+											 				<input type="checkbox" name="id_status" value="0">
+										 				<?php }?>														
+									      				<?php break;
 												}
 												?>
 																			
