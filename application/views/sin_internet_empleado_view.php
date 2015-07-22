@@ -1,12 +1,12 @@
 <div class="col-md-9 well">
 		 <!-- Inicio del container --> 
-		 
+
 		No tiene permisos asignados ni denegados
-		<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#myModal">   
+		<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#miModal">   
 			Asignar Permisos
 		</button> 
 
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
+		<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
 			<div class="modal-dialog">       
 				<div class="modal-content">          
 					<div class="modal-header">             
@@ -73,7 +73,7 @@
 							 <th>Sigue</th> 
 							 <th>Permiso Usuario Local</th>
 							 <th>Accion</th>
-							 </tr>   
+						</tr>   
 					</thead>  
 
 					<tbody> 
@@ -143,6 +143,5 @@
 					</tbody> 
 				</table>  
 			</div>
-
 
 </div>

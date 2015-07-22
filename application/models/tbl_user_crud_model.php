@@ -36,8 +36,15 @@ class Tbl_user_crud_model extends CI_Model
 
 	public function agregar_users($nombre, $id_tipo, $username, $password, $email, $tel, $id_status)
 	{
-		$data = array('nombre' => $nombre,'id_tipo' => $id_tipo,'username' => $username,
-			'password' => $password,'email' => $email,'tel' => $tel,'id_status' => $id_status);
+		$data = array('nombre' => $nombre,
+					  'id_tipo' => $id_tipo,
+					  'username' => $username,
+					  'password' => $password,
+					  'email' => $email,
+					  'tel' => $tel,
+					  'id_status' => $id_status
+		);
+		
 		$nuevo = $this->db->insert('tbl_user', $data);
 
 		/*if ($nuevo->num_rows>0) {
@@ -50,8 +57,14 @@ class Tbl_user_crud_model extends CI_Model
 
 	public function actualizar_users($id_user,$nombre, $id_tipo, $username, $password, $email, $tel, $id_status)
 	{
-		$data=array('nombre' => $nombre,'id_tipo' => $id_tipo,'username' => $username,
-			'password' => $password,'email' => $email,'tel' => $tel,'id_status' => $id_status);
+		$data=array('nombre' => $nombre,
+					'id_tipo' => $id_tipo,
+					'username' => $username,
+					'password' => $password,
+					'email' => $email,
+					'tel' => $tel,
+					'id_status' => $id_status
+		);
 		$this->db->where('id_user',$id_user);
 		$this->db->update('tbl_user',$data);
 		
