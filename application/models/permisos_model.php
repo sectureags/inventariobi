@@ -48,10 +48,10 @@ class Permisos_model extends CI_Model {
     }
     return false;
   }
-  function verify_recursos($rol,$componente,$recurso){
+  function verify_recursos($rol,$componente){
     $this->db->where('rol',$rol);
     $this->db->where('componente',$componente);
-    $this->db->where('recurso',$recurso);
+    //$this->db->where('recurso',$recurso);
     $this->db->where('permiso',TRUE);
     $this->db->limit(1);
     $q = $this->db->get('tbl_permisos');
