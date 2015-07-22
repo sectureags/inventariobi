@@ -162,11 +162,11 @@
 											 				<input type="checkbox" name="id_status" value="1">
 										 				<?php }?>														
 														<?php break;						
-													case TRUE:?>														
+													case TRUE:?>
 														<?php if( $fila->id_tipo == TRUE){  ?>
-										 					<input type="checkbox" name="id_status" value="0">
+										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+											 				<input type="checkbox" name="id_status" value="0">
 										 				<?php }?>														
 									      				<?php break;
 												}
