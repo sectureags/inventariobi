@@ -9,7 +9,7 @@
 					<p class="texto">Bienes Informaticos</p>
 				</li>
 				<li class="contenedor" id="reportes"><!--LI-->
-					<a href="ejemplo.php"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
+					<a href=""><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
 					<p class="texto">Reportes</p>
 				</li>
 				<li class="contenedor" id="empleados"><!--LI-->
