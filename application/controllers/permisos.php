@@ -22,6 +22,12 @@ class Permisos extends CI_Controller {
 	    define('USER',$this->session->userdata('username'));
 	    //
   		$this->load->model('permisos_model');
+  		/*
+  		* Tabla de Roles:
+  		* 1.- Super Administrador
+  		* 2.- Administrador
+  		* 3.- Capturista
+  		*/
 	}
 
 	public function index()
@@ -29,6 +35,8 @@ class Permisos extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
+			$this->load->model('tbl_roles_model');
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
@@ -41,14 +49,14 @@ class Permisos extends CI_Controller {
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-			$recurso = $this->uri->segment(2); // Metodo de la URL
-			$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE,$recurso);
+			//$recurso = $this->uri->segment(2); // Metodo de la URL
+			$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
 			if ($resource === TRUE) {
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				$this->load->view('cabecera_view',$data);
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_permisos_view',$data);
 				$this->load->view('pie_view');
@@ -62,13 +70,68 @@ class Permisos extends CI_Controller {
 		}
 	}
 
-	public function activar()
+	public function activar($id = '')
 	{
+		if ( ! empty($id) ) {
+
+				// Si tienes Rol de SuperAdministrador entras sin permisos
+				if (ROL == SUPERROL) {
+					# code...
+					$this->load->model('permisos_model');
+					$data['get_all'] = $this->permisos_model->permitir($id);
+					$this->index();					
+				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+				else
+				{
+					//$recurso = $this->uri->segment(2); // Metodo de la URL
+					$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
+					if ($resource === TRUE) {
+						$this->load->model('permisos_model');
+						$data['get_all'] = $this->permisos_model->permitir($id);
+						$this->index();
+					}
+					else
+					{
+						echo "<p><a href='#' onclick='history.back();'>REGRESAR</a></p>";
+						die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+					}
+				}
+		}else{
+			die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+		}
+		
 		
 	}
 
-	public function desactivar()
+	public function desactivar($id = '')
 	{
+		if ( ! empty($id) ) {
+
+				// Si tienes Rol de SuperAdministrador entras sin permisos
+				if (ROL == SUPERROL) {
+					# code...
+					$this->load->model('permisos_model');
+					$data['get_all'] = $this->permisos_model->quitar($id);
+					$this->index();					
+				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+				else
+				{
+					//$recurso = $this->uri->segment(2); // Metodo de la URL
+					$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
+					if ($resource === TRUE) {
+						$this->load->model('permisos_model');
+						$data['get_all'] = $this->permisos_model->quitar($id);
+						$this->index();
+					}
+					else
+					{
+						echo "<p><a href='#' onclick='history.back();'>REGRESAR</a></p>";
+						die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+					}
+				}
+		}else{
+			die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+		}
 		
 	}
 
