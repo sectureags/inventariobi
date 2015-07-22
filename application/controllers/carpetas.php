@@ -50,9 +50,45 @@ class Carpetas extends CI_Controller {
 		}
 	}
 
-	public function exixte()
+	public function existe_permiso($id_empleado)
 	{
-		
+		$ci_session= $this->session->userdata('user_data');
+		if (empty($ci_session)===FALSE) {
+			redirect('welcome/logout');
+		}
+
+		$this->load->model('tbl_carpetas_crud_model');
+
+		$existe=$this->tbl_carpetas_crud_model->existe_carpetas($id_empleado);
+
+		if ($existe==TRUE) {
+			
+			$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('menu_detalles_empleado_view',$data);
+			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('carpetas_empleado_view',$data);
+			$this->load->view('footer_view');
+		}
+		else
+		{
+			$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('menu_detalles_empleado_view',$data);
+			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('sin_carpetas_empleado_view',$data);
+			$this->load->view('footer_view');
+		}
 	}
 
 	public function editar()
@@ -101,7 +137,6 @@ class Carpetas extends CI_Controller {
 			$this->load->view('menu_view');
 			$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
-			$this->load->view('carpetas_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
 	}
