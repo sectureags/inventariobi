@@ -65,8 +65,16 @@ class Permisos extends CI_Controller {
 			}
 			else
 			{
-				echo "<p><a href='' onclick='history.back();'>REGRESAR</a></p>";
-				die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$this->load->view('header_view');
+				$this->load->view('cabecera_view',$data);
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('pie_view');
+				$this->load->view('footer_view');
 			}
 		}
 	}
@@ -79,7 +87,7 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->permitir($id);
-					$this->index();					
+					redirect( base_url(COMPONENTE) );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
 				{
@@ -87,12 +95,20 @@ class Permisos extends CI_Controller {
 					$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
 					if ($resource === TRUE) {
 						$data['get_all'] = $this->permisos_model->permitir($id);
-						$this->index();
+						redirect( base_url(COMPONENTE) );
 					}
 					else
 					{
-						echo "<p><a href='' onclick='history.back();'>REGRESAR</a></p>";
-						die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+						$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+						$data['username'] = USER;
+						$data['rol'] = ROL;
+						$data['get_all'] = $this->permisos_model->get_all();
+						$this->load->view('header_view');
+						$this->load->view('cabecera_view',$data);
+						$this->load->view('menu_view');
+						$this->load->view('sorry_view',$data);
+						$this->load->view('pie_view');
+						$this->load->view('footer_view');
 					}
 				}
 		}else{
@@ -110,7 +126,7 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->quitar($id);
-					$this->index();					
+					redirect( base_url(COMPONENTE) );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
 				{
@@ -118,7 +134,7 @@ class Permisos extends CI_Controller {
 					$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
 					if ($resource === TRUE) {
 						$data['get_all'] = $this->permisos_model->quitar($id);
-						$this->index();
+						redirect( base_url(COMPONENTE) );
 					}
 					else
 					{
@@ -129,16 +145,6 @@ class Permisos extends CI_Controller {
 		}else{
 			die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
 		}
-		
-	}
-
-	public function eliminar()
-	{
-		
-	}
-
-	public function editar()
-	{
 		
 	}
 
