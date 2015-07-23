@@ -23,16 +23,25 @@ class Tbl_internet_crud_model extends CI_Model
 
 	public function agregar_internet($internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local)
 	{
-		$data=array('internet' => $internet,'messenger' => $messenger,'redes_sociales' => $redes_sociales,'ftp' => $ftp,'sigue'=>$sigue,'permiso_usuario_local' => $permiso_usuario_local);
-		$this->db->join('tbl_empleados', 'tbl_permiso_internet.id_empleado=tbl_empleados.id_empleado');
-		$this->db->where('tbl_permiso_internet.id_empleado',$id_empleado);
+		$data=array('internet' => $internet,
+					'messenger' => $messenger,
+					'redes_sociales' => $redes_sociales,
+					'ftp' => $ftp,'sigue'=>$sigue,
+					'permiso_usuario_local' => $permiso_usuario_local
+		);
+		
 		$nuevo = $this->db->insert('tbl_permiso_internet', $data);
 
 	}
 
 	public function actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local)
 	{
-		$data=array('internet' => $internet,'messenger' => $messenger,'redes_sociales' => $redes_sociales,'ftp' => $ftp,'sigue'=>$sigue,'permiso_usuario_local' => $permiso_usuario_local);
+		$data=array('internet' => $internet,
+					'messenger' => $messenger,
+					'redes_sociales' => $redes_sociales,
+					'ftp' => $ftp,'sigue'=>$sigue,
+					'permiso_usuario_local' => $permiso_usuario_local
+		);
 		$this->db->where('id',$id);
 		$this->db->update('tbl_permiso_internet',$data);
 		
