@@ -49,17 +49,11 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-<<<<<<< HEAD
 
 $db['default']['username'] = 'root';
 $db['default']['password'] = 'root';
 $db['default']['database'] = 'inventariobi';
 
-=======
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'sECTUREd15';
-$db['default']['database'] = 'inventariobi';
->>>>>>> 19244154d16c954d2a42091673acb36df5d7c9c5
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
