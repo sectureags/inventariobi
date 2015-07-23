@@ -49,9 +49,11 @@ class Permisos extends CI_Controller {
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-			//$recurso = $this->uri->segment(2); // Metodo de la URL
-			$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
-			if ($resource === TRUE) {
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
@@ -61,10 +63,8 @@ class Permisos extends CI_Controller {
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_permisos_view',$data);
 				$this->load->view('pie_view');
-				$this->load->view('footer_view');					
-			}
-			else
-			{
+				$this->load->view('footer_view');
+			}else{
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
@@ -75,7 +75,9 @@ class Permisos extends CI_Controller {
 				$this->load->view('sorry_view',$data);
 				$this->load->view('pie_view');
 				$this->load->view('footer_view');
-			}
+				
+			}				
+			
 		}
 	}
 
@@ -87,15 +89,18 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->permitir($id);
-					redirect( base_url(COMPONENTE) );
+					echo "OK";
+					redirect( base_url(COMPONENTE.'/index') );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
 				{
-					//$recurso = $this->uri->segment(2); // Metodo de la URL
-					$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
-					if ($resource === TRUE) {
+					$metodo = $this->uri->segment(2); // Metodo de la URL
+					$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+					if ($tiene_permiso == TRUE) {
+						// EL USUARIO SI TIENE ACCESO AL METODO
 						$data['get_all'] = $this->permisos_model->permitir($id);
-						redirect( base_url(COMPONENTE) );
+						echo "OK";
+						redirect( base_url(COMPONENTE.'/index') );
 					}
 					else
 					{
@@ -112,7 +117,16 @@ class Permisos extends CI_Controller {
 					}
 				}
 		}else{
-			die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view',$data);
+			$this->load->view('menu_view');
+			$this->load->view('sorry_view',$data);
+			$this->load->view('pie_view');
+			$this->load->view('footer_view'); 
 		}
 		
 		
@@ -126,24 +140,43 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->quitar($id);
-					redirect( base_url(COMPONENTE) );
+					echo "OK";
+					redirect( base_url(COMPONENTE.'/index') );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
 				{
-					//$recurso = $this->uri->segment(2); // Metodo de la URL
-					$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE);
-					if ($resource === TRUE) {
+					$metodo = $this->uri->segment(2); // Metodo de la URL
+					$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+					if ($tiene_permiso == TRUE) {
 						$data['get_all'] = $this->permisos_model->quitar($id);
-						redirect( base_url(COMPONENTE) );
+						echo "OK";
+						redirect( base_url(COMPONENTE.'/index') );
 					}
 					else
 					{
-						echo "<p><a href='' onclick='history.back();'>REGRESAR</a></p>";
-						die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+						$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+						$data['username'] = USER;
+						$data['rol'] = ROL;
+						$data['get_all'] = $this->permisos_model->get_all();
+						$this->load->view('header_view');
+						$this->load->view('cabecera_view',$data);
+						$this->load->view('menu_view');
+						$this->load->view('sorry_view',$data);
+						$this->load->view('pie_view');
+						$this->load->view('footer_view');
 					}
 				}
 		}else{
-			die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$this->load->view('header_view');
+			$this->load->view('cabecera_view',$data);
+			$this->load->view('menu_view');
+			$this->load->view('sorry_view',$data);
+			$this->load->view('pie_view');
+			$this->load->view('footer_view');
 		}
 		
 	}
@@ -162,9 +195,9 @@ class Permisos extends CI_Controller {
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-			$recurso = $this->uri->segment(2); // Metodo de la URL
-			$resource = $this->permisos_model->verify_recursos(ROL,COMPONENTE,$recurso);
-			if ($resource === TRUE) {
+				$metodo = $this->uri->segment(2); // Metodo de la URL
+				$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+				if ($tiene_permiso == TRUE) {
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 		 		$agregar = $this->permisos_model->insert_entry();
@@ -174,8 +207,16 @@ class Permisos extends CI_Controller {
 			}
 			else
 			{
-				echo "<p><a href='' onclick='history.back();'>REGRESAR</a></p>";
-				die("No tiene permisos para leer este recurso. Solicite ayuda con el administrador del Sistema."); 
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$this->load->view('header_view');
+				$this->load->view('cabecera_view',$data);
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('pie_view');
+				$this->load->view('footer_view');
 			}
 		}			
 
