@@ -46,23 +46,20 @@
 	</div>
 		
 	<div class="row">	
-	<table class="table table-condensed">
-		<tr>
-		<th>ID</th>
-		<th>Rol</th>
-		<th>Componente</th>
-		<th>Recurso</th>
-		<th>Permiso</th>
-		<th>Accion</th>
+	<table class="table table-bordered">
+		<tr>		
+		<th class="text-center">Rol</th>
+		<th class="text-center">Componente</th>
+		<th class="text-center">Recurso</th>
+		<th class="text-center">Permiso</th>
+		<th class="text-center">Accion</th>
 		</tr>
 		<?php
 			if ( (is_array($get_all) == TRUE ) ) {
 				
 				foreach ($get_all as $value) {
 			  		echo "<tr>";		  	  	
-			  	  	echo "<td>";
-			  	  	echo "$value->id";		  	  	
-			  		echo "</td>";
+		
 			  		echo "<td>";
 		  	  		foreach ($cargar_roles as $rol) :
 		  	  			if ($value->rol == $rol->id_tipo) {
@@ -76,15 +73,13 @@
 			  		echo "<td>";
 			  	  	echo "$value->recurso";		  	  	
 			  		echo "</td>";
-			  		echo "<td>";
+			  		echo "<td class='text-center'>";
 			  	  	echo "$value->permiso";		  	  	
 			  		echo "</td>";
-			  		echo "<td>";
+			  		echo "<td class='text-center'>";
 			  		if ($value->permiso != TRUE) { ?>
-			  			
 			  			<a href="<?php echo base_url('permisos/activar/'.$value->id) ;?>">Activar</a>
-			  		<?php } else { ?>
-				  		
+			  		<?php } else { ?>				  		
 			  			<a href="<?php echo base_url('permisos/desactivar/'.$value->id) ;?>">Desactivar</a>
 			  		<?php }	
 			  		echo "</td>";
