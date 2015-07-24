@@ -13,7 +13,7 @@
 					<p class="texto">Reportes</p>
 				</li>
 				<li class="contenedor" id="empleados"><!--LI-->
-					<a href="<?php echo base_url('empleados');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
+					<a href="<?php echo base_url('empleados/index');?>"><img class="icon" src="<?php echo base_url(); ?>img/icon/icon1.png"></a>
 					<p class="texto">Empleados</p>
 				</li>
 				<li class="contenedor" id="salir"><!--LI-->

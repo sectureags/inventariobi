@@ -119,7 +119,7 @@ class Empleados extends CI_Controller {
 		
 		$this->load->model('tbl_empleado_crud_model');
 		$this->tbl_empleado_crud_model->eliminar_empleado($id_empleado);
-		redirect('empleados/');
+		redirect('empleados/index');
 		}
 	}
 

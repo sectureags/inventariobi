@@ -109,7 +109,7 @@ class Users extends CI_Controller {
 
 			$this->load->model('tbl_user_crud_model'); 
 			$this->tbl_user_crud_model->actualizar_users($id_user,$nombre, $id_tipo, $username, $password, $email, $tel, $id_status);
-			redirect('users/');
+			redirect('users/index');
 		}
 	}
 

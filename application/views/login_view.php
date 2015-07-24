@@ -40,7 +40,7 @@
 						<?php /*Formulario para ingresar usuario y contraseña y permitir el 
 								acceso al sistema en aso de que se cumpla con una validacion*/
 							$attributes = array('class' => '', 'textalign' => 'center');
-							echo form_open(base_url('welcome/'),$attributes); /*se va al controller
+							echo form_open(base_url('welcome/index'),$attributes); /*se va al controller
 												welcome para validar el usuario y la contraseña insertados*/
 						?>
 						<div class="form-group col-sm-12">
