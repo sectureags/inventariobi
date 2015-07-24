@@ -210,27 +210,74 @@ class Empleados extends CI_Controller {
 
 	public function actualizar()
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$id_empleado=$_POST['id_empleado'];
+			$codigo_empleado=$_POST['codigo_empleado'];
+			$nombre_completo=$_POST['nombre_completo'];
+			$unidad=$_POST['unidad'];
+			$usuario_de_red=$_POST['usuario_de_red'];
+			$contrasena=$_POST['contrasena'];
+			$num_extension=$_POST['num_extension'];
+			$correo_electonico=$_POST['correo_electonico'];
+			$area=$_POST['area'];
+			$cargo=$_POST['cargo'];
+
+			$this->load->model('tbl_empleado_crud_model'); 
+			$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
+			redirect('empleados/index');
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-		$id_empleado=$_POST['id_empleado'];
-		$codigo_empleado=$_POST['codigo_empleado'];
-		$nombre_completo=$_POST['nombre_completo'];
-		$unidad=$_POST['unidad'];
-		$usuario_de_red=$_POST['usuario_de_red'];
-		$contrasena=$_POST['contrasena'];
-		$num_extension=$_POST['num_extension'];
-		$correo_electonico=$_POST['correo_electonico'];
-		$area=$_POST['area'];
-		$cargo=$_POST['cargo'];
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$id_empleado=$_POST['id_empleado'];
+				$codigo_empleado=$_POST['codigo_empleado'];
+				$nombre_completo=$_POST['nombre_completo'];
+				$unidad=$_POST['unidad'];
+				$usuario_de_red=$_POST['usuario_de_red'];
+				$contrasena=$_POST['contrasena'];
+				$num_extension=$_POST['num_extension'];
+				$correo_electonico=$_POST['correo_electonico'];
+				$area=$_POST['area'];
+				$cargo=$_POST['cargo'];
 
-		$this->load->model('tbl_empleado_crud_model'); 
-		$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
-		redirect('empleados/');
-		}
+				$this->load->model('tbl_empleado_crud_model'); 
+				$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
+				redirect('empleados/index');
+			}
+				else{
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$id_empleado=$_POST['id_empleado'];
+				$codigo_empleado=$_POST['codigo_empleado'];
+				$nombre_completo=$_POST['nombre_completo'];
+				$unidad=$_POST['unidad'];
+				$usuario_de_red=$_POST['usuario_de_red'];
+				$contrasena=$_POST['contrasena'];
+				$num_extension=$_POST['num_extension'];
+				$correo_electonico=$_POST['correo_electonico'];
+				$area=$_POST['area'];
+				$cargo=$_POST['cargo'];
+
+				$this->load->model('tbl_empleado_crud_model'); 
+				$this->load->view('sorry_view',$data);
+			}
+		}	
 	}
 
 	public function eliminar()
