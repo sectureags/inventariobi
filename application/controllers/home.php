@@ -168,7 +168,7 @@ class Home extends CI_Controller {
 		 		$this->load->view('header_view');
 				$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
-				$this->load->view('contenedor_bi_view');
+				$this->load->view('contenedor_bi_view');	
 				$this->load->view('footer_view');
 			}else{
 
