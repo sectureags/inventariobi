@@ -170,16 +170,42 @@ class Users extends CI_Controller {
 
 	public function editar($id_user)
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
-		else
-		{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->model('tbl_user_crud_model');
 			$data['editar_users']=$this->tbl_user_crud_model->editar_users($id_user);
 			$this->load->view();
+			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$this->load->model('tbl_user_crud_model');
+				$data['editar_users']=$this->tbl_user_crud_model->editar_users($id_user);
+				$this->load->view();
+				}
+				else{
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$this->load->model('tbl_user_crud_model');
+				$this->load->view('sorry_view',$data);
+			}
 		}
+		
 	}
 
 	public function actualizar()
