@@ -22,25 +22,82 @@ class Users extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->library('encrypt');
-	}
-	public function index()
-	{ 
+		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
 			redirect(base_url('welcome/logout')); 
 		}
-		else
-		{
+		// Se Definen constantes para facilitar la programacion
+		define("SUPERROL", 1); // "SuperAdministrador"
+		define('ROL',$this->session->userdata('rol'));
+	    define('COMPONENTE',$this->uri->segment(1));
+	    define('USER',$this->session->userdata('username'));
+	    //
+	    $this->load->model('permisos_model');
+  		$this->load->model('tbl_user_crud_model');
+  		$this->load->model('tbl_roles_model');
+  		/*
+  		* Tabla de Roles:
+  		* 1.- Super Administrador
+  		* 2.- Administrador
+  		* 3.- Capturista
+  		*/
+	}
+	
+	public function index()
+	{ 
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
 			$this->load->model('tbl_user_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_users'] = $this->tbl_user_crud_model->cargar_users();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 			$this->load->model('tbl_roles_model');
 			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_users_view',$data);
 			$this->load->view('footer_view');
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$this->load->model('tbl_user_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_users'] = $this->tbl_user_crud_model->cargar_users();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
+				$this->load->model('tbl_roles_model');
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+				$this->load->view('header_view');
+				$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				$this->load->view('contenedor_users_view',$data);
+				$this->load->view('footer_view');
+			}else{
+				$this->load->model('tbl_user_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_users'] = $this->tbl_user_crud_model->cargar_users();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
+				$this->load->model('tbl_roles_model');
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+				$this->load->view('header_view');
+				$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
 		}
 	}
 
