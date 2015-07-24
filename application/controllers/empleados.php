@@ -282,18 +282,43 @@ class Empleados extends CI_Controller {
 
 	public function eliminar()
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$this->load->model('tbl_empleado_crud_model');
+			$this->tbl_empleado_crud_model->eliminar_empleado($id_empleado);
+			redirect('empleados/index');
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-			$id_empleado=$_POST['id_empleado'];
-		
-		$this->load->model('tbl_empleado_crud_model');
-		$this->tbl_empleado_crud_model->eliminar_empleado($id_empleado);
-		redirect('empleados/index');
-		}
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$this->load->model('tbl_empleado_crud_model');
+				$this->tbl_empleado_crud_model->eliminar_empleado($id_empleado);
+				redirect('empleados/index');
+				}
+				else{
+					$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+					$data['username'] = USER;
+					$data['rol'] = ROL;
+					$data['get_all'] = $this->permisos_model->get_all();
+					$this->load->model('tbl_empleado_crud_model');
+					$this->load->view('sorry_view',$data);
+				}
+				
+		}	
+			
 	}
 
 	public function detalles($id_empleado)
