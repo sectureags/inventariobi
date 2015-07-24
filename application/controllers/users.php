@@ -210,12 +210,13 @@ class Users extends CI_Controller {
 
 	public function actualizar()
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
-		else
-		{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
 			$id_user=$_POST['id_user'];
 			$nombre=$_POST['nombre'];
 			$id_tipo=$_POST['id_tipo'];
@@ -228,7 +229,49 @@ class Users extends CI_Controller {
 			$this->load->model('tbl_user_crud_model'); 
 			$this->tbl_user_crud_model->actualizar_users($id_user,$nombre, $id_tipo, $username, $password, $email, $tel, $id_status);
 			redirect('users/index');
-		}
+			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$id_user=$_POST['id_user'];
+				$nombre=$_POST['nombre'];
+				$id_tipo=$_POST['id_tipo'];
+				$username=$_POST['username'];
+				$password=$_POST['password'];
+				$email=$_POST['email'];
+				$tel=$_POST['tel'];
+				$id_status=$_POST['id_status'];
+
+				$this->load->model('tbl_user_crud_model'); 
+				$this->tbl_user_crud_model->actualizar_users($id_user,$nombre, $id_tipo, $username, $password, $email, $tel, $id_status);
+				redirect('users/index');
+				}
+				else{
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+				$id_user=$_POST['id_user'];
+				$nombre=$_POST['nombre'];
+				$id_tipo=$_POST['id_tipo'];
+				$username=$_POST['username'];
+				$password=$_POST['password'];
+				$email=$_POST['email'];
+				$tel=$_POST['tel'];
+				$id_status=$_POST['id_status'];
+
+				$this->load->model('tbl_user_crud_model'); 
+				$this->load->view('sorry_view',$data);
+			}
+		}		
 	}
 
 	public function filtrar_por_rol()
