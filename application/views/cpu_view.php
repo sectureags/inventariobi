@@ -33,7 +33,7 @@
 					<td> <?php	echo $fila->tipo; ?></td>
 					<td> <?php	echo $fila->ubicacion; ?></td>
 					<td>YYYYY</td>
-					<td><a href="">Ver detalles</a></td>
+					<td><a href="#">Ver detalles</a></td>
 					
 				<?php endforeach; ?>
 			</tbody> 
