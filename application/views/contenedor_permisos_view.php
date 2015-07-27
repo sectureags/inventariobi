@@ -2,21 +2,12 @@
 	<nav class="navbar navbar-default">
 	  <div class="container-fluid">
 	    <div class="navbar-header">
-	      
+	    	<a class="navbar-brand" href="<?php echo base_url('permisos/index');?>">Módulo Permisos</a>
+	    	<h5 class="text-center">Bienvenido: <small>(<?php echo $username; ?>)</small></h5>
 	    </div>
 	    <div>
 	      <ul class="nav navbar-nav navbar-left">
-	        <li class="active">User: <?php echo $username; ?><br>
-			<small>(
-			<?php
-				foreach ($cargar_roles as $tipo) :
-					if ($rol == $tipo->id_tipo ) {
-						echo "<strong>";
-						echo $tipo->descripcion;				
-						echo "</strong>";
-					}
-		 		endforeach; ?> 
-			)</small></li>
+	        
 	        <li>
         	<form class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('permisos/index');?>">
 			<div class="form-group">       
