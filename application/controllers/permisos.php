@@ -36,10 +36,11 @@ class Permisos extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
+			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->get_all();
+			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 			$this->load->view('header_view');
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');

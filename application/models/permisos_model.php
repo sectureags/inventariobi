@@ -10,17 +10,43 @@ class Permisos_model extends CI_Model {
     parent::__construct();
         
   }
+
   public function get_all(){
+    
     $this->db->order_by('rol','asc');
     $this->db->order_by('permiso','desc');
     $this->db->order_by('componente','asc');
     $this->db->order_by('recurso','asc');
+
     $q = $this->db->get('tbl_permisos');
+
     if ( $q->num_rows > 0 ){
+
       return $q->result();
     }
     return FALSE;
+
   }
+
+public function filtro_roles($tipo_rol){
+    
+    $this->db->where('rol',$tipo_rol);
+
+    $this->db->order_by('componente','asc');
+    $this->db->order_by('recurso','asc');
+
+    $q = $this->db->get('tbl_permisos');
+
+    if ( $q->num_rows > 0 ){
+
+      return $q->result();
+    }
+    return FALSE;
+
+  }
+
+
+
   function insert_entry()
   {
     $data = array(
