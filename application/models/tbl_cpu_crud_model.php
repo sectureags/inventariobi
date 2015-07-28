@@ -8,7 +8,9 @@ class Tbl_cpu_crud_model extends CI_Model
 
 	public function cargar_cpu()
 	{
-		$res=$this->db->get('tbl_cpu');
+		$this->db->from('tbl_cpu');
+		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
+		$res=$this->db->get();
 		return $res->result(); 
 	}
 
