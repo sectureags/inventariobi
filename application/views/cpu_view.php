@@ -10,7 +10,7 @@
 					 <th>Modelo</th> 
 					 <th>HostName</th> 
 					 <th>Nombre Empleado</th>
-					 <th>Accion</th>
+					 <th>Status</th>
 					 <th>Detalles</th> 
 
 				</tr>   
@@ -24,7 +24,7 @@
 					<td> <?php	echo $fila->modelo; ?></td>
 					<td> <?php	echo $fila->hostname; ?></td>
 					<td> <?php echo $fila->nombre_completo; ?></td>
-					<td>YYYYY</td>
+					<td><?php echo $fila->nombre; ?></td>
 					<td><a href="#">Ver detalles</a></td>
 					</tr>
 				<?php endforeach; ?>

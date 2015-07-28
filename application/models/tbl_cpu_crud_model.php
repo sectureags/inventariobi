@@ -10,6 +10,7 @@ class Tbl_cpu_crud_model extends CI_Model
 	{
 		$this->db->from('tbl_cpu');
 		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
 		$res=$this->db->get();
 		return $res->result(); 
 	}
