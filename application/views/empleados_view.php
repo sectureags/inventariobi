@@ -50,13 +50,8 @@
 				<tr>       
 					 <th>Codigo Empleado</th>         
 					 <th>Nombre Completo</th>          
-					 <th>Unidad</th> 
-					 <th>Usuario de Dominio</th> 
-					 <th>Contraseña</th>
 					 <th>Correo Electronico</th> 
 					 <th>No. Extension</th> 
-					 <th>Area de Adscripcion</th>  
-					 <th>Cargo</th>
 					 <th>Accion</th>
 					 <th>Detalles</th> 
 
@@ -68,13 +63,8 @@
 					<tr>
 					<td> <?php echo $fila->codigo_empleado; ?></td>
 					<td> <?php	echo $fila->nombre_completo; ?></td>
-					<td> <?php	echo $fila->unidad; ?></td>
-					<td> <?php	echo $fila->usuario_de_red; ?></td>
-					<td> <?php	echo $fila->contrasena; ?></td>
 					<td> <?php	echo $fila->correo_electonico; ?></td>
 					<td> <?php	echo $fila->num_extension; ?></td>
-					<td> <?php	echo $fila->area; ?></td>
-					<td> <?php	echo $fila->cargo; ?></td>
 					<td><a href="" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">Editar</a><b>
 
 						<!-- Modal --> 
