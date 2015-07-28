@@ -35,7 +35,7 @@ class Tbl_user_model extends CI_Model
 		$this->db->where('username',$username);
 		$this->db->where('password',$password); 
 
-		$tipo_r=$this->db->get('tbl_user');
+		$tipo_r = $this->db->get('tbl_user');
 		if ($tipo_r->num_rows>0) 
 		{
 			return $tipo_r->row();
@@ -45,6 +45,21 @@ class Tbl_user_model extends CI_Model
 		}
 	}   //Obtiene el tipo de rol          /////////////DARME DE ALTA EN TRELLO/////////////
 
+	function verify_status ($username, $password)
+	//Se obtiene el status activo o inactivo del usuario que esta ingresando
+	{
+		$this->db->select('id_status');
+		$this->db->select('username',$username);
+		$this->db->select('password',$password);
+
+		$tipo_s = $this->db->get('tbl_user');
+		if ($tipo_s == '1') {
+				return $tipo_s;
+			} else {
+				FALSE;
+			}
+				
+	}
 } 
 
 ?>
