@@ -23,7 +23,7 @@
 					<td> <?php	echo $fila->marca; ?></td>
 					<td> <?php	echo $fila->modelo; ?></td>
 					<td> <?php	echo $fila->hostname; ?></td>
-					<td><a href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>""><?php echo $fila->nombre_completo; ?></a></td>
+					<td><a href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>"><?php echo $fila->nombre_completo; ?></a></td>
 					<td><?php echo $fila->nombre; ?></td>
 					<td><a href="#">Ver detalles</a></td>
 					</tr>
