@@ -48,14 +48,18 @@ class Tbl_user_model extends CI_Model
 	function verify_status ($username, $password)
 	//Se obtiene el status activo o inactivo del usuario que esta ingresando
 	{
-		$this->db->select('id_status');
-		$this->db->select('username',$username);
-		$this->db->select('password',$password);
+		$this->db->where('username',$username);
+		$this->db->where('password',$password);
+		$this->db->where('id_status',1);
+		$this->db->limit(1);
 
 		$tipo_s = $this->db->get('tbl_user');
-		if ($tipo_s == '1') {
-				return $tipo_s;
+		if ($tipo_s->num_rows>0) {
+
+				return TRUE;
+
 			} else {
+				
 				FALSE;
 			}
 				

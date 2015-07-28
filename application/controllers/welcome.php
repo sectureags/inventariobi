@@ -40,7 +40,8 @@ class Welcome extends CI_Controller {
 		$password=$this->input->post('password');
 
 		$existe=$this->tbl_user_model->verify_user($username,$password);
-		if ($existe==TRUE) {
+		$activo = $this->tbl_user_model->verify_status($username,$password);
+		if ($existe == TRUE && $activo == TRUE) {
 			///llamar al metodo para el tipo de rol para saber a donde tendra permisos de navegacion////
 			$reg_rol = $this->tbl_user_model->verify_rol($username,$password);//me guarda el areglo de verify_rol, llamo a la clase tbl_user_model y al metodo
 
@@ -104,7 +105,7 @@ class Welcome extends CI_Controller {
 	
 		}else{
 
-		echo "No existes en la Base de datos. Ve con tu administrador";
+		echo "No existes en la Base de datos o tu usuario esta desactivado. Ve con tu administrador";
 		//redirect('welcome/logout');
 		}
 		
