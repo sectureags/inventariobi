@@ -137,8 +137,8 @@
 												<label for="id_tipo">Rol</label>  
 												<select class="form-control" name="id_tipo">
 								    			<?php foreach ($cargar_roles as $rol) :?> 
-													<?php if($fila->id_tip == $rol->id_tipo){  ?>
-									 					<option value="<?php echo $fila->id_tipo; ?>" selected><?php echo $rol->descripcion;?></option>                 
+													<?php if($fila->id_tipo == $rol->id_tipo){  ?>
+									 					<option value="<?php echo $fila->id_tipo; ?>"selected><?php echo $rol->descripcion;?></option>                 
 									 				<?php } else {?>
 									 					<option value="<?php echo $rol->id_tipo; ?>"><?php echo $rol->descripcion;?></option>
 									 				<?php }?>
