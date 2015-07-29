@@ -1,4 +1,4 @@
-<div  id="modulobi" class="panel panel-primary">
+<div class="panel panel-primary">
   <div class="panel-heading text-center"><h1>CPUs</h1></div>
   <div class="panel-body">
 

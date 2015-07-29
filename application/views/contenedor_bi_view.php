@@ -1,27 +1,17 @@
  <div id="inventario" class="container text-center" >
- 	<h1>Bienes Informáticos</h1>
-  
-    <div class="row">
-	  <div class="col-md-3" >
-	    <div id="modulobi" class="thumbnail">
-	      <img src="<?php echo base_url();?>/img/img1.jpg" alt="Cinque Terre">
-	      <div class="caption">
-	        <h3><strong>CPUs</strong></h3>
-	        <p>Desktops, Laptops, Servidores</p>
-	        <p><a href="<?php echo base_url('bi_cpu/index');?>" class="btn btn-primary btn-lg" role="button">Entrar</a></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="col-md-3">
-	    <div id="modulobi" class="thumbnail">
-	      <img src="<?php echo base_url();?>/img/img1.jpg" alt="Cinque Terre">
-	      <div class="caption">
-	        <h3><strong>DISPLAYS</strong></h3>
-	        <p>Displays, Monitores, Pantallas</p>
-	        <p><a href="<?php echo base_url('bi_cpu/index');?>" class="btn btn-primary btn-lg" role="button">Entrar</a></p>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+<div class="row">
 
-	
+	<div class="col-md-4" >
+		<div id="modulobi">
+			<div class="panel panel-primary">
+			  <div class="panel-heading text-center"><h1>CPUs</h1></div>
+			  <div class="panel-body"><small>Desktops, Laptops, Servidores</small></div>
+			  <div class="caption">
+		        <p><a href="<?php echo base_url('bi_cpu/index');?>" class="btn btn-default btn-lg" role="button">Entrar</a></p>
+		      </div>
+			</div>	      
+		</div>
+	</div>  
+
+</div>
+</div>
