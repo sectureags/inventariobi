@@ -15,8 +15,15 @@ class Tbl_empleado_crud_model extends CI_Model
 
 	public function agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo)
 	{
-		$data=array('codigo_empleado' => $codigo_empleado,'nombre_completo' => $nombre_completo,'unidad' => $unidad,'usuario_de_red' => $usuario_de_red,
-			'contrasena' => $contrasena,'area' => $area,'num_extension' => $num_extension, 'correo_electonico'=>$correo_electonico, 'cargo' => $cargo);
+		$data=array('codigo_empleado' => $codigo_empleado,
+					'nombre_completo' => $nombre_completo,
+					'unidad' => $unidad,
+					'usuario_de_red' => $usuario_de_red,
+					'contrasena' => $contrasena,
+					'area' => $area,
+					'num_extension' => $num_extension, 
+					'correo_electonico'=>$correo_electonico,
+					'cargo' => $cargo);
 		$nuevo = $this->db->insert('tbl_empleados', $data);
 
 	}
@@ -32,7 +39,15 @@ class Tbl_empleado_crud_model extends CI_Model
 
 	public function actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo)
 	{
-		$data=array('codigo_empleado' => $codigo_empleado,'nombre_completo' => $nombre_completo,'unidad' => $unidad,'usuario_de_red' => $usuario_de_red,'contrasena' => $contrasena,'area' => $area,'num_extension' => $num_extension, 'correo_electonico'=>$correo_electonico, 'cargo' => $cargo);
+		$data=array('codigo_empleado' => $codigo_empleado,
+					'nombre_completo' => $nombre_completo,
+					'unidad' => $unidad,
+					'usuario_de_red' => $usuario_de_red,
+					'contrasena' => $contrasena,
+					'area' => $area,
+					'num_extension' => $num_extension, 
+					'correo_electonico'=>$correo_electonico, 
+					'cargo' => $cargo);
 		$this->db->where('id_empleado',$id_empleado);
 		$this->db->update('tbl_empleados',$data);
 		

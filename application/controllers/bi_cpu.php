@@ -44,7 +44,23 @@ class Bi_cpu extends CI_Controller {
 
 	public function crear()
 	{
+		$num_inventario=$_POST['num_inventario'];
+		$categoria=$_POST['categoria'];
+		$marca=$_POST['marca'];
+		$model=$_POST['model'];
+		$hostname=$_POST['hostname'];
+		$num_serie=$_POST['num_serie'];
+		$tipo=$_POST['tipo'];
+		$ubicacion=$_POST['ubicacion'];
+		$status=$_POST['status'];
+		$id_empleado=$_POST['id_empleado'];
 
+		$this->load->model('tbl_cpu_crud_model');
+		$this->load->model('tbl_status_cpu_model');
+		$data['cargar_status']=$this->tbl_status_cpu_model->cargar_status();
+		$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+			
+		$this->index();
 	}
 
 	public function editar()

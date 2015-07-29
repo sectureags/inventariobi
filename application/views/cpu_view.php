@@ -1,5 +1,8 @@
 <div class="well"> <!-- Inicio del container --> 
 
+	
+
+
 	<div class="row" id="tabla_cpu">
 		<table class="table table-bordered">    
 			<caption><h3>CPU's</h3></caption>    
@@ -11,7 +14,7 @@
 					 <th>HostName</th> 
 					 <th>Nombre Empleado</th>
 					 <th>Status</th>
-					 <th>Detalles</th> 
+					 <th>Operaciones</th> 
 
 				</tr>   
 			</thead>    
@@ -25,7 +28,18 @@
 					<td> <?php	echo $fila->hostname; ?></td>
 					<td><a href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>"><?php echo $fila->nombre_completo; ?></a></td>
 					<td><?php echo $fila->nombre; ?></td>
-					<td><a href="#">Ver detalles</a></td>
+					<td><div class="btn-group">
+						  <button type="button" class="btn btn-primary">Acciones</button>
+						  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+						    <span class="caret"></span>
+						  </button>
+						  <ul class="dropdown-menu" role="menu">
+						    <li><a href="#">Ver detalle</a></li>
+						    <li><a href="#">Reasignación</a></li>
+						    <li><a href="#">WinAudit</a></li>
+						  </ul>
+						</div>
+					</td>
 					</tr>
 				<?php endforeach; ?>
 			</tbody> 
