@@ -138,7 +138,7 @@ body
 {
 	background-color: rgb(233,147,26);
 }
-#menu1_1 #inventario
+#menu1_1 #inventario 
 {
 	background-color: rgb(22,145,190);
 } 
@@ -293,3 +293,9 @@ img.icon
 .nav
 {
 	display:inline-block;
+}
+
+#modulobi{
+	box-shadow: 10px 10px 5px rgb(22,145,190);
+	
+	}
