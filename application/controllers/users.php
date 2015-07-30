@@ -58,7 +58,7 @@ class Users extends CI_Controller {
 			$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_users_view',$data);
 			$this->load->view('footer_view');
@@ -79,7 +79,7 @@ class Users extends CI_Controller {
 				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_users_view',$data);
 				$this->load->view('footer_view');
@@ -93,7 +93,7 @@ class Users extends CI_Controller {
 				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
@@ -291,7 +291,7 @@ class Users extends CI_Controller {
 			$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_users_view',$data);
 			$this->load->view('footer_view');
@@ -315,7 +315,7 @@ class Users extends CI_Controller {
 				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_users_view',$data);
 				$this->load->view('footer_view');
@@ -332,7 +332,7 @@ class Users extends CI_Controller {
 				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
@@ -357,7 +357,7 @@ class Users extends CI_Controller {
 			$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista(); 
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_users_view',$data);
 			$this->load->view('footer_view');
@@ -381,7 +381,7 @@ class Users extends CI_Controller {
 				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista(); 
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_users_view',$data);
 				$this->load->view('footer_view');
@@ -399,7 +399,7 @@ class Users extends CI_Controller {
 				$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista(); 
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');

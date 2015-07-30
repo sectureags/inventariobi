@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');  ///se manda llamar a la vista///
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('home_view');
 			$this->load->view('footer_view');
@@ -72,7 +72,7 @@ class Home extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');  ///se manda llamar a la vista///
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('home_view');
 				$this->load->view('footer_view');
@@ -83,7 +83,7 @@ class Home extends CI_Controller {
 				$data['rol'] = ROL;
 				$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');  ///se manda llamar a la vista///
-				$this->load->view('cabecera_view');
+				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');

@@ -68,7 +68,7 @@ class Carpetas extends CI_Controller {
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
@@ -82,7 +82,7 @@ class Carpetas extends CI_Controller {
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
@@ -133,7 +133,7 @@ class Carpetas extends CI_Controller {
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
