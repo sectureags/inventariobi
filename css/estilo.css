@@ -136,23 +136,26 @@ body
 
 #menu1_1 #seguridad
 {
-	background-color: rgb(233,147,26);
+	
+	background-color: rgb(172,31,45);
 }
 #menu1_1 #inventario 
 {
-	background-color: rgb(22,145,190);
+	/*background-color: rgb(22,145,190);*/
+	background-color: rgb(66, 139, 202);
+	
 } 
 #menu1_1 #reportes
 {
-	background-color: rgb(208,101,3);
+	background-color: rgb(60, 118, 61);
 }
 #menu1_1 #empleados
 {
-	background-color: rgb(22,107,162);
+	background-color: rgb(49, 112, 143);
 }
 #menu1_1 #salir
 {
-	background-color: rgb(172,31,45);
+	background-color: rgb(233,147,26);
 }
 
 #menu1_1 li.contenedor:hover 
@@ -167,7 +170,7 @@ p.texto
 	color: white;
 	text-align: center;
 	padding-top: 0px;
-	opacity: .4;
+	opacity: 1;
 	-webkit-transition:padding-top .4s;
 
 }
@@ -296,6 +299,21 @@ img.icon
 }
 
 #modulobi{
-	box-shadow: 10px 10px 5px rgb(22,145,190);
+	box-shadow: 10px 10px 5px rgb(66, 139, 202);
+	
+	}
+
+#moduloseg{
+	box-shadow: 10px 10px 5px rgb(172, 31, 45);
+	
+	}
+
+#modulorep{
+	box-shadow: 10px 10px 5px rgb(60, 118, 61);
+	
+	}
+
+#moduloemp{
+	box-shadow: 10px 10px 5px rgb(49, 112, 143);
 	
 	}
