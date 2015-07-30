@@ -34,7 +34,7 @@
 			      <ul class="nav navbar-nav">
 			        
 			        <li class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Foltrar por:
+			          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Filtrar por:
 			          <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
 			            <li><a href="#">Marca</a></li>
