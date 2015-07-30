@@ -31,19 +31,29 @@ class Bi_cpu extends CI_Controller {
 			redirect(base_url('welcome/logout')); 
 		}
 		else
-		{
+		{	
+			$this->load->model('tbl_empleado_crud_model'); 
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+			$this->load->model('tbl_status_cpu_model'); 
+			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			
 			$this->load->view('header_view');
 			$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_cpu_view',$data);
 			$this->load->view('footer_view');
+
+
+
 		}
 	}
 
 	public function crear()
 	{
+		
 		$num_inventario=$_POST['num_inventario'];
 		$categoria=$_POST['categoria'];
 		$marca=$_POST['marca'];
@@ -52,13 +62,11 @@ class Bi_cpu extends CI_Controller {
 		$num_serie=$_POST['num_serie'];
 		$tipo=$_POST['tipo'];
 		$ubicacion=$_POST['ubicacion'];
-		$status=$_POST['status'];
 		$id_empleado=$_POST['id_empleado'];
+		$status=$_POST['status'];
 
 		$this->load->model('tbl_cpu_crud_model');
-		$this->load->model('tbl_status_cpu_model');
-		$data['cargar_status']=$this->tbl_status_cpu_model->cargar_status();
-		$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+		$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$id_empleado,$status);
 			
 		$this->index();
 	}
@@ -92,7 +100,8 @@ class Bi_cpu extends CI_Controller {
 		else
 		{
 			/*$id_empleado=$_POST['id_empleado'];*/
-
+			$this->load->model('tbl_status_cpu_model'); 
+			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_cpu_empleado'] = $this->tbl_cpu_crud_model->cargar_cpu_empleado($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
