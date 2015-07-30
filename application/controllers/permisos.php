@@ -42,10 +42,10 @@ class Permisos extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
+			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
 			$this->load->view('contenedor_permisos_view',$data);
-			$this->load->view('pie_view');
+			//$this->load->view('pie_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -61,10 +61,10 @@ class Permisos extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view',$data);
+				//$this->load->view('cabecera_view',$data);
 				$this->load->view('menu_view');
 				$this->load->view('contenedor_permisos_view',$data);
-				$this->load->view('pie_view');
+				//$this->load->view('pie_view');
 				$this->load->view('footer_view');
 			}else{
 
@@ -74,10 +74,10 @@ class Permisos extends CI_Controller {
 				$data['rol'] = ROL;
 				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 				$this->load->view('header_view');
-				$this->load->view('cabecera_view',$data);
+				//$this->load->view('cabecera_view',$data);
 				$this->load->view('menu_view');
 				$this->load->view('sorry_view',$data);
-				$this->load->view('pie_view');
+				//$this->load->view('pie_view');
 				$this->load->view('footer_view');
 				
 			}				
