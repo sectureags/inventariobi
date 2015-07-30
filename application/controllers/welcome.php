@@ -64,6 +64,7 @@ class Welcome extends CI_Controller {
 								'username' => $username, 
 								'rol' => $id_tipo,
 								'id_status' => 1,
+								'success' => TRUE,
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
@@ -75,6 +76,7 @@ class Welcome extends CI_Controller {
 								'username' => $username, 
 								'rol' => $id_tipo,
 								'id_status' => 1,
+								'success' => TRUE,
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
@@ -86,6 +88,7 @@ class Welcome extends CI_Controller {
 								'username' => $username, 
 								'rol' => $id_tipo,
 								'id_status' => 1,
+								'success' => TRUE,
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
