@@ -18,6 +18,7 @@ class Permisos extends CI_Controller {
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
 		define('ROL',$this->session->userdata('rol'));
+		define('SUCCESS',$this->session->userdata('success'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
 	    //
@@ -36,6 +37,7 @@ class Permisos extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
+
 			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
@@ -93,7 +95,6 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->permitir($id);
-					echo "OK";
 					redirect( base_url(COMPONENTE.'/index') );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
@@ -103,7 +104,6 @@ class Permisos extends CI_Controller {
 					if ($tiene_permiso == TRUE) {
 						// EL USUARIO SI TIENE ACCESO AL METODO
 						$data['get_all'] = $this->permisos_model->permitir($id);
-						echo "OK";
 						redirect( base_url(COMPONENTE.'/index') );
 					}
 					else
@@ -147,7 +147,6 @@ class Permisos extends CI_Controller {
 				if (ROL == SUPERROL) {
 					# code...
 					$data['get_all'] = $this->permisos_model->quitar($id);
-					echo "OK";
 					redirect( base_url(COMPONENTE.'/index') );
 				}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 				else
@@ -156,7 +155,6 @@ class Permisos extends CI_Controller {
 					$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
 					if ($tiene_permiso == TRUE) {
 						$data['get_all'] = $this->permisos_model->quitar($id);
-						echo "OK";
 						redirect( base_url(COMPONENTE.'/index') );
 					}
 					else
@@ -196,10 +194,15 @@ class Permisos extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			$data['username'] = USER;
-			$data['rol'] = ROL;			
-			$agregar = $this->permisos_model->insert_entry();
-			//Guarda el registro en la base de datos
-			echo "<strong>CREANDO PERMISO...</strong>!";
+			$data['rol'] = ROL;
+			$crearpermiso = array(
+		          'rol' => $this->input->post('id_tipo'),
+		          'componente' => $this->input->post('componente'),
+		          'recurso' => $this->input->post('recurso'),
+		          'permiso' => 1      
+		    ); 
+		    //Guarda el arreglo de datos en la base de datos
+			$agregar = $this->permisos_model->insert_entry($crearpermiso);
 			redirect(base_url('permisos/index'), 'refresh');
 
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -210,9 +213,14 @@ class Permisos extends CI_Controller {
 				if ($tiene_permiso == TRUE) {
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$agregar = $this->permisos_model->insert_entry();
-				//Guarda el registro en la base de datos
-				echo "<strong>CREANDO PERMISO...</strong>!";
+		 		$crearpermiso = array(
+			          'rol' => $this->input->post('id_tipo'),
+			          'componente' => $this->input->post('componente'),
+			          'recurso' => $this->input->post('recurso'),
+			          'permiso' => 1      
+			    ); 
+			    //Guarda el arreglo de datos en la base de datos
+				$agregar = $this->permisos_model->insert_entry($crearpermiso);
 				redirect(base_url('permisos/index'), 'refresh');
 			}
 			else

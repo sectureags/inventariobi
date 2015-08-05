@@ -47,16 +47,26 @@ public function filtro_roles($tipo_rol){
 
 
 
-  function insert_entry()
+  function insert_entry($crearpermiso)
   {
-    $data = array(
-          'rol' => $_POST['rol'],
-          'componente' => $_POST['componente'],
-          'recurso' => $_POST['recurso'],
-          'permiso' => 1      
-    );      
-      $this->db->insert('tbl_permisos', $data);
+    if ( ( ! empty($crearpermiso) ) AND is_array($crearpermiso) ) {
+      
+      $this->db->insert('tbl_permisos', $crearpermiso);
+
+      $id = $this->db->insert_id();
+
+      if ( ! empty($id) ) {
+
+        return TRUE;
+      }
+      else
+      {
+        return TRUE;
+      }     
+    }
+    return FALSE;
   }
+
   function delete($id)
   {
       $this->db->delete('tbl_permisos', array('id' => $id)); 
