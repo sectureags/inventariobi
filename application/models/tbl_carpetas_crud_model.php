@@ -21,9 +21,15 @@ class Tbl_carpetas_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
-	public function agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios)
+	public function agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios, $id_empleado)
 	{
-		$data=array('carpetas_geaco06' => $carpetas_geaco06,'carpeta_imagenes' => $carpeta_imagenes,'carpeta_excellentia' => $carpeta_excellentia,'capacidad_correo' => $capacidad_correo,'otros_servicios'=> $otros_servicios);
+		$data=array('carpetas_geaco06' => $carpetas_geaco06,
+					'carpeta_imagenes' => $carpeta_imagenes,
+					'carpeta_excellentia' => $carpeta_excellentia,
+					'capacidad_correo' => $capacidad_correo,
+					'otros_servicios'=> $otros_servicios,
+					'id_empleado'=>$id_empleado
+			);
 		$this->db->join('tbl_empleados', 'tbl_permiso_internet.id_empleado=tbl_empleados.id_empleado');
 		$this->db->where('tbl_permiso_carpetas.id_empleado',$id_empleado);
 		$nuevo = $this->db->insert('tbl_permiso_carpetas', $data);

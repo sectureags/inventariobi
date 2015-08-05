@@ -42,9 +42,10 @@ class Carpetas extends CI_Controller {
 			$carpeta_excellentia=$_POST['carpeta_excellentia'];
 			$capacidad_correo=$_POST['capacidad_correo'];
 			$otros_servicios=$_POST['otros_servicios'];
+			$id_empleado=$_POST['id_empleado'];
 
 			$this->load->model('tbl_carpetas_crud_model'); 
-			$nuevo = $this->tbl_carpetas_crud_model->agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios);
+			$nuevo = $this->tbl_carpetas_crud_model->agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios, $id_empleado);
 			
 			redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
 		}

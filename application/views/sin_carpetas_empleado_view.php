@@ -26,13 +26,13 @@
 
 
 		No tiene permisos asignados ni denegados
-		<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#miModal">   
+		<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">   
 			Asignar Permisos
 		</button> 
 
 
 		<!-- Modal -->
-			<div id="miModal" class="modal fade" role="dialog">
+			<div id="miModal<?php echo $fila->id_empleado; ?>" class="modal fade" role="dialog">
 				<div id="modulobi" class="modal-dialog">
 
 					<!-- Modal content-->
@@ -41,9 +41,9 @@
 							<button type="button" class="close" data-dismiss="modal">&times;</button>
 							<h4 class="modal-title">Registrar Permisos</h4>
 
-							<?php foreach ($cargar_permiso_carpetas as $fila) :?>
-								<label for="id">Id: </label>       
-								<input type="text" class="form-control" name="id" value="<?php echo $fila->id; ?>" readonly>
+							<?php foreach ($cargar_empleado_detalles as $fila) :?>
+										<label for="id_empleado">Empleado:</label>       
+										<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->nombre_completo; ?>" readonly>
 							<?php endforeach; ?>
 							</div>
 						<div class="modal-body">
@@ -74,13 +74,17 @@
 								 	<option>SI</option>          
 									<option>NO</option>
 								</select> 
+								<?php foreach ($cargar_empleado_detalles as $fila) :?>
+													<label for="id_empleado">Id Empleado:</label>       
+													<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
+												<?php endforeach; ?>
 				      		</div>    
-				      		
+				      		<div class="modal-footer">
+								<button type="submit" class="btn btn-default">Guardar</button> 
+							</div>
       					</form> </p>
 						</div>
-						<div class="modal-footer">
-							<button type="submit" class="btn btn-default">Guardar</button> 
-						</div>
+						
 					</div>
 
 					</div>
