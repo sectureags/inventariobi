@@ -43,8 +43,9 @@ class Internet extends CI_Controller {
 			$ftp=$_POST['ftp'];
 			$sigue=$_POST['sigue'];
 			$permiso_usuario_local=$_POST['permiso_usuario_local'];
+			$id_empleado=$_POST['id_empleado'];
 			$this->load->model('tbl_internet_crud_model'); 
-			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
+			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$id_empleado);
 			
 			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
 		}
@@ -66,7 +67,7 @@ class Internet extends CI_Controller {
 			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
-			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado); 
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
@@ -80,7 +81,8 @@ class Internet extends CI_Controller {
 			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
-			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados($id_empleado);   
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');

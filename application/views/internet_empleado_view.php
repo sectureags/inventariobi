@@ -62,10 +62,8 @@
 								      <div class="modal-body">
 								        <p><form role="form" action="<?php echo base_url('internet/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
 											<div class="form-group"> 
-												<label for="id">Id: </label>       
-												<input type="text" class="form-control" name="id" value="<?php echo $fila->id; ?>" readonly>
-												<label for="id_empleado">ID Empleado: </label>       
-												<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
+												<label for="id_empleado">Empleado: </label>       
+												<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->nombre_completo; ?>" readonly>      
 												<label for="internet">Internet</label>              
 												<select class="form-control" name="internet"> 
 												    <?php if($fila->internet == 'SI'){  ?>   

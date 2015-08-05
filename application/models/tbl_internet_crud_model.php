@@ -21,13 +21,14 @@ class Tbl_internet_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
-	public function agregar_internet($internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local)
+	public function agregar_internet($internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local,$id_empleado)
 	{
 		$data=array('internet' => $internet,
 					'messenger' => $messenger,
 					'redes_sociales' => $redes_sociales,
 					'ftp' => $ftp,'sigue'=>$sigue,
-					'permiso_usuario_local' => $permiso_usuario_local
+					'permiso_usuario_local' => $permiso_usuario_local,
+					'id_empleado'=>$id_empleado
 		);
 		
 		$nuevo = $this->db->insert('tbl_permiso_internet', $data);
