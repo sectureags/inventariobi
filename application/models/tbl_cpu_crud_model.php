@@ -25,21 +25,53 @@ class Tbl_cpu_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
-	public function agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$id_empleado,$status)
+	public function agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado)
 	{
 		$data=array('num_inventario' => $num_inventario,
 					'categoria' => $categoria,
 					'marca' => $marca,
-					'modelo' => $usuario_de_red,
+					'modelo' => $modelo,
 					'hostname' => $hostname,
 					'num_serie' => $num_serie,
 					'tipo' => $tipo, 
 					'ubicacion'=>$ubicacion, 
-					'id_empleado'=>$id_empleado,
-					'status' => $status,);
+					'status' => $status,
+					'id_empleado'=>$id_empleado);
 		$nuevo = $this->db->insert('tbl_cpu', $data);
 	}
 
+	public function existe_cpu_empleado($id_empleado)
+	{
+		$this->db->select('*');
+		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
+		$this->db->where('tbl_cpu.id_empleado',$id_empleado);
+		$this->db->limit(1);
+		$res=$this->db->get('tbl_cpu');
+
+		if ($res->num_rows>0) {
+			return TRUE;
+		}else
+		{
+			return FALSE;
+		}
+	}
 	
+	public function actualizar_cpu($id_cpu,$num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado)
+	{
+		$data=array('num_inventario' => $num_inventario,
+					'categoria' => $categoria,
+					'marca' => $marca,
+					'modelo' => $modelo,
+					'hostname' => $hostname,
+					'num_serie' => $num_serie,
+					'tipo' => $tipo, 
+					'ubicacion'=>$ubicacion, 
+					'status' => $status,
+					'id_empleado'=>$id_empleado);
+
+		$id_cpu=$_POST['id_cpu'];
+		$this->db->where('id_cpu',$id_cpu);
+		$this->db->update('tbl_cpu',$data);
+	}
 } 
 ?>

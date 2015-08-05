@@ -7,28 +7,115 @@
 			  <div class="container-fluid">
 			    <div class="navbar-header">
 			      <!-- Links -->
-			      <a class="navbar-brand" data-toggle="modal" href="#myModal">Crear nuevo</a>
+			      <a class="navbar-brand" data-toggle="modal" href="#miModal">Crear nuevo</a>
 			      		<!-- Modal -->
-						<div id="myModal" class="modal fade" role="dialog">
+						<div id="miModal" class="modal fade" role="dialog">
 						  <div id="modulobi" class="modal-dialog">
 
 						    <!-- Modal content-->
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        <h4 class="modal-title">Encabezado</h4>
+						        <h4 class="modal-title">Ingresar Nuevo CPU</h4>
 						      </div>
 						      <div class="modal-body">
-						        <p>Aquí el cuerpo del Modal</p>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+						        <p><form role="form" action="<?php echo base_url('bi_cpu/crear');?>" method="post">     
+										<div class="form-group">       
+											<label for="num_inventario">No. Inventario</label>       
+											<input type="text" class="form-control" name="num_inventario">       
+											<label for="categoria">Categoria</label>       
+											<input type="text" class="form-control" name="categoria"> 
+											<label for="marca">Marca</label>       
+											<input type="text" class="form-control" name="marca"> 
+											<label for="modelo">Modelo</label>       
+											<input type="text" class="form-control" name="modelo"> 
+											<label for="hostname">HostName</label>       
+											<input type="text" class="form-control" name="hostname">
+											<label for="num_serie">No. Serie</label>       
+											<input type="text" class="form-control" name="num_serie">
+											<label for="tipo">Tipo</label>       
+											<input type="text" class="form-control" name="tipo">
+											<label for="ubicacion">Ubicacion</label>       
+											<input type="text" class="form-control" name="ubicacion">       
+											<label for="status">Status</label> 
+											<select class="form-control" name="status">
+											    <?php foreach ($cargar_status as $st) :?>      
+											 	<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option>                 
+											 	<?php endforeach; ?>       
+											</select>    
+											<label for="id_empleado">Empleado</label>   
+											<select class="form-control" name="id_empleado">
+											    <?php foreach ($cargar_empleados as $empleados) :?>      
+											 	<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>                 
+											 	<?php endforeach; ?>       
+											</select>  
+			      						</div> 
+
+			      						<div class="modal-footer">
+										    <button type="submit" class="btn btn-default">Guardar</button>
+										</div>    
+			      					</form> 
+			      				</p>
 						      </div>
 						    </div>
 
 						  </div>
 						</div>
 						<!-- Modal -->
+
+						<!-- Modal -->
+									<div id="myModal" class="modal fade" role="dialog">
+									  <div class="modal-dialog">
+
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal">&times;</button>
+									        <h4 class="modal-title">Editar CPU</h4>
+									      </div>
+									      <div class="modal-body">
+									        <p><form role="form" action="<?php echo base_url('bi_cpu/crear');?>" method="post">     
+										<div class="form-group">       
+											<label for="num_inventario">No. Inventario</label>       
+											<input type="text" class="form-control" name="num_inventario">       
+											<label for="categoria">Categoria</label>       
+											<input type="text" class="form-control" name="categoria"> 
+											<label for="marca">Marca</label>       
+											<input type="text" class="form-control" name="marca"> 
+											<label for="modelo">Modelo</label>       
+											<input type="text" class="form-control" name="modelo"> 
+											<label for="hostname">HostName</label>       
+											<input type="text" class="form-control" name="hostname">
+											<label for="num_serie">No. Serie</label>       
+											<input type="text" class="form-control" name="num_serie">
+											<label for="tipo">Tipo</label>       
+											<input type="text" class="form-control" name="tipo">
+											<label for="ubicacion">Ubicacion</label>       
+											<input type="text" class="form-control" name="ubicacion">       
+											<label for="status">Status</label> 
+											<select class="form-control" name="status">
+											    <?php foreach ($cargar_status as $st) :?>      
+											 	<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option>                 
+											 	<?php endforeach; ?>       
+											</select>    
+											<label for="id_empleado">Empleado</label>   
+											<select class="form-control" name="id_empleado">
+											    <?php foreach ($cargar_empleados as $empleados) :?>      
+											 	<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>                 
+											 	<?php endforeach; ?>       
+											</select>  
+			      						</div> 
+
+			      						<div class="modal-footer">
+										    <button type="submit" class="btn btn-default">Guardar</button>
+										</div>    
+			      					</form> </p>
+									      </div>
+									    </div>
+
+									  </div>
+									</div>
+									<!-- Modal -->
 			    </div>
 			    <div>
 			      <ul class="nav navbar-nav">
@@ -77,7 +164,6 @@
 						 <th>Nombre Empleado</th>
 						 <th>Status</th>
 						 <th>Operaciones</th> 
-
 					</tr>   
 				</thead>    
 				<tbody> 
@@ -97,7 +183,31 @@
 							  <ul class="dropdown-menu" role="menu">
 							    <li><a href="#">Ver detalle</a></li>
 							    <li><a href="#">Reasignación</a></li>
-							    <li><a href="#">Editar</a></li>
+							    <li><a data-toggle="modal" data-target="#myModal">Editar</a>
+
+									<!-- Modal -->
+									<div id="myModal" class="modal fade" role="dialog">
+									  <div class="modal-dialog">
+
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal">&times;</button>
+									        <h4 class="modal-title">Modal Header</h4>
+									      </div>
+									      <div class="modal-body">
+									        <p>Some text in the modal.</p>
+									      </div>
+									      <div class="modal-footer">
+									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									      </div>
+									    </div>
+
+									  </div>
+									</div>
+									<!-- Modal -->
+							    </li>
+
 							    <li><a href="#">Dar de Baja</a></li>
 							  </ul>
 							</div>
@@ -108,6 +218,5 @@
 			</table>  
 
 
-  </div>
-  </div>
+  	</div>
 </div>

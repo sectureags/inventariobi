@@ -39,12 +39,14 @@
 												<input type="text" class="form-control" name="area">
 												<label for="cargo">Cargo</label>       
 												<input type="text" class="form-control" name="cargo">
-			      							</div>     
+			      							</div> 
+
+			      							<div class="modal-footer">
+										        <button type="submit" class="btn btn-default">Guardar</button>
+										    </div>    
 			      							</form> </p>
 							      	</div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Guardar</button>
-							      </div>
+							      
 							    </div>
 
 						  	</div>
@@ -144,14 +146,13 @@
 												<input type="text" class="form-control" name="area" value="<?php echo $fila->area; ?>">
 												<label for="cargo">Cargo</label>       
 												<input type="text" class="form-control" name="cargo" value="<?php echo $fila->cargo; ?>">
-				      						</div>    
+				      						</div> 
+				      						<div class="modal-footer">
+							        			<button type="submit" class="btn btn-default">Guardar</button>
+							      			</div>   
       										</form> </p>
 							      	</div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Guardar</button>
-							      </div>
 							    </div>
-
 						  	</div>
 						</div>
 						<!-- Modal -->
@@ -170,18 +171,19 @@
 						        <h4 class="modal-title">Borrar Registro</h4>
 						      </div>
 						      <div class="modal-body">
-						        <p><form action="<?php echo base_url('empleados/eliminar');?>" method="post">
+						        <p><form role="form" action="<?php echo base_url('empleados/eliminar');?>" method="post">
 										<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
 							 			<div class="modal-body">Se borrara todo el regisro del empleado <?php echo $fila->nombre_completo; ?> de manera permanente, 
 							 				¿estas seguro que deseas eliminar?
-							 			</div>      
+							 			</div>
+							 			<div class="modal-footer">
+							        		<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
+								            	
+								    		<button type="submit" class="btn btn-primary">Eliminar</button> 
+						      			</div>      
 						            </form>  </p>
 						      </div>
-						      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
-								            	
-								    <button type="submit" class="btn btn-primary">Eliminar</button> 
-						      </div>
+						      
 						    </div>
 
 						  </div>

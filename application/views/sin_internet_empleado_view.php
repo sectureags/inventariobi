@@ -1,23 +1,52 @@
-<div class="col-md-9 well">
-		 <!-- Inicio del container --> 
+<div class="panel panel-info">
+  	<div class="panel-heading text-center"><h3>
+	  	<?php foreach ($cargar_empleado_detalles as $fila) :?>          
+			      	<p>Empleado: <b> <?php echo $fila->nombre_completo; ?> </b></p>	
+		<?php endforeach; ?>
+	</h3></div>
+  	<div class="panel-body">
+
+  		<div class="caption">
+	    	<nav class="navbar navbar-default">
+			  	<div class="container-fluid">
+			   		 <div class="navbar-header">
+				      	<!-- Links -->
+				      	<ul class="nav nav-tab">
+							<?php foreach ($cargar_empleado_detalles as $fila) :?>
+							<a class="navbar-brand" href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>">Detalles</a>
+								<a class="navbar-brand" href="<?php echo base_url('internet/existe_permiso');?>/<?php echo $fila->id_empleado; ?>">Internet</a>
+								<a class="navbar-brand" href="<?php echo base_url('carpetas/existe_permiso');?>/<?php echo $fila->id_empleado; ?>">Carpetas</a>
+								<a class="navbar-brand" href="<?php echo base_url('bi_cpu/cpu_empleado');?>/<?php echo $fila->id_empleado; ?>">CPU's</a>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+			  	</div>
+		    </nav>
+		</div>
+
 
 		No tiene permisos asignados ni denegados
 		<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#miModal">   
 			Asignar Permisos
 		</button> 
 
-		<div class="modal fade" id="miModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
-			<div class="modal-dialog">       
-				<div class="modal-content">          
-					<div class="modal-header">             
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button>
-						<h4 class="modal-title" id="myModalLabel">Registrar Permisos</h4>  
-						<?php foreach ($cargar_permiso_internet as $fila) :?>
-							<label for="id">Id: </label>       
-							<input type="text" class="form-control" name="id" value="<?php echo $fila->id; ?>" readonly>
-						<?php endforeach; ?>
+			<!-- Modal -->
+			<div id="miModal" class="modal fade" role="dialog">
+						  <div id="moduloemp" class="modal-dialog">
 
-						<form role="form" action="<?php echo base_url('internet/crear');?>" method="post">     
+						    <!-- Modal content-->
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal">&times;</button>
+						        <h4 class="modal-title">Registrar Permisos</h4>
+
+						        <?php foreach ($cargar_permiso_internet as $fila) :?>
+									<label for="id">Id: </label>       
+									<input type="text" class="form-control" name="id" value="<?php echo $fila->id; ?>" readonly>
+								<?php endforeach; ?>
+						      </div>
+						      <div class="modal-body">
+						        <p><form role="form" action="<?php echo base_url('internet/crear');?>" method="post">     
 							<div class="form-group">       
 								<label for="internet">Internet</label>              
 								<select class="form-control" name="internet">          
@@ -54,15 +83,19 @@
 								<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
 								<?php endforeach; ?>
 						    </div>    
-						    <button type="submit" class="btn btn-default">Guardar</button> 
-		      			</form> 
+						     
+		      			</form> </p>
+						      </div>
+						      <div class="modal-footer">
+						        <button type="submit" class="btn btn-default">Guardar</button>
+						      </div>
+						    </div>
 
-					</div>       
-				</div><!-- /.modal-content -->    
-			</div><!-- /.modal-dialog --> 
-		</div><!-- /.modal -->
+						  </div>
+			</div>
+			<!-- Modal -->
 		
-
-		
-
+	</div>
 </div>
+		
+

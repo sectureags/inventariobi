@@ -1,7 +1,29 @@
-<div class="col-md-9 well">
-		 <!-- Inicio del container --> 
+<div class="panel panel-info">
+  	<div class="panel-heading text-center"><h3>
+	  	<?php foreach ($cargar_empleado_detalles as $fila) :?>          
+			      	<p>Empleado: <b> <?php echo $fila->nombre_completo; ?> </b></p>	
+		<?php endforeach; ?>
+	</h3></div>
+  	<div class="panel-body">
 
-			<div class="row" id="tabla_carpetas">
+  		<div class="caption">
+	    	<nav class="navbar navbar-default">
+			  	<div class="container-fluid">
+			   		 <div class="navbar-header">
+				      	<!-- Links -->
+				      	<ul class="nav nav-tab">
+							<?php foreach ($cargar_empleado_detalles as $fila) :?>
+								<a class="navbar-brand" href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>">Detalles</a>
+								<a class="navbar-brand" href="<?php echo base_url('internet/existe_permiso');?>/<?php echo $fila->id_empleado; ?>">Internet</a>
+								<a class="navbar-brand" href="<?php echo base_url('carpetas/existe_permiso');?>/<?php echo $fila->id_empleado; ?>">Carpetas</a>
+								<a class="navbar-brand" href="<?php echo base_url('bi_cpu/cpu_empleado');?>/<?php echo $fila->id_empleado; ?>">CPU's</a>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+			  	</div>
+		    </nav>
+		</div>
+
 				<table class="table table-bordered">  
 					<thead>       
 						<tr>      
@@ -24,14 +46,18 @@
 							<td> <?php	echo $fila->otros_servicios; ?></td>
 							<td><a href="" data-toggle="modal" data-target="#myModal<?php echo $fila->id; ?>">Editar</a></td>
 
-							<div class="modal fade" id="myModal<?php echo $fila->id; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">    
-							<div class="modal-dialog">       
-								<div class="modal-content">          
-									<div class="modal-header">             
-										<button type="button" class="close" data-dismiss="modal" aria-hidden="true"> × </button> 
-										<h4 class="modal-title" id="myModalLabel">Editar Permiso Carpetas Empleado</h4>            
-									
-										<form role="form" action="<?php echo base_url('carpetas/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
+								<!-- Modal -->
+								<div id="myModal<?php echo $fila->id; ?>" class="modal fade" role="dialog">
+								  <div id="moduloemp" class="modal-dialog">
+
+								    <!-- Modal content-->
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal">&times;</button>
+								        <h4 class="modal-title">Editar Permiso Carpetas Empleado</h4>
+								      </div>
+								      <div class="modal-body">
+								        <p><form role="form" action="<?php echo base_url('carpetas/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
 											<div class="form-group"> 
 												<label for="id">Id: </label>       
 												<input type="text" class="form-control" name="id" value="<?php echo $fila->id; ?>" readonly>
@@ -93,16 +119,19 @@
 												 	<?php }?>
 												</select> 
 				      						</div>    
-				      						<button type="submit" class="btn btn-default">Guardar</button> 
-      									</form> 
-				      				</div> 
-				      			</div> 
-				      		</div> 
-				      	</div> 
+				      						 <div class="modal-footer">
+									        	<button type="submit" class="btn btn-default">Guardar</button> 
+									        </div> 
+      									</form></p>
+								      </div>
+								      
+								    </div>
+								  </div>
+								</div>
+								<!-- Modal -->
 							
 						<?php endforeach; ?>
 					</tbody> 
 				</table>  
-			</div>
-		
+	</div>
 </div>

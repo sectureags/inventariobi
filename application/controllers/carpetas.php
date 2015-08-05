@@ -70,8 +70,8 @@ class Carpetas extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('menu_detalles_empleado_view',$data);
-			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			//$this->load->view('menu_detalles_empleado_view',$data);
+			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('carpetas_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
@@ -84,8 +84,8 @@ class Carpetas extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('menu_detalles_empleado_view',$data);
-			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			//$this->load->view('menu_detalles_empleado_view',$data);
+			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('sin_carpetas_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
@@ -135,8 +135,8 @@ class Carpetas extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('menu_detalles_empleado_view',$data);
-			$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			//$this->load->view('menu_detalles_empleado_view',$data);
+			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('carpetas_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
