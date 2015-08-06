@@ -147,7 +147,7 @@
 
 						<!-- Modal -->
 						<div id="miModal<?php echo $fila->id_user; ?>" class="modal fade" role="dialog">
-						  	<div id="moduloeseg" class="modal-dialog">
+						  	<div id="moduloseg" class="modal-dialog">
 
 						    <!-- Modal content-->
 							    <div class="modal-content">

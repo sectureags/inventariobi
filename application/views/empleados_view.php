@@ -42,7 +42,7 @@
 			      							</div> 
 
 			      							<div class="modal-footer">
-										        <button type="submit" class="btn btn-default">Guardar</button>
+										        <button type="submit" class="btn btn-info">Guardar</button>
 										    </div>    
 			      							</form> </p>
 							      	</div>
@@ -148,7 +148,7 @@
 												<input type="text" class="form-control" name="cargo" value="<?php echo $fila->cargo; ?>">
 				      						</div> 
 				      						<div class="modal-footer">
-							        			<button type="submit" class="btn btn-default">Guardar</button>
+							        			<button type="submit" class="btn btn-info">Guardar</button>
 							      			</div>   
       										</form> </p>
 							      	</div>
@@ -179,7 +179,7 @@
 							 			<div class="modal-footer">
 							        		<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>        
 								            	
-								    		<button type="submit" class="btn btn-primary">Eliminar</button> 
+								    		<button type="submit" class="btn btn-info">Eliminar</button> 
 						      			</div>      
 						            </form>  </p>
 						      </div>

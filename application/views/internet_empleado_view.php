@@ -134,7 +134,7 @@
 												</select>
 				      						</div> 
 					      					<div class="modal-footer">
-									        	<button type="submit" class="btn btn-default">Guardar</button> 
+									        	<button type="submit" class="btn btn-info">Guardar</button> 
 									        </div>  
       									</form> </p>
 								      </div>

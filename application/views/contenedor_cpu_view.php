@@ -52,7 +52,7 @@
 			      						</div> 
 
 			      						<div class="modal-footer">
-										    <button type="submit" class="btn btn-default">Guardar</button>
+										    <button type="submit" class="btn btn-primary">Guardar</button>
 										</div>    
 			      					</form> 
 			      				</p>
@@ -107,7 +107,7 @@
 			      						</div> 
 
 			      						<div class="modal-footer">
-										    <button type="submit" class="btn btn-default">Guardar</button>
+										    <button type="submit" class="btn btn-primary">Guardar</button>
 										</div>    
 			      					</form> </p>
 									      </div>

@@ -26,7 +26,7 @@
 
 
 		No tiene permisos asignados ni denegados
-		<button class="btn btn-primary btn-ms" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">   
+		<button class="btn btn-info btn-ms" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">   
 			Asignar Permisos
 		</button> 
 
@@ -80,7 +80,7 @@
 												<?php endforeach; ?>
 				      		</div>    
 				      		<div class="modal-footer">
-								<button type="submit" class="btn btn-default">Guardar</button> 
+								<button type="submit" class="btn btn-info">Guardar</button> 
 							</div>
       					</form> </p>
 						</div>
