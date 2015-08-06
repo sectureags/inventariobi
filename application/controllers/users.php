@@ -60,7 +60,7 @@ class Users extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('contenedor_users_view',$data);
+			$this->load->view('users_view',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -81,7 +81,7 @@ class Users extends CI_Controller {
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
-				$this->load->view('contenedor_users_view',$data);
+				$this->load->view('users_view',$data);
 				$this->load->view('footer_view');
 			}else{
 				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
@@ -293,7 +293,7 @@ class Users extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('contenedor_users_view',$data);
+			$this->load->view('users_view',$data);
 			$this->load->view('footer_view');
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -317,7 +317,7 @@ class Users extends CI_Controller {
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
-				$this->load->view('contenedor_users_view',$data);
+				$this->load->view('users_view',$data);
 				$this->load->view('footer_view');
 				}
 				else{
@@ -359,7 +359,7 @@ class Users extends CI_Controller {
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view');
-			$this->load->view('contenedor_users_view',$data);
+			$this->load->view('users_view',$data);
 			$this->load->view('footer_view');
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -383,7 +383,7 @@ class Users extends CI_Controller {
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
 				$this->load->view('menu_view');
-				$this->load->view('contenedor_users_view',$data);
+				$this->load->view('users_view',$data);
 				$this->load->view('footer_view');
 				}
 				else{
