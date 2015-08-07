@@ -74,9 +74,8 @@
 								 	<option>SI</option>          
 									<option>NO</option>
 								</select> 
-								<?php foreach ($cargar_empleado_detalles as $fila) :?>
-													<label for="id_empleado">Id Empleado:</label>       
-													<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
+								<?php foreach ($cargar_empleado_detalles as $fila) :?>      
+													<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
 												<?php endforeach; ?>
 				      		</div>    
 				      		<div class="modal-footer">

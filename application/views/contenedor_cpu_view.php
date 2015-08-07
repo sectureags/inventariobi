@@ -63,59 +63,7 @@
 						</div>
 						<!-- Modal -->
 
-						<!-- Modal -->
-									<div id="myModal" class="modal fade" role="dialog">
-									  <div class="modal-dialog">
-
-									    <!-- Modal content-->
-									    <div class="modal-content">
-									      <div class="modal-header">
-									        <button type="button" class="close" data-dismiss="modal">&times;</button>
-									        <h4 class="modal-title">Editar CPU</h4>
-									      </div>
-									      <div class="modal-body">
-									        <p><form role="form" action="<?php echo base_url('bi_cpu/crear');?>" method="post">     
-										<div class="form-group">       
-											<label for="num_inventario">No. Inventario</label>       
-											<input type="text" class="form-control" name="num_inventario">       
-											<label for="categoria">Categoria</label>       
-											<input type="text" class="form-control" name="categoria"> 
-											<label for="marca">Marca</label>       
-											<input type="text" class="form-control" name="marca"> 
-											<label for="modelo">Modelo</label>       
-											<input type="text" class="form-control" name="modelo"> 
-											<label for="hostname">HostName</label>       
-											<input type="text" class="form-control" name="hostname">
-											<label for="num_serie">No. Serie</label>       
-											<input type="text" class="form-control" name="num_serie">
-											<label for="tipo">Tipo</label>       
-											<input type="text" class="form-control" name="tipo">
-											<label for="ubicacion">Ubicacion</label>       
-											<input type="text" class="form-control" name="ubicacion">       
-											<label for="status">Status</label> 
-											<select class="form-control" name="status">
-											    <?php foreach ($cargar_status as $st) :?>      
-											 	<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option>                 
-											 	<?php endforeach; ?>       
-											</select>    
-											<label for="id_empleado">Empleado</label>   
-											<select class="form-control" name="id_empleado">
-											    <?php foreach ($cargar_empleados as $empleados) :?>      
-											 	<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>                 
-											 	<?php endforeach; ?>       
-											</select>  
-			      						</div> 
-
-			      						<div class="modal-footer">
-										    <button type="submit" class="btn btn-primary">Guardar</button>
-										</div>    
-			      					</form> </p>
-									      </div>
-									    </div>
-
-									  </div>
-									</div>
-									<!-- Modal -->
+					
 			    </div>
 			    <div>
 			      <ul class="nav navbar-nav">
@@ -182,36 +130,138 @@
 							  </button>
 							  <ul class="dropdown-menu" role="menu">
 							    <li><a href="#">Ver detalle</a></li>
-							    <li><a href="#">Reasignación</a></li>
-							    <li><a data-toggle="modal" data-target="#myModal">Editar</a>
+							    <li><a href="" data-toggle="modal" data-target="#myModalreasignar<?php echo $fila->id_cpu; ?>">Reasignación</a></li>
+							    <li><a href="" data-toggle="modal" data-target="#myModaleditar<?php echo $fila->id_cpu; ?>">Editar</a>
 
-									<!-- Modal -->
-									<div id="myModal" class="modal fade" role="dialog">
-									  <div class="modal-dialog">
+									
+							    </li>
+
+							    <li><a href="#">Dar de Baja</a></li>
+							  </ul>
+
+							</div>
+
+							<!-- Modal -->
+									<div id="myModaleditar<?php echo $fila->id_cpu; ?>" class="modal fade" role="dialog">
+									  <div id="modulobi" class="modal-dialog">
 
 									    <!-- Modal content-->
 									    <div class="modal-content">
 									      <div class="modal-header">
 									        <button type="button" class="close" data-dismiss="modal">&times;</button>
-									        <h4 class="modal-title">Modal Header</h4>
+									        <h4 class="modal-title">Editar CPU</h4>
 									      </div>
 									      <div class="modal-body">
-									        <p>Some text in the modal.</p>
-									      </div>
-									      <div class="modal-footer">
-									        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									        <p><form role="form" action="<?php echo base_url('bi_cpu/actualizar');?>" method="post">     
+												<div class="form-group">         
+													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>" readonly>    
+													<label for="num_inventario">No. Inventario</label>       
+													<input type="text" class="form-control" name="num_inventario" value="<?php echo $fila->num_inventario; ?>">       
+													<label for="categoria">Categoria</label>       
+													<input type="text" class="form-control" name="categoria" value="<?php echo $fila->categoria; ?>"> 
+													<label for="marca">Marca</label>       
+													<input type="text" class="form-control" name="marca" value="<?php echo $fila->marca; ?>"> 
+													<label for="modelo">Modelo</label>       
+													<input type="text" class="form-control" name="modelo" value="<?php echo $fila->modelo; ?>"> 
+													<label for="hostname">HostName</label>       
+													<input type="text" class="form-control" name="hostname" value="<?php echo $fila->hostname; ?>">
+													<label for="num_serie">No. Serie</label>       
+													<input type="text" class="form-control" name="num_serie" value="<?php echo $fila->num_serie; ?>">
+													<label for="tipo">Tipo</label>       
+													<input type="text" class="form-control" name="tipo" value="<?php echo $fila->tipo; ?>">
+													<label for="ubicacion">Ubicacion</label>       
+													<input type="text" class="form-control" name="ubicacion" value="<?php echo $fila->ubicacion; ?>">       
+													<label for="status">Status</label> 
+													<select class="form-control" name="status">
+													    <?php foreach ($cargar_status as $st) :?>  
+														    <?php if($fila->status == $st->id){  ?>    
+														 		<option value="<?php echo $st->id; ?>" selected><?php echo $st->nombre;?></option> 
+														 	<?php } else {?> 
+														 		<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option> 
+														 	<?php }?>               
+													 	<?php endforeach; ?>       
+													</select>    
+													<label for="id_empleado">Empleado</label>   
+													<select class="form-control" name="id_empleado">
+													    <?php foreach ($cargar_empleados as $empleados) :?> 
+														    <?php if($fila->id_empleado == $empleados->id_empleado){  ?>     
+														 		<option value="<?php echo $empleados->id_empleado; ?>" selected><?php echo $empleados->nombre_completo;?></option>  
+														 	<?php } else {?> 
+														 		<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>
+														 	<?php }?>               
+													 	<?php endforeach; ?>       
+													</select>  
+					      						</div> 
+
+					      						<div class="modal-footer">
+												    <button type="submit" class="btn btn-primary">Guardar</button>
+												</div>    
+					      					</form> </p>
 									      </div>
 									    </div>
 
 									  </div>
 									</div>
 									<!-- Modal -->
-							    </li>
 
-							    <li><a href="#">Dar de Baja</a></li>
-							  </ul>
-							</div>
+
+
+									<!-- Modal -->
+									<div id="myModalreasignar<?php echo $fila->id_cpu; ?>" class="modal fade" role="dialog">
+									  <div id="modulobi" class="modal-dialog">
+
+									    <!-- Modal content-->
+									    <div class="modal-content">
+									      <div class="modal-header">
+									        <button type="button" class="close" data-dismiss="modal">&times;</button>
+									        <h4 class="modal-title">Reasignar CPU</h4>
+									      </div>
+									      <div class="modal-body">
+									        <p><form role="form" action="<?php echo base_url('bi_cpu/reasignar');?>" method="post">     
+												<div class="form-group">       
+													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>">      
+													<label for="num_inventario">No. Inventario</label>       
+													<input type="text" class="form-control" name="num_inventario" value="<?php echo $fila->num_inventario; ?>" readonly>
+													<label for="marca">Marca</label>       
+													<input type="text" class="form-control" name="marca" value="<?php echo $fila->marca; ?>" readonly> 
+													<label for="hostname">HostName</label>       
+													<input type="text" class="form-control" name="hostname" value="<?php echo $fila->hostname; ?>" readonly>
+													<label for="ubicacion">Ubicacion</label>       
+													<input type="text" class="form-control" name="ubicacion" value="<?php echo $fila->ubicacion; ?>">       
+													<label for="status">Status</label> 
+													<select class="form-control" name="status">
+													    <?php foreach ($cargar_status as $st) :?>  
+														    <?php if($fila->status == $st->id){  ?>    
+														 		<option value="<?php echo $st->id; ?>" selected><?php echo $st->nombre;?></option> 
+														 	<?php } else {?> 
+														 		<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option> 
+														 	<?php }?>               
+													 	<?php endforeach; ?>       
+													</select>    
+													<label for="id_empleado">Empleado</label>   
+													<select class="form-control" name="id_empleado">
+													    <?php foreach ($cargar_empleados as $empleados) :?> 
+														    <?php if($fila->id_empleado == $empleados->id_empleado){  ?>     
+														 		<option value="<?php echo $empleados->id_empleado; ?>" selected><?php echo $empleados->nombre_completo;?></option>  
+														 	<?php } else {?> 
+														 		<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>
+														 	<?php }?>               
+													 	<?php endforeach; ?>       
+													</select>  
+					      						</div> 
+
+					      						<div class="modal-footer">
+												    <button type="submit" class="btn btn-primary">Guardar</button>
+												</div>    
+					      					</form> </p>
+									      </div>
+									    </div>
+
+									  </div>
+									</div>
+									<!-- Modal -->
 						</td>
+
 						</tr>
 					<?php endforeach; ?>
 				</tbody> 

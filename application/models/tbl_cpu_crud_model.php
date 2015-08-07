@@ -73,5 +73,21 @@ class Tbl_cpu_crud_model extends CI_Model
 		$this->db->where('id_cpu',$id_cpu);
 		$this->db->update('tbl_cpu',$data);
 	}
+
+
+	public function reasignar_cpu($id_cpu,$num_inventario,$marca,$hostname,$ubicacion,$status,$id_empleado)
+	{
+		$data=array(
+					'num_inventario' => $num_inventario,
+					'marca' => $marca,
+					'hostname' => $hostname,
+					'ubicacion'=>$ubicacion, 
+					'status' => $status,
+					'id_empleado'=>$id_empleado);
+
+		$id_cpu=$_POST['id_cpu'];
+		$this->db->where('id_cpu',$id_cpu);
+		$this->db->update('tbl_cpu',$data);
+	}
 } 
 ?>

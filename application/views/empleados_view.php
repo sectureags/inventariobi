@@ -125,9 +125,8 @@
 							      	</div>
 							      	<div class="modal-body">
 							        	<p><form role="form" action="<?php echo base_url('empleados/actualizar');?>" method="post">     
-											<div class="form-group"> 
-											<label for="id_empleado">Id_Interno</label>       
-												<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
+											<div class="form-group">       
+												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
 												<label for="codigo_empleado">Codigo Empleado</label>       
 												<input type="text" class="form-control" name="codigo_empleado" value="<?php echo $fila->codigo_empleado; ?>" readonly>       
 												<label for="nombre_completo">Nombre Completo</label>       
@@ -172,8 +171,8 @@
 						      </div>
 						      <div class="modal-body">
 						        <p><form role="form" action="<?php echo base_url('empleados/eliminar');?>" method="post">
-										<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
-							 			<div class="modal-body">Se borrara todo el regisro del empleado <?php echo $fila->nombre_completo; ?> de manera permanente, 
+										<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
+							 			<div class="modal-body">Se borrara todo el regisro del empleado <b><?php echo $fila->nombre_completo; ?></b> de manera permanente, 
 							 				¿estas seguro que deseas eliminar?
 							 			</div>
 							 			<div class="modal-footer">

@@ -55,14 +55,18 @@
 								      <div class="modal-header">
 								        <button type="button" class="close" data-dismiss="modal">&times;</button>
 								        <h4 class="modal-title">Editar Permiso Carpetas Empleado</h4>
+
+								        
+											<label for="id_empleado">Empleado:</label>       
+											<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->nombre_completo; ?>" readonly>
+										
+
 								      </div>
 								      <div class="modal-body">
 								        <p><form role="form" action="<?php echo base_url('carpetas/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
-											<div class="form-group"> 
-												<label for="id">Id: </label>       
-												<input type="text" class="form-control" name="id" value="<?php echo $fila->id; ?>" readonly>
-												<label for="id_empleado">ID Empleado: </label>       
-												<input type="text" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
+											<div class="form-group">       
+												<input type="hidden" class="form-control" name="id" value="<?php echo $fila->id; ?>">       
+												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>">      
 												<label for="carpetas_geaco06">Carpetas GEACO06</label>              
 												<select class="form-control" name="carpetas_geaco06"> 
 												    <?php if($fila->carpetas_geaco06 == 'SI'){  ?>   
