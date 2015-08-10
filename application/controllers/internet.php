@@ -22,7 +22,28 @@ class Internet extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->library('encrypt');
+		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
+		$ci_session= $this->session->userdata('username');
+		if (empty($ci_session)===TRUE) {
+			redirect(base_url('welcome/logout')); 
+		}
+		// Se Definen constantes para facilitar la programacion
+		define("SUPERROL", 1); // "SuperAdministrador"
+		define('ROL',$this->session->userdata('rol'));
+		define('SUCCESS',$this->session->userdata('success'));
+	    define('COMPONENTE',$this->uri->segment(1));
+	    define('USER',$this->session->userdata('username'));
+	    //
+  		$this->load->model('permisos_model');
+  		$this->load->model('tbl_roles_model');
+  		/*
+  		* Tabla de Roles:
+  		* 1.- Super Administrador
+  		* 2.- Administrador
+  		* 3.- Capturista
+  		*/
 	}
+
 
 	public function index()
 	{ 
@@ -31,12 +52,16 @@ class Internet extends CI_Controller {
 
 	public function crear()
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
-		else
-		{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+
+			$tipo_rol = $this->input->post('id_tipo');
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
 			$internet=$_POST['internet'];
 			$messenger=$_POST['messenger'];
 			$redes_sociales=$_POST['redes_sociales'];
@@ -48,15 +73,66 @@ class Internet extends CI_Controller {
 			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$id_empleado);
 			
 			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+
+			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+		 		$internet=$_POST['internet'];
+				$messenger=$_POST['messenger'];
+				$redes_sociales=$_POST['redes_sociales'];
+				$ftp=$_POST['ftp'];
+				$sigue=$_POST['sigue'];
+				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+				$id_empleado=$_POST['id_empleado'];
+				$this->load->model('tbl_internet_crud_model'); 
+				$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$id_empleado);
+				
+				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+
+				}else{
+
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+				$internet=$_POST['internet'];
+				$messenger=$_POST['messenger'];
+				$redes_sociales=$_POST['redes_sociales'];
+				$ftp=$_POST['ftp'];
+				$sigue=$_POST['sigue'];
+				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+				$id_empleado=$_POST['id_empleado'];
+				$this->load->model('tbl_internet_crud_model'); 
+				$this->load->view('sorry_view',$data);
+			}
 		}
+		
 	}
 
 	public function existe_permiso($id_empleado)
 	{
-		$ci_session= $this->session->userdata('user_data');
-		if (empty($ci_session)===FALSE) {
-			redirect('welcome/logout');
-		}
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+
+			$tipo_rol = $this->input->post('id_tipo');
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 
 		$this->load->model('tbl_internet_crud_model');
 
@@ -91,6 +167,99 @@ class Internet extends CI_Controller {
 			$this->load->view('sin_internet_empleado_view',$data);
 			$this->load->view('footer_view');
 		}
+
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+		 		$this->load->model('tbl_internet_crud_model');
+
+		$existe=$this->tbl_internet_crud_model->existe_internet($id_empleado);
+
+		if ($existe==TRUE) {
+			
+			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado); 
+			$this->load->view('header_view');
+			//$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			//$this->load->view('menu_detalles_empleado_view',$data);
+			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('internet_empleado_view',$data);
+			$this->load->view('footer_view');
+		}
+		else
+		{
+			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados($id_empleado);   
+			$this->load->view('header_view');
+			//$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			//$this->load->view('menu_detalles_empleado_view',$data);
+			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
+			$this->load->view('sin_internet_empleado_view',$data);
+			$this->load->view('footer_view');
+		}
+
+		}else{
+
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+					$this->load->model('tbl_internet_crud_model');
+
+				$existe=$this->tbl_internet_crud_model->existe_internet($id_empleado);
+
+				if ($existe==TRUE) {
+					
+					$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+					$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+					$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+					$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado); 
+					$this->load->view('header_view');
+					//$this->load->view('cabecera_view');
+					$this->load->view('menu_view');
+					//$this->load->view('menu_detalles_empleado_view',$data);
+					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
+					$this->load->view('sorry_view',$data);
+					$this->load->view('footer_view');
+				}
+				else
+				{
+					$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+					$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+					$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+					$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados($id_empleado);   
+					$this->load->view('header_view');
+					//$this->load->view('cabecera_view');
+					$this->load->view('menu_view');
+					//$this->load->view('menu_detalles_empleado_view',$data);
+					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
+					$this->load->view('sorry_view',$data);
+					$this->load->view('footer_view');
+				}
+			}				
+			
+		}
 		
 	}
 
@@ -101,36 +270,93 @@ class Internet extends CI_Controller {
 
 	public function actualizar()
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+
+			$tipo_rol = $this->input->post('id_tipo');
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+			$id=$_POST['id'];
+			$id_empleado=$_POST['id_empleado'];
+			$internet=$_POST['internet'];
+			$messenger=$_POST['messenger'];
+			$redes_sociales=$_POST['redes_sociales'];
+			$ftp=$_POST['ftp'];
+			$sigue=$_POST['sigue'];
+			$permiso_usuario_local=$_POST['permiso_usuario_local'];
+
+			$this->load->model('tbl_internet_crud_model'); 
+			$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
+			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+			/*$this->internet_empleado($id_empleado);*/
+		
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-		$id=$_POST['id'];
-		$id_empleado=$_POST['id_empleado'];
-		$internet=$_POST['internet'];
-		$messenger=$_POST['messenger'];
-		$redes_sociales=$_POST['redes_sociales'];
-		$ftp=$_POST['ftp'];
-		$sigue=$_POST['sigue'];
-		$permiso_usuario_local=$_POST['permiso_usuario_local'];
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 
-		$this->load->model('tbl_internet_crud_model'); 
-		$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
-		redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
-		/*$this->internet_empleado($id_empleado);*/
+		 		$id=$_POST['id'];
+				$id_empleado=$_POST['id_empleado'];
+				$internet=$_POST['internet'];
+				$messenger=$_POST['messenger'];
+				$redes_sociales=$_POST['redes_sociales'];
+				$ftp=$_POST['ftp'];
+				$sigue=$_POST['sigue'];
+				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+
+				$this->load->model('tbl_internet_crud_model'); 
+				$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
+				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+				/*$this->internet_empleado($id_empleado);*/
+
+			}else{
+
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+				$id=$_POST['id'];
+				$id_empleado=$_POST['id_empleado'];
+				$internet=$_POST['internet'];
+				$messenger=$_POST['messenger'];
+				$redes_sociales=$_POST['redes_sociales'];
+				$ftp=$_POST['ftp'];
+				$sigue=$_POST['sigue'];
+				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+
+				$this->load->model('tbl_internet_crud_model'); 
+				$this->load->view('sorry_view',$data);
+			}
 		}
 	}
 
 	public function internet_empleado($id_empleado)
 	{
-		$ci_session= $this->session->userdata('username');
-		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
-		}
-		else
-		{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+
+			$tipo_rol = $this->input->post('id_tipo');
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
 			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
@@ -142,7 +368,55 @@ class Internet extends CI_Controller {
 			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('internet_empleado_view',$data);
 			$this->load->view('footer_view');
+
+			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+		 		$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+				$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+				$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				//$this->load->view('menu_detalles_empleado_view',$data);
+				//$this->load->view('contenedor_super_detalles_empleado_view',$data);
+				$this->load->view('internet_empleado_view',$data);
+				$this->load->view('footer_view');
+
+				}else{
+
+				$tipo_rol = $this->input->post('id_tipo');
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+
+				$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+				$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
+				$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				//$this->load->view('menu_detalles_empleado_view',$data);
+				//$this->load->view('contenedor_super_detalles_empleado_view',$data);
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
 		}
+		
 	}
 }
 
