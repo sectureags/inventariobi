@@ -30,11 +30,12 @@ class Internet extends CI_Controller {
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
 		define('ROL',$this->session->userdata('rol'));
-		define('SUCCESS',$this->session->userdata('success'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
 	    //
-  		$this->load->model('permisos_model');
+	    $this->load->model('permisos_model');
+  		$this->load->model('tbl_empleado_crud_model');
+  		$this->load->model('tbl_internet_crud_model');
   		$this->load->model('tbl_roles_model');
   		/*
   		* Tabla de Roles:
@@ -43,7 +44,6 @@ class Internet extends CI_Controller {
   		* 3.- Capturista
   		*/
 	}
-
 
 	public function index()
 	{ 
@@ -55,12 +55,10 @@ class Internet extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 
 			$internet=$_POST['internet'];
 			$messenger=$_POST['messenger'];
@@ -82,11 +80,10 @@ class Internet extends CI_Controller {
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$internet=$_POST['internet'];
 				$messenger=$_POST['messenger'];
@@ -101,12 +98,10 @@ class Internet extends CI_Controller {
 				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
 
 				}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 				$internet=$_POST['internet'];
 				$messenger=$_POST['messenger'];
@@ -127,12 +122,10 @@ class Internet extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 
 		$this->load->model('tbl_internet_crud_model');
 
@@ -176,11 +169,10 @@ class Internet extends CI_Controller {
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$this->load->model('tbl_internet_crud_model');
 
@@ -217,12 +209,10 @@ class Internet extends CI_Controller {
 		}
 
 		}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 					$this->load->model('tbl_internet_crud_model');
 
@@ -273,12 +263,10 @@ class Internet extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 
 			$id=$_POST['id'];
 			$id_empleado=$_POST['id_empleado'];
@@ -295,18 +283,18 @@ class Internet extends CI_Controller {
 			/*$this->internet_empleado($id_empleado);*/
 		
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
-		else
+		
+			else
 		{
 			$metodo = $this->uri->segment(2); // Metodo de la URL
 			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$id=$_POST['id'];
 				$id_empleado=$_POST['id_empleado'];
@@ -323,12 +311,10 @@ class Internet extends CI_Controller {
 				/*$this->internet_empleado($id_empleado);*/
 
 			}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 				$id=$_POST['id'];
 				$id_empleado=$_POST['id_empleado'];
@@ -350,12 +336,10 @@ class Internet extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 
 			$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
@@ -377,11 +361,10 @@ class Internet extends CI_Controller {
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 				$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
@@ -396,12 +379,10 @@ class Internet extends CI_Controller {
 				$this->load->view('footer_view');
 
 				}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 				$this->load->model('tbl_internet_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 				$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
