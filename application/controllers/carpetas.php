@@ -30,11 +30,12 @@ class Carpetas extends CI_Controller {
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
 		define('ROL',$this->session->userdata('rol'));
-		define('SUCCESS',$this->session->userdata('success'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
 	    //
-  		$this->load->model('permisos_model');
+	    $this->load->model('permisos_model');
+  		$this->load->model('tbl_empleado_crud_model');
+  		$this->load->model('tbl_carpetas_crud_model');
   		$this->load->model('tbl_roles_model');
   		/*
   		* Tabla de Roles:
@@ -43,7 +44,6 @@ class Carpetas extends CI_Controller {
   		* 3.- Capturista
   		*/
 	}
-
 
 	public function index()
 	{ 
@@ -55,12 +55,10 @@ class Carpetas extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 
 			$carpetas_geaco06=$_POST['carpetas_geaco06'];
 			$carpeta_imagenes=$_POST['carpeta_imagenes'];
@@ -82,11 +80,10 @@ class Carpetas extends CI_Controller {
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$carpetas_geaco06=$_POST['carpetas_geaco06'];
 				$carpeta_imagenes=$_POST['carpeta_imagenes'];
@@ -101,12 +98,10 @@ class Carpetas extends CI_Controller {
 				redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
 
 				}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 				$carpetas_geaco06=$_POST['carpetas_geaco06'];
 				$carpeta_imagenes=$_POST['carpeta_imagenes'];
@@ -127,12 +122,10 @@ class Carpetas extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 
 			$this->load->model('tbl_carpetas_crud_model');
 
@@ -175,11 +168,10 @@ class Carpetas extends CI_Controller {
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 			$this->load->model('tbl_carpetas_crud_model');
 
@@ -215,12 +207,10 @@ class Carpetas extends CI_Controller {
 				}
 
 				}else{
-
-					$tipo_rol = $this->input->post('id_tipo');
-					$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
-					$data['username'] = USER;
-					$data['rol'] = ROL;
-					$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
 
 							$this->load->model('tbl_carpetas_crud_model');
 
@@ -271,12 +261,10 @@ class Carpetas extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 		
 			$id=$_POST['id'];
 			$id_empleado=$_POST['id_empleado'];
@@ -290,20 +278,18 @@ class Carpetas extends CI_Controller {
 			$this->tbl_carpetas_crud_model->actualizar_carpetas($id,$carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios);
 			redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
 			/*$this->internet_empleado($id_empleado);*/
-		
-			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
-		else
+		}
+			else
 		{
 			$metodo = $this->uri->segment(2); // Metodo de la URL
 			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$id=$_POST['id'];
 				$id_empleado=$_POST['id_empleado'];
@@ -319,12 +305,10 @@ class Carpetas extends CI_Controller {
 				/*$this->internet_empleado($id_empleado);*/
 
 				}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 				$id=$_POST['id'];
 				$id_empleado=$_POST['id_empleado'];
@@ -346,12 +330,10 @@ class Carpetas extends CI_Controller {
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
 			# code...
-
-			$tipo_rol = $this->input->post('id_tipo');
 			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 			$data['username'] = USER;
 			$data['rol'] = ROL;
-			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+			$data['get_all'] = $this->permisos_model->get_all();
 		
 			$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
@@ -373,11 +355,10 @@ class Carpetas extends CI_Controller {
 			if ($tiene_permiso == TRUE) {
 				
 				// EL USUARIO SI TIENE ACCESO AL METODO
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 				$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
@@ -392,12 +373,10 @@ class Carpetas extends CI_Controller {
 				$this->load->view('footer_view');
 
 				}else{
-
-				$tipo_rol = $this->input->post('id_tipo');
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
-				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
+				$data['get_all'] = $this->permisos_model->get_all();
 
 				$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 				$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
