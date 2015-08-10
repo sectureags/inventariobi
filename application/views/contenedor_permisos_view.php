@@ -114,10 +114,10 @@
 					  		
 					  		echo "<td class='text-center'>";
 					  		if ($value->permiso != TRUE) { ?>
-					  			<a href="<?php echo base_url('permisos/activar/'.$value->id) ;?>"><input type="checkbox"></a>
+					  			<a href="<?php echo base_url('permisos/activar/'.$value->id) ;?>">Activar</a>
 					  			
 					  		<?php } else { ?>				  		
-					  			<a href="<?php echo base_url('permisos/desactivar/'.$value->id) ;?>"><input type="checkbox" checked></a>
+					  			<a href="<?php echo base_url('permisos/desactivar/'.$value->id) ;?>">Desactivar</a>
 					  			
 					  		<?php }	
 					  		echo "</td>";
