@@ -287,7 +287,14 @@ class Users extends CI_Controller {
 			$id_tipo=$_POST['id_tipo']; ///Se recibe la variable id_tipo del formulario que filtra roles en la vista user_view
 
 			$this->load->model('tbl_user_crud_model');
-			$data['cargar_users']=$this->tbl_user_crud_model->obtener_rol($id_tipo);
+
+			if ($id_tipo!='Todos') {
+				$data['cargar_users']=$this->tbl_user_crud_model->obtener_rol($id_tipo);
+				
+			} else {
+				$data['cargar_users']=$this->tbl_user_crud_model->cargar_users();
+			}
+
 			$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista();
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
@@ -353,7 +360,14 @@ class Users extends CI_Controller {
 			$id_user=$_POST['id_user']; ///Se recibe la variable id_tipo del formulario que filtra roles en la vista user_view
 	 
 			$this->load->model('tbl_user_crud_model');
-			$data['cargar_users']=$this->tbl_user_crud_model->obtener_usuario($id_user);
+			
+			if ($id_user!='Todos') {
+				$data['cargar_users']=$this->tbl_user_crud_model->obtener_usuario($id_user);
+				
+			} else {
+				$data['cargar_users']=$this->tbl_user_crud_model->cargar_users();
+			}
+			 
 			$data['cargar_users_lista'] = $this->tbl_user_crud_model->cargar_lista(); 
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');

@@ -24,7 +24,7 @@
 
 						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo base_url('permisos/create');?>">
 						         	<div class="form-group">       
-									  	<label for="nombre">Nombre</label>       
+									  	<label for="nombre">Nombre Completo</label>       
 										<input type="text" class="form-control" name="nombre" id="nombre">
 									</div>
 								  <div class="form-group">
@@ -80,7 +80,8 @@
 								<option>Roles</option>
 							    <?php foreach ($cargar_roles as $rol) :?>      
 							 	<option value="<?php echo $rol->id_tipo; ?>"><?php echo $rol->descripcion;?></option>                 
-							 	<?php endforeach; ?>       
+							 	<?php endforeach; ?> 
+							 	<option value="Todos">Todos</option>      
 								</select>
 							</div>
 						</button> 
@@ -93,15 +94,16 @@
 							  	 <option>Usuarios</option>
 							    <?php foreach ($cargar_users_lista as $users_nom) :?>      
 							 	<option value="<?php echo $users_nom->id_user; ?>"><?php echo $users_nom->nombre;?></option>                 
-							 	<?php endforeach; ?>       
-								 </select>
+							 	<?php endforeach; ?> 
+							 	 <option value="Todos">Todos</option>
+								</select>
 					     	</div> 
 				     	</form>
 				     </li>			        
 			      </ul>
 			      <form class="navbar-form navbar-left" role="search">
 			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="No. Inventario">
+			          <input type="text" class="form-control" placeholder="Username">
 			        </div>
 			        <button type="submit" class="btn btn-default">Buscar</span></button>
 			      </form>			      
@@ -119,7 +121,7 @@
 				<thead>       
 					<tr>         
 						 <th>Id</th>         
-						 <th>Nombre</th>          
+						 <th>Nombre Completo</th>          
 						 <th>Rol</th> 
 						 <th>Username</th> 
 						 <th>Password</th>  
@@ -176,7 +178,7 @@
 												<input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $fila->id_user; ?>" readonly>
 												</div>
 												<div class="form-group">     
-												<label for="nombre">Nombre</label>       
+												<label for="nombre">Nombre Completo</label>       
 												<input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $fila->nombre; ?>">
 												</div>
 												<div class="form-group">  
