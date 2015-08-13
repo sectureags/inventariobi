@@ -19,32 +19,50 @@
 						        <h4 class="modal-title">Ingresar Nuevo CPU</h4>
 						      </div>
 						      <div class="modal-body">
-						        <p><form role="form" action="<?php echo base_url('bi_cpu/crear');?>" method="post">     
+						        <form id="ModalCPUNuevo" role="form" action="<?php echo base_url('bi_cpu/crear');?>" method="post">     
 										<div class="form-group">       
 											<label for="num_inventario">No. Inventario</label>       
-											<input type="text" class="form-control" name="num_inventario">       
+											<input type="text" class="form-control" name="num_inventario" id="num_inventario">
+										</div>  
+										<div class="form-group">     
 											<label for="categoria">Categoria</label>       
-											<input type="text" class="form-control" name="categoria"> 
+											<input type="text" class="form-control" name="categoria" id="categoria"> 
+										</div>
+										<div class="form-group">
 											<label for="marca">Marca</label>       
-											<input type="text" class="form-control" name="marca"> 
+											<input type="text" class="form-control" name="marca" id="marca"> 
+										</div>
+										<div class="form-group">
 											<label for="modelo">Modelo</label>       
-											<input type="text" class="form-control" name="modelo"> 
+											<input type="text" class="form-control" name="modelo" id="modelo">
+										</div>
+										<div class="form-group"> 
 											<label for="hostname">HostName</label>       
-											<input type="text" class="form-control" name="hostname">
+											<input type="text" class="form-control" name="hostname" id="hostname">
+										</div>
+										<div class="form-group">
 											<label for="num_serie">No. Serie</label>       
-											<input type="text" class="form-control" name="num_serie">
+											<input type="text" class="form-control" name="num_serie" id="num_serie">
+										</div>
+										<div class="form-group">
 											<label for="tipo">Tipo</label>       
-											<input type="text" class="form-control" name="tipo">
+											<input type="text" class="form-control" name="tipo" id="tipo">
+										</div>
+										<div class="form-group">
 											<label for="ubicacion">Ubicacion</label>       
-											<input type="text" class="form-control" name="ubicacion">       
+											<input type="text" class="form-control" name="ubicacion" id="ubicacion">
+										</div>
+										<div class="form-group">      
 											<label for="status">Status</label> 
-											<select class="form-control" name="status">
+											<select class="form-control" name="status" id="status">
 											    <?php foreach ($cargar_status as $st) :?>      
 											 	<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option>                 
 											 	<?php endforeach; ?>       
-											</select>    
+											</select>
+										</div>    
+										<div class="form-group">
 											<label for="id_empleado">Empleado</label>   
-											<select class="form-control" name="id_empleado">
+											<select class="form-control" name="id_empleado" id="id_empleado">
 											    <?php foreach ($cargar_empleados as $empleados) :?>      
 											 	<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>                 
 											 	<?php endforeach; ?>       
@@ -52,10 +70,9 @@
 			      						</div> 
 
 			      						<div class="modal-footer">
-										    <button type="submit" class="btn btn-primary">Guardar</button>
-										</div>    
+									        <button type="submit" class="btn btn-danger">Guardar</button> 
+									    </div>  
 			      					</form> 
-			      				</p>
 						      </div>
 						    </div>
 
@@ -152,27 +169,45 @@
 									        <h4 class="modal-title">Editar CPU</h4>
 									      </div>
 									      <div class="modal-body">
-									        <p><form role="form" action="<?php echo base_url('bi_cpu/actualizar');?>" method="post">     
+									        <form id="ModalCPUEditar" role="form" action="<?php echo base_url('bi_cpu/actualizar');?>" method="post">     
 												<div class="form-group">         
-													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>" readonly>    
+													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>" readonly>
+												</div>
+												<div class="form-group">   
 													<label for="num_inventario">No. Inventario</label>       
-													<input type="text" class="form-control" name="num_inventario" value="<?php echo $fila->num_inventario; ?>">       
+													<input type="text" class="form-control" name="num_inventario" id="num_inventario" value="<?php echo $fila->num_inventario; ?>">
+												</div>
+												<div class="form-group">       
 													<label for="categoria">Categoria</label>       
-													<input type="text" class="form-control" name="categoria" value="<?php echo $fila->categoria; ?>"> 
+													<input type="text" class="form-control" name="categoria" id="categoria" value="<?php echo $fila->categoria; ?>"> 
+												</div>
+												<div class="form-group">
 													<label for="marca">Marca</label>       
-													<input type="text" class="form-control" name="marca" value="<?php echo $fila->marca; ?>"> 
+													<input type="text" class="form-control" name="marca" id="marca" value="<?php echo $fila->marca; ?>">
+												</div>
+												<div class="form-group">
 													<label for="modelo">Modelo</label>       
-													<input type="text" class="form-control" name="modelo" value="<?php echo $fila->modelo; ?>"> 
+													<input type="text" class="form-control" name="modelo" id="modelo"value="<?php echo $fila->modelo; ?>">
+												</div> 
+												<div class="form-group">
 													<label for="hostname">HostName</label>       
-													<input type="text" class="form-control" name="hostname" value="<?php echo $fila->hostname; ?>">
+													<input type="text" class="form-control" name="hostname" id="hostname" value="<?php echo $fila->hostname; ?>">
+												</div>
+												<div class="form-group">
 													<label for="num_serie">No. Serie</label>       
-													<input type="text" class="form-control" name="num_serie" value="<?php echo $fila->num_serie; ?>">
+													<input type="text" class="form-control" name="num_serie" id="num_serie" value="<?php echo $fila->num_serie; ?>">
+												</div>
+												<div class="form-group">
 													<label for="tipo">Tipo</label>       
-													<input type="text" class="form-control" name="tipo" value="<?php echo $fila->tipo; ?>">
+													<input type="text" class="form-control" name="tipo" id="tipo" value="<?php echo $fila->tipo; ?>">
+												</div>
+												<div class="form-group">
 													<label for="ubicacion">Ubicacion</label>       
-													<input type="text" class="form-control" name="ubicacion" value="<?php echo $fila->ubicacion; ?>">       
+													<input type="text" class="form-control" name="ubicacion" id="ubicacion" value="<?php echo $fila->ubicacion; ?>">
+												</div>
+												<div class="form-group">       
 													<label for="status">Status</label> 
-													<select class="form-control" name="status">
+													<select class="form-control" name="status" id="status">
 													    <?php foreach ($cargar_status as $st) :?>  
 														    <?php if($fila->status == $st->id){  ?>    
 														 		<option value="<?php echo $st->id; ?>" selected><?php echo $st->nombre;?></option> 
@@ -180,9 +215,11 @@
 														 		<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option> 
 														 	<?php }?>               
 													 	<?php endforeach; ?>       
-													</select>    
+													</select>
+												</div>    
+												<div class="form-group">
 													<label for="id_empleado">Empleado</label>   
-													<select class="form-control" name="id_empleado">
+													<select class="form-control" name="id_empleado" id="id_empleado">
 													    <?php foreach ($cargar_empleados as $empleados) :?> 
 														    <?php if($fila->id_empleado == $empleados->id_empleado){  ?>     
 														 		<option value="<?php echo $empleados->id_empleado; ?>" selected><?php echo $empleados->nombre_completo;?></option>  
@@ -196,7 +233,7 @@
 					      						<div class="modal-footer">
 												    <button type="submit" class="btn btn-primary">Guardar</button>
 												</div>    
-					      					</form> </p>
+					      					</form> 
 									      </div>
 									    </div>
 
@@ -217,17 +254,27 @@
 									        <h4 class="modal-title">Reasignar CPU</h4>
 									      </div>
 									      <div class="modal-body">
-									        <p><form role="form" action="<?php echo base_url('bi_cpu/reasignar');?>" method="post">     
+									        <form id="ModalCPUReasignar" role="form" action="<?php echo base_url('bi_cpu/reasignar');?>" method="post">     
 												<div class="form-group">       
-													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>">      
+													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>">
+												</div> 
+												<div class="form-group">      
 													<label for="num_inventario">No. Inventario</label>       
 													<input type="text" class="form-control" name="num_inventario" value="<?php echo $fila->num_inventario; ?>" readonly>
+												</div> 
+												<div class="form-group">
 													<label for="marca">Marca</label>       
-													<input type="text" class="form-control" name="marca" value="<?php echo $fila->marca; ?>" readonly> 
+													<input type="text" class="form-control" name="marca" value="<?php echo $fila->marca; ?>" readonly>
+												</div> 
+												<div class="form-group">
 													<label for="hostname">HostName</label>       
 													<input type="text" class="form-control" name="hostname" value="<?php echo $fila->hostname; ?>" readonly>
+												</div> 
+												<div class="form-group">
 													<label for="ubicacion">Ubicacion</label>       
-													<input type="text" class="form-control" name="ubicacion" value="<?php echo $fila->ubicacion; ?>">       
+													<input type="text" class="form-control" name="ubicacion" id="ubicacion" value="<?php echo $fila->ubicacion; ?>">
+												</div>  
+												<div class="form-group">      
 													<label for="status">Status</label> 
 													<select class="form-control" name="status">
 													    <?php foreach ($cargar_status as $st) :?>  
@@ -237,7 +284,9 @@
 														 		<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option> 
 														 	<?php }?>               
 													 	<?php endforeach; ?>       
-													</select>    
+													</select>
+												</div>    
+												<div class="form-group"> 
 													<label for="id_empleado">Empleado</label>   
 													<select class="form-control" name="id_empleado">
 													    <?php foreach ($cargar_empleados as $empleados) :?> 
@@ -253,7 +302,7 @@
 					      						<div class="modal-footer">
 												    <button type="submit" class="btn btn-primary">Guardar</button>
 												</div>    
-					      					</form> </p>
+					      					</form> 
 									      </div>
 									    </div>
 

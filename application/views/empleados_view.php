@@ -19,32 +19,48 @@
 								        <h4 class="modal-title">Ingresar Nuevo Empleado</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<p><form role="form" action="<?php echo base_url('empleados/crear');?>" method="post">     
+							        	<form id="ModalEmpleadoNuevo" role="form" action="<?php echo base_url('empleados/crear');?>" method="post">     
 											<div class="form-group">       
 												<label for="codigo_empleado">Codigo Empleado</label>       
-												<input type="text" class="form-control" name="codigo_empleado">       
+												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado">
+											</div>
+											<div class="form-group">
 												<label for="nombre_completo">Nombre Completo</label>       
-												<input type="text" class="form-control" name="nombre_completo"> 
+												<input type="text" class="form-control" name="nombre_completo" id="nombre_completo">
+											</div> 
+											<div class="form-group">
 												<label for="unidad">Unidad</label>       
-												<input type="text" class="form-control" name="unidad"> 
+												<input type="text" class="form-control" name="unidad" id="unidad">
+											</div>
+											<div class="form-group"> 
 												<label for="usuario_de_red">Usuario de Dominio</label>       
-												<input type="text" class="form-control" name="usuario_de_red"> 
+												<input type="text" class="form-control" name="usuario_de_red" id="usuario_de_red">
+											</div>
+											<div class="form-group"> 
 												<label for="contrasena">Contraseña</label>       
-												<input type="text" class="form-control" name="contrasena">
+												<input type="text" class="form-control" name="contrasena" id="contrasena">
+											</div>
+											<div class="form-group">
 												<label for="num_extension">No. Extension</label>       
-												<input type="text" class="form-control" name="num_extension">
+												<input type="text" class="form-control" name="num_extension" id="num_extension">
+											</div>
+											<div class="form-group">
 												<label for="correo_electonico">Correo Electonico</label>       
-												<input type="text" class="form-control" name="correo_electonico">       
+												<input type="text" class="form-control" name="correo_electonico" id="correo_electonico">
+											</div>
+											<div class="form-group">       
 												<label for="area">Area de Adscripcion</label>       
-												<input type="text" class="form-control" name="area">
+												<input type="text" class="form-control" name="area" id="area">
+											</div>
+											<div class="form-group">
 												<label for="cargo">Cargo</label>       
-												<input type="text" class="form-control" name="cargo">
+												<input type="text" class="form-control" name="cargo" id="cargo">
 			      							</div> 
 
 			      							<div class="modal-footer">
 										        <button type="submit" class="btn btn-info">Guardar</button>
 										    </div>    
-			      							</form> </p>
+			      							</form> 
 							      	</div>
 							      
 							    </div>
@@ -124,32 +140,50 @@
 								        <h4 class="modal-title">Editar Empleado</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<p><form role="form" action="<?php echo base_url('empleados/actualizar');?>" method="post">     
+							        	<form id="ModalEmpleadoEditar" role="form" action="<?php echo base_url('empleados/actualizar');?>" method="post">     
 											<div class="form-group">       
-												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>      
+												<input type="hidden" class="form-control" name="id_empleado" id="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
+											</div> 
+											<div class="form-group">     
 												<label for="codigo_empleado">Codigo Empleado</label>       
-												<input type="text" class="form-control" name="codigo_empleado" value="<?php echo $fila->codigo_empleado; ?>" readonly>       
+												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado" value="<?php echo $fila->codigo_empleado; ?>" readonly>
+											</div>
+											<div class="form-group">       
 												<label for="nombre_completo">Nombre Completo</label>       
-												<input type="text" class="form-control" name="nombre_completo" value="<?php echo $fila->nombre_completo; ?>"> 
+												<input type="text" class="form-control" name="nombre_completo" id="nombre_completo" value="<?php echo $fila->nombre_completo; ?>">
+											</div>
+											<div class="form-group"> 
 												<label for="unidad">Unidad</label>       
-												<input type="text" class="form-control" name="unidad" value="<?php echo $fila->unidad; ?>"> 
+												<input type="text" class="form-control" name="unidad" id="unidad" value="<?php echo $fila->unidad; ?>">
+											</div>
+											<div class="form-group">
 												<label for="usuario_de_red">Usuario de Dominio</label>       
-												<input type="text" class="form-control" name="usuario_de_red" value="<?php echo $fila->usuario_de_red; ?>"> 
+												<input type="text" class="form-control" name="usuario_de_red" id="usuario_de_red" value="<?php echo $fila->usuario_de_red; ?>"> 
+											</div>
+											<div class="form-group">
 												<label for="contrasena">Contraseña</label>       
-												<input type="text" class="form-control" name="contrasena" value="<?php echo $fila->contrasena; ?>"> 
+												<input type="text" class="form-control" name="contrasena" id="contrasena" value="<?php echo $fila->contrasena; ?>">
+											</div>
+											<div class="form-group"> 
 												<label for="num_extension">No. Extension</label>       
-												<input type="text" class="form-control" name="num_extension" value="<?php echo $fila->num_extension; ?>"> 
+												<input type="text" class="form-control" name="num_extension" id="num_extension" value="<?php echo $fila->num_extension; ?>"> 
+											</div>
+											<div class="form-group">
 												<label for="correo_electonico">Correo Electonico</label>       
-												<input type="text" class="form-control" name="correo_electonico" value="<?php echo $fila->correo_electonico; ?>">       
+												<input type="text" class="form-control" name="correo_electonico" id="correo_electonico" value="<?php echo $fila->correo_electonico; ?>">
+											</div>
+											<div class="form-group">       
 												<label for="area">Area de Adscripcion</label>       
-												<input type="text" class="form-control" name="area" value="<?php echo $fila->area; ?>">
+												<input type="text" class="form-control" name="area" id="area" value="<?php echo $fila->area; ?>">
+											</div>
+											<div class="form-group">
 												<label for="cargo">Cargo</label>       
-												<input type="text" class="form-control" name="cargo" value="<?php echo $fila->cargo; ?>">
+												<input type="text" class="form-control" name="cargo" id="cargo" value="<?php echo $fila->cargo; ?>">
 				      						</div> 
 				      						<div class="modal-footer">
 							        			<button type="submit" class="btn btn-info">Guardar</button>
 							      			</div>   
-      										</form> </p>
+      									</form> 
 							      	</div>
 							    </div>
 						  	</div>

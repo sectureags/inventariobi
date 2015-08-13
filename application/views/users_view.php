@@ -8,53 +8,67 @@
 	      	<nav class="navbar navbar-default">
 			  <div class="container-fluid">
 			    <div class="navbar-header">
-			      <!-- Links --> 
-			      <a class="navbar-brand" data-toggle="modal" href="#myModal">Crear nuevo</a>
+			     		<!--link-->
+						<a class="navbar-brand" data-toggle="modal" href="#myModalPermisosRol">Crear nuevo</a>
 			      		<!-- Modal -->
-						<div id="myModal" class="modal fade" role="dialog">
+						<div id="myModalPermisosRol" class="modal fade" role="dialog">
 						  <div id="moduloseg" class="modal-dialog">
 
 						    <!-- Modal content-->
 						    <div class="modal-content">
-						     <div class="modal-header">
+						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
 						        <h4 class="modal-title">Ingresar Nuevo Usuario</h4>
 						      </div>
 						      <div class="modal-body">
-						        <p><form role="form" action="<?php echo base_url('users/crear');?>" method="post">     
-										<div class="form-group">       
-											<label for="nombre">Nombre</label>       
-											<input type="text" class="form-control" name="nombre"> 
-											<label for="id_tipo">Rol</label> 
-											 <select class="form-control" name="id_tipo">
-											    <?php foreach ($cargar_roles as $rol) :?>      
-											 	<option value="<?php echo $rol->id_tipo; ?>"><?php echo $rol->descripcion;?></option>                 
-											 	<?php endforeach; ?>       
-											 </select>       
-											<label for="username">Username</label>       
-											<input type="text" class="form-control" name="username"> 
-											<label for="password">Password</label>       
-											<input type="text" class="form-control" name="password"> 
-											<label for="email">Email</label>       
-											<input type="text" class="form-control" name="email"> 
-											<label for="tel">Telefono</label>       
-											<input type="text" class="form-control" name="tel">       
-											<label for="id_status">       
-												<input type="hidden"  name="id_status" value="1">
-				      						</label>    
-			      						</div>    
-			      						<div class="modal-footer">
-										    <button type="submit" class="btn btn-danger">Guardar</button>
-										</div>  
-			      					</form> 
-			      				</p>
+
+						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo base_url('permisos/create');?>">
+						         	<div class="form-group">       
+									  	<label for="nombre">Nombre</label>       
+										<input type="text" class="form-control" name="nombre" id="nombre">
+									</div>
+								  <div class="form-group">
+								    <label for="id_tipo">Rol</label> 
+									<select class="form-control" name="id_tipo" id="id_tipo">
+									    <?php foreach ($cargar_roles as $rol) :?>      
+									 	<option value="<?php echo $rol->id_tipo; ?>"><?php echo $rol->descripcion;?></option>                 
+									 	<?php endforeach; ?>       
+									 </select> 
+								  </div>
+								  <div class="form-group">
+									   	<label for="username">Username</label>       
+										<input type="text" class="form-control" name="username" id="username"> 
+								  </div>
+								  <div class="form-group">
+								  		<label for="password">Password</label>       
+										<input type="text" class="form-control" name="password" id="password">
+								  </div>
+								  <div class="form-group"> 
+										<label for="email">Email</label>       
+										<input type="text" class="form-control" name="email" id="email">
+								  </div>
+								  <div class="form-group"> 
+										<label for="tel">Telefono</label>       
+										<input type="text" class="form-control" name="tel" id="tel">
+								  </div>
+								  <div class="form-group">       
+										<label for="id_status"> </label>      
+										<input type="hidden"  name="id_status" value="1" id="id_status">
+					      		  </div>
+								  
+								  
+								  <div class="modal-footer">
+						          		<button type="submit" class="btn btn-danger">Guardar</button>
+						      	  </div>
+								</form>
 						      </div>
-						      
 						    </div>
 
 						  </div>
 						</div>
 						<!-- Modal -->
+
+
 			    </div>
 			    <div>
 			      <ul class="nav navbar-nav">
@@ -156,14 +170,18 @@
 								        <h4 class="modal-title">Editar Usuario</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<p><form role="form" action="<?php echo base_url('users/actualizar');?>" method="post">     
-											<div class="form-group">    
+							        	<form id="ModalEditarUser" role="form" action="<?php echo base_url('users/actualizar');?>" method="post">     
+												<div class="form-group">    
 												<label for="id_user">Id</label>       
-												<input type="text" class="form-control" name="id_user" value="<?php echo $fila->id_user; ?>" readonly>    
+												<input type="text" class="form-control" id="id_user" name="id_user" value="<?php echo $fila->id_user; ?>" readonly>
+												</div>
+												<div class="form-group">     
 												<label for="nombre">Nombre</label>       
-												<input type="text" class="form-control" name="nombre" value="<?php echo $fila->nombre; ?>"> 
+												<input type="text" class="form-control" name="nombre" id="nombre" value="<?php echo $fila->nombre; ?>">
+												</div>
+												<div class="form-group">  
 												<label for="id_tipo">Rol</label>  
-												<select class="form-control" name="id_tipo">
+												<select class="form-control" name="id_tipo" id="id_tipo">
 								    			<?php foreach ($cargar_roles as $rol) :?> 
 													<?php if($fila->id_tipo == $rol->id_tipo){  ?>
 									 					<option value="<?php echo $fila->id_tipo; ?>"selected><?php echo $rol->descripcion;?></option>                 
@@ -172,41 +190,50 @@
 									 				<?php }?>
 									 			<?php endforeach;?> 
 								 				</select>
+								 				</div>
+								 				<div class="form-group"> 
 												<label for="username">Username</label>       
-												<input type="text" class="form-control" name="username" value="<?php	echo $fila->username; ?>"> 
+												<input type="text" class="form-control" id="username" name="username" value="<?php	echo $fila->username; ?>">
+												</div>
+												<div class="form-group">  
 												<label for="password">Password</label>       
-												<input type="text" class="form-control" name="password" value="<?php	echo $fila->password; ?>"> 
+												<input type="text" class="form-control" id="password" name="password" value="<?php	echo $fila->password; ?>">
+												</div>
+												<div class="form-group">  
 												<label for="email">Email</label>       
-												<input type="text" class="form-control" name="email" value="<?php	echo $fila->email; ?>"> 
+												<input type="text" class="form-control" id="email" name="email" value="<?php	echo $fila->email; ?>">
+												</div>
+												<div class="form-group">  
 												<label for="tel">Telefono</label>       
-												<input type="text" class="form-control" name="tel" value="<?php	echo $fila->tel; ?>">       
+												<input type="text" class="form-control" id="tel" name="tel" value="<?php	echo $fila->tel; ?>">
+												</div>
+												<div class="form-group">        
 												<label for="id_status">Activo</label>  
 												<?php 
 												switch ($fila->id_status) {
 													case FALSE:?>
 														<?php if($fila->id_tipo == FALSE){  ?>
-										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+										 					<input type="checkbox" id="id_status" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" name="id_status" value="1">
+											 				<input type="checkbox" id="id_status" name="id_status" value="1">
 										 				<?php }?>														
 														<?php break;						
 													case TRUE:?>
 														<?php if( $fila->id_tipo == TRUE){  ?>
-										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+										 					<input type="checkbox" id="id_status" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" name="id_status" value="0">
+											 				<input type="checkbox" id="id_status" name="id_status" value="0">
 										 				<?php }?>														
 									      				<?php break;
 												}
 												?>
-																			
-					      						  
-				      						</div>    
+												</div>
+														
 				      						<div class="modal-footer">
-							        			<button type="submit" class="btn btn-danger">Guardar</button>
-							      			</div>
-				      						</form>
-				      					</p>
+									          	<button type="submit" class="btn btn-danger">Guardar</button>
+									      	 </div>   
+							      						
+				      					</form>
 							      	</div>
 							    </div>
 						  	</div>
