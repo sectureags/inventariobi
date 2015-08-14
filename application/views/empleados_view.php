@@ -32,7 +32,7 @@
 												<input type="text" class="form-control" name="nombre_completo" id="nombre_completo" required>
 											</div>
 											 <div class="form-group">
-											  <label for="unidad">Unidad:</label>
+											  <label for="unidad">Unidad Administrativa:</label>
 											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO'); ?>
 											  <select class="form-control" name="unidad" id="unidad">
 											  	<?php foreach ($unidades as $key => $value) {?>

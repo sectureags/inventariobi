@@ -37,7 +37,7 @@
 				);?>
 			  	<?php foreach ($unidades as $key => $value) {?>
 					<?php if ( $key == $fila->unidad ) {?>
-						<p>Unidad: <b><?php echo $value; ?></b> </p>
+						<p>Unidad Administrativa: <b><?php echo $value; ?></b> </p>
 					<?php } ?>
 				<?php } ?>											    
 			    
@@ -63,7 +63,7 @@
 
 				<?php foreach ($areas as $key => $value) {?>
 					<?php if ( $key == $fila->area ) {?>
-						<p>Area: <b> <?php echo $value; ?> </b>
+						<p>Area de Adscripcion: <b> <?php echo $value; ?> </b>
 					<?php } ?>
 				<?php } ?>	
 
