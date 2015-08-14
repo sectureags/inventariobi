@@ -28,8 +28,7 @@
 					<thead>       
 						<tr>      
 							 <th>Carpetas GEACO06</th>         
-							 <th>Carpeta Imágenes</th>          
-							 <th>Carpeta Excellentia</th> 
+							 <th>Carpeta Imágenes</th>  
 							 <th>Capacidad Correo</th> 
 							 <th>Otros Servicios</th>
 							 <th>Accion</th> 
@@ -41,10 +40,9 @@
 							<tr>
 							<td> <?php echo $fila->carpetas_geaco06; ?></td>
 							<td> <?php	echo $fila->carpeta_imagenes; ?></td>
-							<td> <?php	echo $fila->carpeta_excellentia; ?></td>
 							<td> <?php	echo $fila->capacidad_correo; ?></td>
 							<td> <?php	echo $fila->otros_servicios; ?></td>
-							<td><a href="" data-toggle="modal" data-target="#myModal<?php echo $fila->id; ?>">Editar</a></td>
+							<td><a href="" data-toggle="modal" data-target="#myModal<?php echo $fila->id; ?>">Editar</a>
 
 								<!-- Modal -->
 								<div id="myModal<?php echo $fila->id; ?>" class="modal fade" role="dialog">
@@ -63,10 +61,12 @@
 
 								      </div>
 								      <div class="modal-body">
-								        <p><form role="form" action="<?php echo base_url('carpetas/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
+								       <form id="NuevoPermisosCarpeta" role="form" action="<?php echo base_url('carpetas/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
 											<div class="form-group">       
 												<input type="hidden" class="form-control" name="id" value="<?php echo $fila->id; ?>">       
-												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>">      
+												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>">
+											</div>  
+											<div class="form-group">    
 												<label for="carpetas_geaco06">Carpetas GEACO06</label>              
 												<select class="form-control" name="carpetas_geaco06"> 
 												    <?php if($fila->carpetas_geaco06 == 'SI'){  ?>   
@@ -78,6 +78,8 @@
 												 	<option value="SI">SI</option>
 												 	<?php }?>
 												</select> 
+											</div>
+											<div class="form-group">
 												<label for="carpeta_imagenes">Carpeta Imágenes</label>        
 												<select class="form-control" name="carpeta_imagenes"> 
 												    <?php if($fila->carpeta_imagenes == 'SI'){  ?>   
@@ -88,51 +90,29 @@
 												 	<option value="NO">NO</option>      
 												 	<option value="SI">SI</option>
 												 	<?php }?>
-												</select>  
-												<label for="carpeta_excellentia">Carpeta Excellentia</label>       
-												<select class="form-control" name="carpeta_excellentia"> 
-												    <?php if($fila->carpeta_excellentia == 'SI'){  ?>   
-												 	<option value="SI" selected>SI</option>
-												 	<option value="NO">NO</option>
-												 	
-												 	<?php } else {?>
-												 	<option value="NO">NO</option>      
-												 	<option value="SI">SI</option>
-												 	<?php }?>
 												</select> 
+											</div>
+											<div class="form-group">
 												<label for="capacidad_correo">Capacidad Correo</label>       
-												<select class="form-control" name="capacidad_correo"> 
-												    <?php if($fila->capacidad_correo == 'SI'){  ?>   
-												 	<option value="SI" selected>SI</option>
-												 	<option value="NO">NO</option>
-												 	
-												 	<?php } else {?>
-												 	<option value="NO">NO</option>      
-												 	<option value="SI">SI</option>
-												 	<?php }?>
+												<input type="text" class="form-control" id="capacidad_correo" name="capacidad_correo" value="<?php	echo $fila->capacidad_correo; ?>">
 												</select> 
+											</div>
+											<div class="form-group">
 												<label for="otros_servicios">Otros Servicios</label>        
-												<select class="form-control" name="otros_servicios"> 
-												    <?php if($fila->otros_servicios == 'SI'){  ?>   
-												 	<option value="SI" selected>SI</option>
-												 	<option value="NO">NO</option>
-												 	
-												 	<?php } else {?>
-												 	<option value="NO">NO</option>      
-												 	<option value="SI">SI</option>
-												 	<?php }?>
-												</select> 
+												<input type="text" class="form-control" id="otros_servicios" name="otros_servicios" value="<?php	echo $fila->otros_servicios; ?>">
 				      						</div>    
 				      						 <div class="modal-footer">
 									        	<button type="submit" class="btn btn-info">Guardar</button> 
 									        </div> 
-      									</form></p>
+      									</form>
 								      </div>
 								      
 								    </div>
 								  </div>
 								</div>
 								<!-- Modal -->
+								</td>
+							</tr>
 							
 						<?php endforeach; ?>
 					</tbody> 

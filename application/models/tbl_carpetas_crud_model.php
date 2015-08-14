@@ -21,11 +21,10 @@ class Tbl_carpetas_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
-	public function agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios, $id_empleado)
+	public function agregar_carpetas($carpetas_geaco06, $carpeta_imagenes,  $capacidad_correo, $otros_servicios, $id_empleado)
 	{
 		$data=array('carpetas_geaco06' => $carpetas_geaco06,
 					'carpeta_imagenes' => $carpeta_imagenes,
-					'carpeta_excellentia' => $carpeta_excellentia,
 					'capacidad_correo' => $capacidad_correo,
 					'otros_servicios'=> $otros_servicios,
 					'id_empleado'=>$id_empleado
@@ -36,9 +35,9 @@ class Tbl_carpetas_crud_model extends CI_Model
 
 	}
 
-	public function actualizar_carpetas($id,$carpetas_geaco06, $carpeta_imagenes, $carpeta_excellentia, $capacidad_correo, $otros_servicios)
+	public function actualizar_carpetas($id,$carpetas_geaco06, $carpeta_imagenes, $capacidad_correo, $otros_servicios)
 	{
-		$data=array('carpetas_geaco06' => $carpetas_geaco06,'carpeta_imagenes' => $carpeta_imagenes,'carpeta_excellentia' => $carpeta_excellentia,'capacidad_correo' => $capacidad_correo,'otros_servicios'=> $otros_servicios);
+		$data=array('carpetas_geaco06' => $carpetas_geaco06,'carpeta_imagenes' => $carpeta_imagenes,'capacidad_correo' => $capacidad_correo,'otros_servicios'=> $otros_servicios);
 		$this->db->where('id',$id);
 		$this->db->update('tbl_permiso_carpetas',$data);
 		

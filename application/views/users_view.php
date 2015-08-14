@@ -22,7 +22,7 @@
 						      </div>
 						      <div class="modal-body">
 
-						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo base_url('permisos/create');?>">
+						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo base_url('users/crear');?>">
 						         	<div class="form-group">       
 									  	<label for="nombre">Nombre Completo</label>       
 										<input type="text" class="form-control" name="nombre" id="nombre">
