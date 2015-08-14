@@ -132,19 +132,19 @@ class Bi_cpu extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 		
 			$num_inventario=$_POST['num_inventario'];
-			$categoria=$_POST['categoria'];
 			$marca=$_POST['marca'];
 			$modelo=$_POST['modelo'];
 			$hostname=$_POST['hostname'];
 			$num_serie=$_POST['num_serie'];
 			$tipo=$_POST['tipo'];
 			$ubicacion=$_POST['ubicacion'];
+			$categoria=$_POST['categoria'];
 			$status=$_POST['status'];
 			$id_empleado=$_POST['id_empleado'];
 
 
 			$this->load->model('tbl_cpu_crud_model');
-			$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+			$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
 				
 			$this->index();
 
@@ -162,19 +162,19 @@ class Bi_cpu extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 
 		 		$num_inventario=$_POST['num_inventario'];
-				$categoria=$_POST['categoria'];
 				$marca=$_POST['marca'];
 				$modelo=$_POST['modelo'];
 				$hostname=$_POST['hostname'];
 				$num_serie=$_POST['num_serie'];
 				$tipo=$_POST['tipo'];
 				$ubicacion=$_POST['ubicacion'];
+				$categoria=$_POST['categoria'];
 				$status=$_POST['status'];
 				$id_empleado=$_POST['id_empleado'];
 
 
 				$this->load->model('tbl_cpu_crud_model');
-				$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+				$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
 					
 				$this->index();
 
@@ -186,13 +186,13 @@ class Bi_cpu extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 
 				$num_inventario=$_POST['num_inventario'];
-				$categoria=$_POST['categoria'];
 				$marca=$_POST['marca'];
 				$modelo=$_POST['modelo'];
 				$hostname=$_POST['hostname'];
 				$num_serie=$_POST['num_serie'];
 				$tipo=$_POST['tipo'];
 				$ubicacion=$_POST['ubicacion'];
+				$categoria=$_POST['categoria'];
 				$status=$_POST['status'];
 				$id_empleado=$_POST['id_empleado'];
 
@@ -221,18 +221,18 @@ class Bi_cpu extends CI_Controller {
 
 			$id_cpu=$_POST['id_cpu'];
 			$num_inventario=$_POST['num_inventario'];
-			$categoria=$_POST['categoria'];
 			$marca=$_POST['marca'];
 			$modelo=$_POST['modelo'];
 			$hostname=$_POST['hostname'];
 			$num_serie=$_POST['num_serie'];
 			$tipo=$_POST['tipo'];
 			$ubicacion=$_POST['ubicacion'];
+			$categoria=$_POST['categoria'];
 			$status=$_POST['status'];
 			$id_empleado=$_POST['id_empleado'];
 
 			$this->load->model('tbl_cpu_crud_model'); 
-			$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+			$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
 			redirect('bi_cpu/index');
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -250,18 +250,18 @@ class Bi_cpu extends CI_Controller {
 
 		 		$id_cpu=$_POST['id_cpu'];
 				$num_inventario=$_POST['num_inventario'];
-				$categoria=$_POST['categoria'];
 				$marca=$_POST['marca'];
 				$modelo=$_POST['modelo'];
 				$hostname=$_POST['hostname'];
 				$num_serie=$_POST['num_serie'];
 				$tipo=$_POST['tipo'];
 				$ubicacion=$_POST['ubicacion'];
+				$categoria=$_POST['categoria'];
 				$status=$_POST['status'];
 				$id_empleado=$_POST['id_empleado'];
 
 				$this->load->model('tbl_cpu_crud_model'); 
-				$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+				$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
 				redirect('bi_cpu/index');
 
 				}
@@ -273,13 +273,12 @@ class Bi_cpu extends CI_Controller {
 
 				$id_cpu=$_POST['id_cpu'];
 				$num_inventario=$_POST['num_inventario'];
-				$categoria=$_POST['categoria'];
-				$marca=$_POST['marca'];
 				$modelo=$_POST['modelo'];
 				$hostname=$_POST['hostname'];
 				$num_serie=$_POST['num_serie'];
 				$tipo=$_POST['tipo'];
 				$ubicacion=$_POST['ubicacion'];
+				$categoria=$_POST['categoria'];
 				$status=$_POST['status'];
 				$id_empleado=$_POST['id_empleado'];
 
@@ -372,13 +371,13 @@ class Bi_cpu extends CI_Controller {
 
 			$id_cpu=$_POST['id_cpu'];
 			$num_inventario=$_POST['num_inventario'];
-			$categoria=$_POST['categoria'];
 			$marca=$_POST['marca'];
 			$modelo=$_POST['modelo'];
 			$hostname=$_POST['hostname'];
 			$num_serie=$_POST['num_serie'];
 			$tipo=$_POST['tipo'];
 			$ubicacion=$_POST['ubicacion'];
+			$categoria=$_POST['categoria'];
 			$status=$_POST['status'];
 			$id_empleado=$_POST['id_empleado'];
 
@@ -402,18 +401,18 @@ class Bi_cpu extends CI_Controller {
 
 			 		$id_cpu=$_POST['id_cpu'];
 					$num_inventario=$_POST['num_inventario'];
-					$categoria=$_POST['categoria'];
 					$marca=$_POST['marca'];
 					$modelo=$_POST['modelo'];
 					$hostname=$_POST['hostname'];
 					$num_serie=$_POST['num_serie'];
 					$tipo=$_POST['tipo'];
 					$ubicacion=$_POST['ubicacion'];
+					$categoria=$_POST['categoria'];
 					$status=$_POST['status'];
 					$id_empleado=$_POST['id_empleado'];
 
 					$this->load->model('tbl_cpu_crud_model'); 
-					$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado);
+					$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
 					
 					redirect(base_url('bi_cpu/cpu_empleado').'/'.$id_empleado);
 
@@ -426,13 +425,13 @@ class Bi_cpu extends CI_Controller {
 
 						$id_cpu=$_POST['id_cpu'];
 						$num_inventario=$_POST['num_inventario'];
-						$categoria=$_POST['categoria'];
 						$marca=$_POST['marca'];
 						$modelo=$_POST['modelo'];
 						$hostname=$_POST['hostname'];
 						$num_serie=$_POST['num_serie'];
 						$tipo=$_POST['tipo'];
 						$ubicacion=$_POST['ubicacion'];
+						$categoria=$_POST['categoria'];
 						$status=$_POST['status'];
 						$id_empleado=$_POST['id_empleado'];
 

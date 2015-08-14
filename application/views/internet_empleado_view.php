@@ -32,7 +32,8 @@
 							 <th>Redes Sociales</th> 
 							 <th>FTP</th> 
 							 <th>Sigue</th> 
-							 <th>Permiso Usuario Local</th>
+							 <th>Permiso Usuario</th>
+							 <th>Tipo de Cuenta Windows</th>
 							 <th>Accion</th>
 							 </tr>   
 					</thead>  
@@ -47,6 +48,7 @@
 							<td> <?php	echo $fila->ftp; ?></td>
 							<td> <?php	echo $fila->sigue; ?></td>
 							<td> <?php	echo $fila->permiso_usuario_local; ?></td>
+							<td> <?php	echo $fila->tipo_cuenta_ws; ?></td>
 							<td><a href="" data-toggle="modal" data-target="#myModal<?php echo $fila->id; ?>">Editar</a></td>
 
 								<!-- Modal -->
@@ -64,10 +66,11 @@
 								      
 								      </div>
 								      <div class="modal-body">
-								        <p><form role="form" action="<?php echo base_url('internet/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
+								        <form id="NuevoPermisosInternet" role="form" action="<?php echo base_url('internet/actualizar');?>/<?php echo $fila->id; ?>" method="post">     
 											<div class="form-group">        
 												<input type="hidden" class="form-control" name="id" value="<?php echo $fila->id; ?>">       
-												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>">      
+												<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>"> 
+											<div class="form-group">      
 												<label for="internet">Internet</label>              
 												<select class="form-control" name="internet"> 
 												    <?php if($fila->internet == 'SI'){  ?>   
@@ -78,7 +81,9 @@
 												 	<option value="NO">NO</option>      
 												 	<option value="SI">SI</option>
 												 	<?php }?>
-												</select>  
+												</select>
+											</div> 
+											<div class="form-group">  
 												<label for="messenger">Messenger</label>        
 												<select class="form-control" name="messenger"> 
 												    <?php if($fila->messenger == 'SI'){  ?>   
@@ -90,6 +95,8 @@
 												 	<option value="SI">SI</option>
 												 	<?php }?>
 												</select>
+											</div>
+											<div class="form-group"> 
 												<label for="redes_sociales">Redes Sociales</label>       
 												<select class="form-control" name="redes_sociales"> 
 												    <?php if($fila->redes_sociales == 'SI'){  ?>   
@@ -101,6 +108,8 @@
 												 	<option value="SI">SI</option>
 												 	<?php }?>
 												</select>
+											</div>
+											<div class="form-group"> 
 												<label for="ftp">FTP</label>       
 												<select class="form-control" name="ftp"> 
 												    <?php if($fila->ftp == 'SI'){  ?>   
@@ -112,6 +121,8 @@
 												 	<option value="SI">SI</option>
 												 	<?php }?>
 												</select>
+											</div>
+											<div class="form-group"> 
 												<label for="sigue">Sigue</label>        
 												<select class="form-control" name="sigue"> 
 												    <?php if($fila->sigue == 'SI'){  ?>   
@@ -123,7 +134,9 @@
 												 	<option value="SI">SI</option>
 												 	<?php }?>
 												</select> 
-												<label for="permiso_usuario_local">Permiso Usuario Local</label>       
+											</div>
+											<div class="form-group"> 
+												<label for="permiso_usuario_local">Permiso Usuario</label>       
 				      							<select class="form-control" name="permiso_usuario_local"> 
 												    <?php if($fila->permiso_usuario_local == 'SI'){  ?>   
 												 	<option value="SI" selected>SI</option>
@@ -134,11 +147,25 @@
 												 	<option value="SI">SI</option>
 												 	<?php }?>
 												</select>
+											</div>
+											<div class="form-group"> 
+												<label for="tipo_cuenta_ws">Tipo de Cuenta Windows</label>       
+				      							<select class="form-control" name="tipo_cuenta_ws"> 
+												    <?php if($fila->permiso_usuario_local == 'Estandar'){  ?>   
+												 	<option value="Estandar" selected>Estandar</option>
+												 	<option value="Avanzado">Avanzado</option>
+												 	<option value="Administrador">Administrador</option>
+												 	<?php } else {?>
+												 	<option value="Estandar">Estandar</option>      
+												 	<option value="Avanzado">Avanzado</option>
+												 	<option value="Administrador">Administrador</option>
+												 	<?php }?>
+												</select>
 				      						</div> 
 					      					<div class="modal-footer">
 									        	<button type="submit" class="btn btn-info">Guardar</button> 
 									        </div>  
-      									</form> </p>
+      									</form> 
 								      </div>
 								      
 								    </div>

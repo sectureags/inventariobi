@@ -466,3 +466,30 @@ $('#ModalEmpleadoEditar').bootstrapValidator({
 		 }
 	 }
 });
+
+$('#NuevoPermisosCarpeta').bootstrapValidator({
+	 message: 'Este valor no es valido',
+	 feedbackIcons: {
+		 valid: 'glyphicon glyphicon-ok',
+		 invalid: 'glyphicon glyphicon-remove',
+		 validating: 'glyphicon glyphicon-refresh'
+	 },
+	 fields: {
+		 capacidad_correo: {
+			 validators: {
+				 notEmpty: {
+					 message: 'La capacidad es requerida'
+				 }
+			 }
+		 },
+		 otros_servicios: {
+			 validators: {
+				 notEmpty: {
+					 message: 'La informacion es requerida'
+				 }
+			 }
+		 }
+	 }
+});
+
+
