@@ -19,7 +19,7 @@ class Tbl_empleado_crud_model extends CI_Model
 		return $res->result();
 	}
 
-	public function agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo)
+	public function agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo,$id_status)
 	{
 		$data=array('codigo_empleado' => $codigo_empleado,
 					'nombre_completo' => $nombre_completo,
@@ -29,7 +29,9 @@ class Tbl_empleado_crud_model extends CI_Model
 					'area' => $area,
 					'num_extension' => $num_extension, 
 					'correo_electonico'=>$correo_electonico,
-					'cargo' => $cargo);
+					'cargo' => $cargo,
+					'id_status' => $id_status
+		);
 		$nuevo = $this->db->insert('tbl_empleados', $data);
 
 	}
@@ -43,7 +45,7 @@ class Tbl_empleado_crud_model extends CI_Model
 		return $res->result();
 	}
 
-	public function actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo)
+	public function actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo,$id_status)
 	{
 		$data=array('codigo_empleado' => $codigo_empleado,
 					'nombre_completo' => $nombre_completo,
@@ -53,7 +55,9 @@ class Tbl_empleado_crud_model extends CI_Model
 					'area' => $area,
 					'num_extension' => $num_extension, 
 					'correo_electonico'=>$correo_electonico, 
-					'cargo' => $cargo);
+					'cargo' => $cargo,
+					'id_status' => $id_status
+		);
 		$this->db->where('id_empleado',$id_empleado);
 		$this->db->update('tbl_empleados',$data);
 		

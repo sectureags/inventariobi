@@ -146,7 +146,8 @@
 					 <th>Codigo Empleado</th>         
 					 <th>Nombre Completo</th>          
 					 <th>Correo Electronico</th> 
-					 <th>No. Extension</th> 
+					 <th>No. Extension</th>
+					 <th>Activo</th> 
 					 <th>Accion</th>
 					 <th>Detalles</th> 
 
@@ -160,6 +161,20 @@
 					<td> <?php	echo $fila->nombre_completo; ?></td>
 					<td> <?php	echo $fila->correo_electonico; ?></td>
 					<td> <?php	echo $fila->num_extension; ?></td>
+					<?php 
+					switch ($fila->id_status) {
+						case FALSE:?>
+							<td> 
+							<img class="icon" src="<?php echo base_url(); ?>img/icon/tacha.jpg">  
+		      				</td>
+							<?php break;						
+						case TRUE:?>
+							<td> 
+							<img class="icon" src="<?php echo base_url(); ?>img/icon/ploma.png">  
+		      				</td>
+							<?php break;
+					}
+					?>
 					<td><a href="" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">Editar</a><b>
 
 				      	<!-- Modal -->
@@ -248,6 +263,27 @@
 												<label for="cargo">Cargo</label>       
 												<input type="text" class="form-control" name="cargo" id="cargo" value="<?php echo $fila->cargo; ?>">
 				      						</div> 
+				      						<div class="form-group">        
+												<label for="id_status">Activo</label>  
+												<?php 
+												switch ($fila->id_status) {
+													case FALSE:?>
+														<?php if($fila->id_status == FALSE){  ?>
+										 					<input type="checkbox" id="id_status" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+											 				<?php } else {?>
+											 				<input type="checkbox" id="id_status" name="id_status" value="1">
+										 				<?php }?>														
+														<?php break;						
+													case TRUE:?>
+														<?php if( $fila->id_status == TRUE){  ?>
+										 					<input type="checkbox" id="id_status" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+											 				<?php } else {?>
+											 				<input type="checkbox" id="id_status" name="id_status" value="0">
+										 				<?php }?>														
+									      				<?php break;
+												}
+												?>
+												</div>
 				      						<div class="modal-footer">
 							        			<button type="submit" class="btn btn-info">Guardar</button>
 							      			</div>   
@@ -258,23 +294,23 @@
 						</div>
 						<!-- Modal -->
 
-						| <a href="" data-toggle="modal" data-target="#myModal2<?php echo $fila->id_empleado; ?>">Eliminar</a></td>
+						<!--| <a href="" data-toggle="modal" data-target="#myModal2<?php //echo $fila->id_empleado; ?>">Eliminar</a></td>-->
 
 
 						<!-- Modal -->
-						<div class="modal fade" id="myModal2<?php echo $fila->id_empleado; ?>" role="dialog">
-						  <div id="moduloemp" class="modal-dialog">
+						<!--<div class="modal fade" id="myModal2<?php //echo $fila->id_empleado; ?>" role="dialog">
+						  <div id="moduloemp" class="modal-dialog">-->
 
 						    <!-- Modal content-->
-						    <div class="modal-content">
+						    <!-- <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
 						        <h4 class="modal-title">Borrar Registro</h4>
 						      </div>
 						      <div class="modal-body">
-						        <p><form role="form" action="<?php echo base_url('empleados/eliminar');?>" method="post">
-										<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
-							 			<div class="modal-body">Se borrara todo el regisro del empleado <b><?php echo $fila->nombre_completo; ?></b> de manera permanente, 
+						        <p><form role="form" action="<?php //echo base_url('empleados/eliminar');?>" method="post">
+										<input type="hidden" class="form-control" name="id_empleado" value="<?php //echo $fila->id_empleado; ?>" readonly>
+							 			<div class="modal-body">Se borrara todo el regisro del empleado <b><?php //echo $fila->nombre_completo; ?></b> de manera permanente, 
 							 				¿estas seguro que deseas eliminar?
 							 			</div>
 							 			<div class="modal-footer">
@@ -288,7 +324,7 @@
 						    </div>
 
 						  </div>
-						</div>
+						</div>-->
 						<!-- Modal -->
 
 

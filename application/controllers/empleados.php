@@ -257,7 +257,7 @@ class Empleados extends CI_Controller {
 			$id_status=$_POST['id_status'];
 
 			$this->load->model('tbl_empleado_crud_model'); 
-			$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
+			$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo,$id_status);
 			redirect('empleados/index');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else

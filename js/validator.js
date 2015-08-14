@@ -463,6 +463,13 @@ $('#ModalEmpleadoEditar').bootstrapValidator({
 					 message: 'El cargo es requerido'
 				 }
 			 }
+		 },
+		 id_status: {
+			 validators: {
+				 notEmpty: {
+					 message: 'El status es requerido'
+				 }
+			 }
 		 }
 	 }
 });
