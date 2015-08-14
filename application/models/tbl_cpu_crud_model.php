@@ -25,16 +25,16 @@ class Tbl_cpu_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
-	public function agregar_cpu($num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado)
+	public function agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado)
 	{
 		$data=array('num_inventario' => $num_inventario,
-					'categoria' => $categoria,
 					'marca' => $marca,
 					'modelo' => $modelo,
 					'hostname' => $hostname,
 					'num_serie' => $num_serie,
 					'tipo' => $tipo, 
-					'ubicacion'=>$ubicacion, 
+					'ubicacion'=>$ubicacion,
+					'categoria' => $categoria, 
 					'status' => $status,
 					'id_empleado'=>$id_empleado);
 		$nuevo = $this->db->insert('tbl_cpu', $data);
@@ -56,16 +56,16 @@ class Tbl_cpu_crud_model extends CI_Model
 		}
 	}
 	
-	public function actualizar_cpu($id_cpu,$num_inventario,$categoria,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$status,$id_empleado)
+	public function actualizar_cpu($id_cpu,$num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado)
 	{
 		$data=array('num_inventario' => $num_inventario,
-					'categoria' => $categoria,
 					'marca' => $marca,
 					'modelo' => $modelo,
 					'hostname' => $hostname,
 					'num_serie' => $num_serie,
 					'tipo' => $tipo, 
-					'ubicacion'=>$ubicacion, 
+					'ubicacion'=>$ubicacion,
+					'categoria' => $categoria, 
 					'status' => $status,
 					'id_empleado'=>$id_empleado);
 

@@ -47,38 +47,57 @@
 
 							      </div>
 							      <div class="modal-body">
-								        <p><form role="form" action="<?php echo base_url('internet/crear');?>" method="post">     
+								        <form id="NuevoPermisosInternet" role="form" action="<?php echo base_url('internet/crear');?>" method="post">     
 											<div class="form-group">       
 												<label for="internet">Internet</label>              
 												<select class="form-control" name="internet">          
 													<option>SI</option>          
 													<option>NO</option>
 												</select> 
+											</div> 
+											<div class="form-group">
 												<label for="messenger">Messenger</label>        
 												<select class="form-control" name="messenger">          
 													<option>SI</option>          
 													<option>NO</option>
 												</select> 
+											<div class="form-group">
 												<label for="redes_sociales">Redes Sociales</label>       
 												<select class="form-control" name="redes_sociales">          
 													<option>SI</option>          
 													<option>NO</option>
 												</select> 
+											</div> 
+											<div class="form-group">
 												<label for="ftp">FTP</label>       
 												<select class="form-control" name="ftp">          
 													<option>SI</option>          
 													<option>NO</option>
 												</select> 
+											</div> 
+											<div class="form-group">
 												<label for="sigue">Sigue</label>        
 												<select class="form-control" name="sigue">          
 													<option>SI</option>          
 												 	<option>NO</option>
 												</select> 
-												<label for="permiso_usuario_local">Permiso Usuario Local</label>       
+											</div> 
+											<div class="form-group">
+												<label for="permiso_usuario_local">Permiso Usuario</label>       
 										      	<select class="form-control" name="permiso_usuario_local">          
 												 	<option>SI</option>          
 												 	<option>NO</option>
 												</select> 
+											</div> 
+											<div class="form-group">
+												<label for="tipo_cuenta_ws">Tipo de Cuenta Windows</label>       
+										      	<select class="form-control" name="tipo_cuenta_ws">          
+												 	<option value="Estandar">Estandar</option>      
+												 	<option value="Avanzado">Avanzado</option>
+												 	<option value="Administrador">Administrador</option>
+												</select> 
+											</div> 
+											<div class="form-group">
 												<?php foreach ($cargar_empleado_detalles as $fila) :?>      
 													<input type="hidden" class="form-control" name="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
 												<?php endforeach; ?>
@@ -86,7 +105,7 @@
 								     		<div class="modal-footer">
 										        <button type="submit" class="btn btn-info">Guardar</button>
 										    </div>
-				      					</form> </p>
+				      					</form> 
 							      </div>
 							      
 						    </div>

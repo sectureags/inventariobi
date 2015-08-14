@@ -23,11 +23,7 @@
 										<div class="form-group">       
 											<label for="num_inventario">No. Inventario</label>       
 											<input type="text" class="form-control" name="num_inventario" id="num_inventario">
-										</div>  
-										<div class="form-group">     
-											<label for="categoria">Categoria</label>       
-											<input type="text" class="form-control" name="categoria" id="categoria"> 
-										</div>
+										</div> 
 										<div class="form-group">
 											<label for="marca">Marca</label>       
 											<input type="text" class="form-control" name="marca" id="marca"> 
@@ -51,6 +47,10 @@
 										<div class="form-group">
 											<label for="ubicacion">Ubicacion</label>       
 											<input type="text" class="form-control" name="ubicacion" id="ubicacion">
+										</div>
+										<div class="form-group">     
+											<label for="categoria">Categoria</label>       
+											<input type="text" class="form-control" name="categoria" id="categoria"> 
 										</div>
 										<div class="form-group">      
 											<label for="status">Status</label> 
@@ -177,10 +177,6 @@
 													<label for="num_inventario">No. Inventario</label>       
 													<input type="text" class="form-control" name="num_inventario" id="num_inventario" value="<?php echo $fila->num_inventario; ?>">
 												</div>
-												<div class="form-group">       
-													<label for="categoria">Categoria</label>       
-													<input type="text" class="form-control" name="categoria" id="categoria" value="<?php echo $fila->categoria; ?>"> 
-												</div>
 												<div class="form-group">
 													<label for="marca">Marca</label>       
 													<input type="text" class="form-control" name="marca" id="marca" value="<?php echo $fila->marca; ?>">
@@ -204,6 +200,10 @@
 												<div class="form-group">
 													<label for="ubicacion">Ubicacion</label>       
 													<input type="text" class="form-control" name="ubicacion" id="ubicacion" value="<?php echo $fila->ubicacion; ?>">
+												</div>
+												<div class="form-group">       
+													<label for="categoria">Categoria</label>       
+													<input type="text" class="form-control" name="categoria" id="categoria" value="<?php echo $fila->categoria; ?>"> 
 												</div>
 												<div class="form-group">       
 													<label for="status">Status</label> 

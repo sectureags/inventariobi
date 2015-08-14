@@ -21,13 +21,14 @@ class Tbl_internet_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
-	public function agregar_internet($internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local,$id_empleado)
+	public function agregar_internet($internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local,$tipo_cuenta_ws,$id_empleado)
 	{
 		$data=array('internet' => $internet,
 					'messenger' => $messenger,
 					'redes_sociales' => $redes_sociales,
 					'ftp' => $ftp,'sigue'=>$sigue,
 					'permiso_usuario_local' => $permiso_usuario_local,
+					'tipo_cuenta_ws'=>$tipo_cuenta_ws,
 					'id_empleado'=>$id_empleado
 		);
 		
@@ -35,13 +36,15 @@ class Tbl_internet_crud_model extends CI_Model
 
 	}
 
-	public function actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local)
+	public function actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp, $sigue, $permiso_usuario_local, $tipo_cuenta_ws)
 	{
 		$data=array('internet' => $internet,
 					'messenger' => $messenger,
 					'redes_sociales' => $redes_sociales,
-					'ftp' => $ftp,'sigue'=>$sigue,
-					'permiso_usuario_local' => $permiso_usuario_local
+					'ftp' => $ftp,
+					'sigue'=>$sigue,
+					'permiso_usuario_local' => $permiso_usuario_local,
+					'tipo_cuenta_ws'=> $tipo_cuenta_ws
 		);
 		$this->db->where('id',$id);
 		$this->db->update('tbl_permiso_internet',$data);

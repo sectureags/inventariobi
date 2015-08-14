@@ -66,9 +66,10 @@ class Internet extends CI_Controller {
 			$ftp=$_POST['ftp'];
 			$sigue=$_POST['sigue'];
 			$permiso_usuario_local=$_POST['permiso_usuario_local'];
+			$tipo_cuenta_ws=$_POST['tipo_cuenta_ws'];
 			$id_empleado=$_POST['id_empleado'];
 			$this->load->model('tbl_internet_crud_model'); 
-			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$id_empleado);
+			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$tipo_cuenta_ws,$id_empleado);
 			
 			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
 
@@ -91,9 +92,10 @@ class Internet extends CI_Controller {
 				$ftp=$_POST['ftp'];
 				$sigue=$_POST['sigue'];
 				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+				$tipo_cuenta_ws=$_POST['tipo_cuenta_ws'];
 				$id_empleado=$_POST['id_empleado'];
 				$this->load->model('tbl_internet_crud_model'); 
-				$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$id_empleado);
+				$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$tipo_cuenta_ws,$id_empleado);
 				
 				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
 
@@ -109,6 +111,7 @@ class Internet extends CI_Controller {
 				$ftp=$_POST['ftp'];
 				$sigue=$_POST['sigue'];
 				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+				$tipo_cuenta_ws=$_POST['tipo_cuenta_ws'];
 				$id_empleado=$_POST['id_empleado'];
 				$this->load->model('tbl_internet_crud_model'); 
 				$this->load->view('sorry_view',$data);
@@ -276,9 +279,10 @@ class Internet extends CI_Controller {
 			$ftp=$_POST['ftp'];
 			$sigue=$_POST['sigue'];
 			$permiso_usuario_local=$_POST['permiso_usuario_local'];
+			$tipo_cuenta_ws=$_POST['tipo_cuenta_ws'];
 
 			$this->load->model('tbl_internet_crud_model'); 
-			$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
+			$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local, $tipo_cuenta_ws);
 			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
 			/*$this->internet_empleado($id_empleado);*/
 		
@@ -304,9 +308,10 @@ class Internet extends CI_Controller {
 				$ftp=$_POST['ftp'];
 				$sigue=$_POST['sigue'];
 				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+				$tipo_cuenta_ws=$_POST['tipo_cuenta_ws'];
 
 				$this->load->model('tbl_internet_crud_model'); 
-				$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local);
+				$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local, $tipo_cuenta_ws);
 				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
 				/*$this->internet_empleado($id_empleado);*/
 
@@ -324,6 +329,7 @@ class Internet extends CI_Controller {
 				$ftp=$_POST['ftp'];
 				$sigue=$_POST['sigue'];
 				$permiso_usuario_local=$_POST['permiso_usuario_local'];
+				$tipo_cuenta_ws=$_POST['tipo_cuenta_ws'];
 
 				$this->load->model('tbl_internet_crud_model'); 
 				$this->load->view('sorry_view',$data);
