@@ -13,6 +13,12 @@ class Tbl_empleado_crud_model extends CI_Model
 
 	}
 
+	public function codigos_empleado(){
+		$this->db->select('codigo_empleado');
+		$res=$this->db->get('tbl_empleados');
+		return $res->result();
+	}
+
 	public function agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo)
 	{
 		$data=array('codigo_empleado' => $codigo_empleado,

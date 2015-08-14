@@ -44,6 +44,30 @@ class Empleados extends CI_Controller {
   		*/
 	}
 
+	/**
+	* Valida el campo del Codigo del Empleado en el formulario de alta
+	*/
+	public function validar_codigo_empleado($codigo_empleado = 0){
+
+		if ( isset($codigo_empleado) AND $codigo_empleado > 0 ) {
+
+			$codigos_empleado=$this->tbl_empleado_crud_model->codigos_empleado();
+			$arrayName = array();
+			foreach ($codigos_empleado as $value) {
+				array_push($arrayName, $value->codigo_empleado);			
+			}
+			
+			if (in_array($codigo_empleado, $arrayName)) {
+				echo "<span class='label label-danger'>El codigo ya existe en el Sistema!</span>"; 
+			}
+			
+		}else{
+			echo "<span class='label label-danger'>El codigo es requerido!</span>"; 
+		}
+
+	}
+
+
 	public function index()
 	{ 
 		// Si tienes Rol de SuperAdministrador entras sin permisos
