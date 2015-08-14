@@ -146,7 +146,7 @@
 							    <span class="caret"></span>
 							  </button>
 							  <ul class="dropdown-menu" role="menu">
-							    <li><a href="#">Ver detalle</a></li>
+							    <li><a href="<?php echo base_url('bi_cpu/detalles'); ?>/<?php echo $fila->id_cpu; ?>">Ver detalles</a></li>
 							    <li><a href="" data-toggle="modal" data-target="#myModalreasignar<?php echo $fila->id_cpu; ?>">Reasignación</a></li>
 							    <li><a href="" data-toggle="modal" data-target="#myModaleditar<?php echo $fila->id_cpu; ?>">Editar</a>
 

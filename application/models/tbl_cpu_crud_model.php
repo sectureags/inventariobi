@@ -89,5 +89,15 @@ class Tbl_cpu_crud_model extends CI_Model
 		$this->db->where('id_cpu',$id_cpu);
 		$this->db->update('tbl_cpu',$data);
 	}
+
+
+	public function cargar_cpu_detalles($id_cpu)
+	{
+		$this->db->select('*');
+		$this->db->where('id_cpu',$id_cpu);
+		$this->db->limit(1);
+		$res=$this->db->get('tbl_cpu');
+		return $res->result(); 
+	}
 } 
 ?>

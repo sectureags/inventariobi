@@ -518,9 +518,66 @@ class Bi_cpu extends CI_Controller {
 		
 	}
 
-	public function detalles()
-	{		
-		
+	public function detalles($id_cpu)
+	{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			
+			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
+			
+			$this->load->view('header_view');
+			//$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			//$this->load->view('menu_detalles_empleado_view',$data);
+			$this->load->view('contenedor_super_detalles_cpu',$data);
+			$this->load->view('footer_view');
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		
+		 		$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
+				
+				$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				//$this->load->view('menu_detalles_empleado_view',$data);
+				$this->load->view('contenedor_super_detalles_cpu',$data);
+				$this->load->view('footer_view');
+				}
+				else{
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+
+				$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
+				
+				$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}				
+			
+		}
+	
 	}
 
 	public function cpu_empleado($id_empleado)
