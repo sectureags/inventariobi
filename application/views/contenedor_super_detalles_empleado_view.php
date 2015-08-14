@@ -29,12 +29,44 @@
 		<div class="panel-heading text-center">
 			<?php foreach ($cargar_empleado_detalles as $fila) :?>  
 				<p>No. Empleado: <b> <?php echo $fila->codigo_empleado; ?> </b> 
-			    <p>Unidad: <b><?php echo $fila->unidad; ?></b> </p>
+
+				<?php $unidades = array(
+						'SECTURE',
+						'PLAZA DE LAS 3 CENTURIAS',
+						'OFICINA DE ATENCION AL VISITANTE EN PALACIO'
+				);?>
+			  	<?php foreach ($unidades as $key => $value) {?>
+					<?php if ( $key == $fila->unidad ) {?>
+						<p>Unidad: <b><?php echo $value; ?></b> </p>
+					<?php } ?>
+				<?php } ?>											    
+			    
 			    <p>Usuario de Dominio: <b> <?php echo $fila->usuario_de_red; ?> </b>
 			    <p>Contraseña: <b> <?php echo $fila->contrasena; ?> </b>
 			    <p>No. Extension: <b> <?php echo $fila->num_extension; ?> </b>
 			    <p>Email: <b> <?php	echo $fila->correo_electonico; ?> </b>
-			    <p>Area: <b> <?php echo $fila->area; ?> </b>
+
+				<?php $areas = array(
+						'COMUNICACION Y DIFUSION',
+						'COORD. RELACIONES PUBLICAS',
+						'DIR. ADMINISTRATIVO',
+						'DIR. CENTROS DE ATENCION AL VISITANTE',
+						'DIR. DE ASUNTOS JURIDICOS',
+						'DIR. DE CAPACITACION Y ASISTENCIA TURISTICA',
+						'DIR. DE DESARROLLO Y PROYECTOS TURISTICOS',
+						'DIR. DE MERCADOTECNIA Y DIFUSION',
+						'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
+						'DIR. DE PROMOCION Y FOMENTO',
+						'DIR. PLAZA TRES CENTURIAS',
+						'SECRETARIO'														
+				);?>
+
+				<?php foreach ($areas as $key => $value) {?>
+					<?php if ( $key == $fila->area ) {?>
+						<p>Area: <b> <?php echo $value; ?> </b>
+					<?php } ?>
+				<?php } ?>	
+
 			    <p>Cargo: <b> <?php echo $fila->cargo; ?> </b>	
 			<?php endforeach; ?>
 		</div>

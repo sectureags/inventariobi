@@ -22,16 +22,26 @@
 							        	<form id="ModalEmpleadoNuevo" role="form" action="<?php echo base_url('empleados/crear');?>" method="post">     
 											<div class="form-group">       
 												<label for="codigo_empleado">Codigo Empleado</label>       
-												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado">
+												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado" onblur='ejecutarAJAX()' required>
+												<td>
+													<div id='respuesta'></div>
+												</td>
 											</div>
 											<div class="form-group">
 												<label for="nombre_completo">Nombre Completo</label>       
-												<input type="text" class="form-control" name="nombre_completo" id="nombre_completo">
-											</div> 
-											<div class="form-group">
-												<label for="unidad">Unidad</label>       
-												<input type="text" class="form-control" name="unidad" id="unidad">
+												<input type="text" class="form-control" name="nombre_completo" id="nombre_completo" required>
 											</div>
+											 <div class="form-group">
+											  <label for="unidad">Unidad:</label>
+											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO'); ?>
+											  <select class="form-control" name="unidad" id="unidad">
+											  	<?php foreach ($unidades as $key => $value) {?>
+													<option value="<?php echo $key ;?>"><?php echo $value ;?></option>
+												<?php } ?>											    
+											    
+											  </select>
+											</div>
+											
 											<div class="form-group"> 
 												<label for="usuario_de_red">Usuario de Dominio</label>       
 												<input type="text" class="form-control" name="usuario_de_red" id="usuario_de_red">
@@ -45,12 +55,31 @@
 												<input type="text" class="form-control" name="num_extension" id="num_extension">
 											</div>
 											<div class="form-group">
-												<label for="correo_electonico">Correo Electonico</label>       
-												<input type="text" class="form-control" name="correo_electonico" id="correo_electonico">
+												<label for="correo_electonico">Correo Electonico</label>
+												<input type="text" class="form-control" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" id="correo_electonico" name="correo_electonico" required/>
 											</div>
 											<div class="form-group">       
 												<label for="area">Area de Adscripcion</label>       
-												<input type="text" class="form-control" name="area" id="area">
+												<?php $areas = array(
+														'COMUNICACION Y DIFUSION',
+														'COORD. RELACIONES PUBLICAS',
+														'DIR. ADMINISTRATIVO',
+														'DIR. CENTROS DE ATENCION AL VISITANTE',
+														'DIR. DE ASUNTOS JURIDICOS',
+														'DIR. DE CAPACITACION Y ASISTENCIA TURISTICA',
+														'DIR. DE DESARROLLO Y PROYECTOS TURISTICOS',
+														'DIR. DE MERCADOTECNIA Y DIFUSION',
+														'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
+														'DIR. DE PROMOCION Y FOMENTO',
+														'DIR. PLAZA TRES CENTURIAS',
+														'SECRETARIO'														
+												);?>
+											  <select class="form-control" name="area" id="area">
+											  	<?php foreach ($areas as $key => $value) {?>
+													<option value="<?php echo $key ;?>"><?php echo $value ;?></option>
+												<?php } ?>											    
+											    
+											  </select>
 											</div>
 											<div class="form-group">
 												<label for="cargo">Cargo</label>       
@@ -152,9 +181,19 @@
 												<label for="nombre_completo">Nombre Completo</label>       
 												<input type="text" class="form-control" name="nombre_completo" id="nombre_completo" value="<?php echo $fila->nombre_completo; ?>">
 											</div>
-											<div class="form-group"> 
-												<label for="unidad">Unidad</label>       
-												<input type="text" class="form-control" name="unidad" id="unidad" value="<?php echo $fila->unidad; ?>">
+
+											 <div class="form-group">
+											  <label for="unidad">Unidad:</label>
+											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO'); ?>
+											  <select class="form-control" name="unidad" id="unidad">
+											  	<?php foreach ($unidades as $key => $value) {?>
+											  		<?php if ( $key == $fila->unidad ) {?>
+											  			<option value="<?php echo $key ;?>" selected><?php echo $value ;?></option>											  			
+											  		<?php }else{?>
+											  			<option value="<?php echo $key ;?>"><?php echo $value ;?></option>
+											  		<?php } ?>													
+												<?php } ?>											    
+											  </select>
 											</div>
 											<div class="form-group">
 												<label for="usuario_de_red">Usuario de Dominio</label>       
@@ -174,8 +213,33 @@
 											</div>
 											<div class="form-group">       
 												<label for="area">Area de Adscripcion</label>       
-												<input type="text" class="form-control" name="area" id="area" value="<?php echo $fila->area; ?>">
+												<?php $areas = array(
+														'COMUNICACION Y DIFUSION',
+														'COORD. RELACIONES PUBLICAS',
+														'DIR. ADMINISTRATIVO',
+														'DIR. CENTROS DE ATENCION AL VISITANTE',
+														'DIR. DE ASUNTOS JURIDICOS',
+														'DIR. DE CAPACITACION Y ASISTENCIA TURISTICA',
+														'DIR. DE DESARROLLO Y PROYECTOS TURISTICOS',
+														'DIR. DE MERCADOTECNIA Y DIFUSION',
+														'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
+														'DIR. DE PROMOCION Y FOMENTO',
+														'DIR. PLAZA TRES CENTURIAS',
+														'SECRETARIO'														
+												);?>
+											  <select class="form-control" name="area" id="area">
+											  	<?php foreach ($areas as $key => $value) {?>
+											  		<?php if ( $key == $fila->area ) {?>
+											  			<option value="<?php echo $key ;?>" selected><?php echo $value ;?></option>
+											  		<?php }else{?>
+											  			<option value="<?php echo $key ;?>"><?php echo $value ;?></option>
+											  		<?php } ?>
+													
+												<?php } ?>											    
+											    
+											  </select>
 											</div>
+											
 											<div class="form-group">
 												<label for="cargo">Cargo</label>       
 												<input type="text" class="form-control" name="cargo" id="cargo" value="<?php echo $fila->cargo; ?>">
