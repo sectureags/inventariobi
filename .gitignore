@@ -9,4 +9,5 @@ application/logs/*
 !application/logs/.htaccess
 
 user_guide/
-application/config/*
+application/config/config.php
+application/config/database.php
