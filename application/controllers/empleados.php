@@ -114,9 +114,10 @@ class Empleados extends CI_Controller {
 			$correo_electonico=$_POST['correo_electonico'];
 			$area=$_POST['area'];
 			$cargo=$_POST['cargo'];
+			$id_status=$_POST['id_status'];
 
 			$this->load->model('tbl_empleado_crud_model'); 
-			$nuevo = $this->tbl_empleado_crud_model->agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
+			$nuevo = $this->tbl_empleado_crud_model->agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo, $id_status);
 			
 			$this->index();
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -140,9 +141,10 @@ class Empleados extends CI_Controller {
 				$correo_electonico=$_POST['correo_electonico'];
 				$area=$_POST['area'];
 				$cargo=$_POST['cargo'];
+				$id_status=$_POST['id_status'];
 
 				$this->load->model('tbl_empleado_crud_model'); 
-				$nuevo = $this->tbl_empleado_crud_model->agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
+				$nuevo = $this->tbl_empleado_crud_model->agregar_empleados($codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo, $id_status);
 				
 				$this->index();
 				}
@@ -159,6 +161,7 @@ class Empleados extends CI_Controller {
 				$num_extension=$_POST['num_extension'];
 				$correo_electonico=$_POST['correo_electonico'];
 				$area=$_POST['area'];
+				$id_status=$_POST['id_status'];
 				$cargo=$_POST['cargo'];
 
 				$this->load->model('tbl_empleado_crud_model'); 
@@ -227,6 +230,7 @@ class Empleados extends CI_Controller {
 			$correo_electonico=$_POST['correo_electonico'];
 			$area=$_POST['area'];
 			$cargo=$_POST['cargo'];
+			$id_status=$_POST['id_status'];
 
 			$this->load->model('tbl_empleado_crud_model'); 
 			$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
@@ -253,9 +257,10 @@ class Empleados extends CI_Controller {
 				$correo_electonico=$_POST['correo_electonico'];
 				$area=$_POST['area'];
 				$cargo=$_POST['cargo'];
+				$id_status=$_POST['id_status'];
 
 				$this->load->model('tbl_empleado_crud_model'); 
-				$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo);
+				$this->tbl_empleado_crud_model->actualizar_empleado($id_empleado,$codigo_empleado, $nombre_completo, $unidad, $usuario_de_red, $contrasena, $num_extension, $correo_electonico, $area, $cargo, $id_status);
 				redirect('empleados/index');
 			}
 				else{
@@ -273,6 +278,7 @@ class Empleados extends CI_Controller {
 				$correo_electonico=$_POST['correo_electonico'];
 				$area=$_POST['area'];
 				$cargo=$_POST['cargo'];
+				$id_status=$_POST['id_status'];
 
 				$this->load->model('tbl_empleado_crud_model'); 
 				$this->load->view('sorry_view',$data);

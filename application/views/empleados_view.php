@@ -56,6 +56,10 @@
 												<label for="cargo">Cargo</label>       
 												<input type="text" class="form-control" name="cargo" id="cargo">
 			      							</div> 
+			      							<div class="form-group">       
+												<label for="id_status"> </label>      
+												<input type="hidden"  name="id_status" value="1" id="id_status">
+								      		</div>
 
 			      							<div class="modal-footer">
 										        <button type="submit" class="btn btn-info">Guardar</button>
