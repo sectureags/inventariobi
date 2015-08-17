@@ -29,6 +29,7 @@
 
 <script type="text/javascript" >
 var myRequest = getXMLHTTPRequest();
+var myRequest2 = getXMLHTTPRequest();
 function getXMLHTTPRequest()
 {
 
