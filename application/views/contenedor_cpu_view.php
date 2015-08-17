@@ -22,7 +22,10 @@
 						        <form id="ModalCPUNuevo" role="form" action="<?php echo base_url('bi_cpu/crear');?>" method="post">     
 										<div class="form-group">       
 											<label for="num_inventario">No. Inventario</label>       
-											<input type="text" class="form-control" name="num_inventario" id="num_inventario">
+											<input type="text" class="form-control" name="num_inventario" id="num_inventario"  onblur='ejecutar2AJAX()' required>
+											<td>
+												<div id='respuesta'></div>
+											</td>
 										</div> 
 										<div class="form-group">
 											<label for="marca">Marca</label>       

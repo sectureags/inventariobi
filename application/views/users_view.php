@@ -25,7 +25,7 @@
 						         <form id="ModalNuevoUser" class="form" role="form" method="post" action="<?php echo base_url('users/crear');?>">
 						         	<div class="form-group">       
 									  	<label for="nombre">Nombre Completo</label>       
-										<input type="text" class="form-control" name="nombre" id="nombre">
+										<input type="text" class="form-control" name="nombre" id="nombre" required>
 									</div>
 								  <div class="form-group">
 								    <label for="id_tipo">Rol</label> 
@@ -45,7 +45,7 @@
 								  </div>
 								  <div class="form-group"> 
 										<label for="email">Email</label>       
-										<input type="text" class="form-control" name="email" id="email">
+										<input type="text" class="form-control" name="email" id="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$">
 								  </div>
 								  <div class="form-group"> 
 										<label for="tel">Telefono</label>       
@@ -203,7 +203,7 @@
 												</div>
 												<div class="form-group">  
 												<label for="email">Email</label>       
-												<input type="text" class="form-control" id="email" name="email" value="<?php	echo $fila->email; ?>">
+												<input type="text" class="form-control" id="email" name="email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php	echo $fila->email; ?>">
 												</div>
 												<div class="form-group">  
 												<label for="tel">Telefono</label>       

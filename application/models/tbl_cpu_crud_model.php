@@ -15,6 +15,12 @@ class Tbl_cpu_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
+	public function num_inventario_todos(){
+		$this->db->select('num_inventario');
+		$res=$this->db->get('tbl_cpu');
+		return $res->result();
+	}
+
 	public function cargar_cpu_empleado($id_empleado)
 	{
 		$this->db->from('tbl_cpu');

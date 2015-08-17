@@ -13,6 +13,18 @@
 	#nombre_completo { text-transform: uppercase; }
 	#cargo { text-transform: uppercase; }
 	#correo_electonico { text-transform: lowercase }
+  #username {text-transform: lowercase }
+  #email {text-transform: lowercase }
+  #otros_servicios {text-transform: uppercase }
+  #categoria {text-transform: uppercase }
+  #marca {text-transform: uppercase }
+  #modelo {text-transform: uppercase }
+  #hostname {text-transform: uppercase }
+  #num_serie {text-transform: uppercase }
+  #ubicacion {text-transform: uppercase }
+  #componente {text-transform: lowercase }
+  #recurso {text-transform: lowercase }
+  #tipo {text-transform: uppercase }
 </style>
 
 <script type="text/javascript" >
@@ -65,6 +77,26 @@ myRequest.onreadystatechange = respuestaAJAX;
 myRequest.send(null);
 }
 
+
+function ejecutar2AJAX() {
+// Declaramos una variable para guardar la informacion
+// a pasar al servidro
+
+var num_inventario=document.forms['ModalCPUNuevo'].num_inventario.value;
+//var rand=parseInt(Math.random()*99999999)+
+          //new Date().getTime();
+//Construimos la url que vamos a llamar
+var url = "http://localhost/inventariobi/bi_cpu/validar_num_inventario/" + num_inventario;
+// Abrimos la conexion de tipo GET
+myRequest2.open("GET", url, true);
+// Cuando la respuesta llegue se llamara
+// el metodo respuestaAJAX
+myRequest2.onreadystatechange = respuesta2AJAX;
+// y finalmente enviamos la peticion
+myRequest2.send(null);
+}
+
+
 function respuestaAJAX() {
     // Solo entra cuando se completa la peticion
     if(myRequest.readyState == 4) {
@@ -80,6 +112,23 @@ function respuestaAJAX() {
     }
    
 }
+
+function respuesta2AJAX() {
+    // Solo entra cuando se completa la peticion
+    if(myRequest2.readyState == 4) {
+          // Si la respuesta HTTP es OK
+           if(myRequest2.status == 200) {
+             document.getElementById('respuesta').innerHTML= myRequest2.responseText;
+        } else {
+            // Manejamos el error con el statusText
+            document.getElementById('respuesta').innerHTML= myRequest2.status;
+        }
+    }else{
+      document.getElementById('respuesta').innerHTML="<img src='' />";
+    }
+   
+}
+
 
 </script>
 

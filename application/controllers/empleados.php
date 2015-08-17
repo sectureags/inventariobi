@@ -47,9 +47,9 @@ class Empleados extends CI_Controller {
 	/**
 	* Valida el campo del Codigo del Empleado en el formulario de alta
 	*/
-	public function validar_codigo_empleado($codigo_empleado = 0){
+	public function validar_codigo_empleado($codigo_empleado = null){
 
-		if ( isset($codigo_empleado) AND $codigo_empleado > 0 ) {
+		if ( isset($codigo_empleado)) {
 
 			$codigos_empleado=$this->tbl_empleado_crud_model->codigos_empleado();
 			$arrayName = array();

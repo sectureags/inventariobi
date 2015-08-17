@@ -45,6 +45,31 @@ class Bi_cpu extends CI_Controller {
   		*/
 	}
 
+
+	/**
+	* Valida el campo del Codigo del Empleado en el formulario de alta
+	*/
+	public function validar_num_inventario($num_inventario = 0){
+
+		if ( isset($num_inventario) AND $num_inventario > 0 ) {
+
+			$num_inventario_todos=$this->tbl_cpu_crud_model->num_inventario_todos();
+			$arrayName = array();
+			foreach ($num_inventario_todos as $value) {
+				array_push($arrayName, $value->num_inventario);			
+			}
+			
+			if (in_array($num_inventario, $arrayName)) {
+				echo "<span class='label label-danger'>El numero de inventario ya existe en el Sistema!</span>"; 
+			}
+			
+		}else{
+			echo "<span class='label label-danger'>El numero de inventario es requerido!</span>"; 
+		}
+
+	}
+
+
 	public function index()
 	{ 
 		// Si tienes Rol de SuperAdministrador entras sin permisos

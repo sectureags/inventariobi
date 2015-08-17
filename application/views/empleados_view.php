@@ -192,6 +192,7 @@
 											<div class="form-group">       
 												<input type="hidden" class="form-control" name="id_empleado" id="id_empleado" value="<?php echo $fila->id_empleado; ?>" readonly>
 											</div> 
+
 											<div class="form-group">     
 												<label for="codigo_empleado">Codigo Empleado</label>       
 												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado" value="<?php echo $fila->codigo_empleado; ?>" readonly>
@@ -228,7 +229,7 @@
 											</div>
 											<div class="form-group">
 												<label for="correo_electonico">Correo Electonico</label>       
-												<input type="text" class="form-control" name="correo_electonico" id="correo_electonico" value="<?php echo $fila->correo_electonico; ?>">
+												<input type="text" class="form-control" name="correo_electonico" id="correo_electonico"  pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" value="<?php echo $fila->correo_electonico; ?>">
 											</div>
 											<div class="form-group">       
 												<label for="area">Area de Adscripcion</label>       
