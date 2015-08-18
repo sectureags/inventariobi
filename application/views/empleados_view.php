@@ -33,7 +33,7 @@
 											</div>
 											 <div class="form-group">
 											  <label for="unidad">Unidad Administrativa:</label>
-											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO'); ?>
+											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO','OCV','PARTICULAR'); ?>
 											  <select class="form-control" name="unidad" id="unidad">
 											  	<?php foreach ($unidades as $key => $value) {?>
 													<option value="<?php echo $key ;?>"><?php echo $value ;?></option>
@@ -72,7 +72,7 @@
 														'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
 														'DIR. DE PROMOCION Y FOMENTO',
 														'DIR. PLAZA TRES CENTURIAS',
-														'SECRETARIO'														
+														'OFICINA DEL SECRETARIO'														
 												);?>
 											  <select class="form-control" name="area" id="area">
 											  	<?php foreach ($areas as $key => $value) {?>
@@ -204,7 +204,7 @@
 
 											 <div class="form-group">
 											  <label for="unidad">Unidad:</label>
-											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO'); ?>
+											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO','OCV','PARTICULAR'); ?>
 											  <select class="form-control" name="unidad" id="unidad">
 											  	<?php foreach ($unidades as $key => $value) {?>
 											  		<?php if ( $key == $fila->unidad ) {?>
@@ -245,7 +245,7 @@
 														'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
 														'DIR. DE PROMOCION Y FOMENTO',
 														'DIR. PLAZA TRES CENTURIAS',
-														'SECRETARIO'														
+														'OFICINA DEL SECRETARIO'														
 												);?>
 											  <select class="form-control" name="area" id="area">
 											  	<?php foreach ($areas as $key => $value) {?>

@@ -152,13 +152,13 @@
 												<label for="tipo_cuenta_ws">Tipo de Cuenta Windows</label>       
 				      							<select class="form-control" name="tipo_cuenta_ws"> 
 												    <?php if($fila->permiso_usuario_local == 'Estandar'){  ?>   
-												 	<option value="Estandar" selected>Estandar</option>
-												 	<option value="Avanzado">Avanzado</option>
-												 	<option value="Administrador">Administrador</option>
+												 	<option value="ESTANDAR">ESTANDAR</option>      
+												 	<option value="AVANZADO">AVANZADO</option>
+												 	<option value="ADMINISTRADOR">ADMINISTRADOR</option>
 												 	<?php } else {?>
-												 	<option value="Estandar">Estandar</option>      
-												 	<option value="Avanzado">Avanzado</option>
-												 	<option value="Administrador">Administrador</option>
+												 	<option value="ESTANDAR">ESTANDAR</option>      
+												 	<option value="AVANZADO">AVANZADO</option>
+												 	<option value="ADMINISTRADOR">ADMINISTRADOR</option>
 												 	<?php }?>
 												</select>
 				      						</div> 
