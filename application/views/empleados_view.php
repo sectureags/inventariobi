@@ -270,16 +270,16 @@
 												switch ($fila->id_status) {
 													case FALSE:?>
 														<?php if($fila->id_status == FALSE){  ?>
-										 					<input type="checkbox" id="id_status" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" id="id_status" name="id_status" value="1">
+											 				<input type="checkbox" name="id_status" value="1">
 										 				<?php }?>														
 														<?php break;						
 													case TRUE:?>
 														<?php if( $fila->id_status == TRUE){  ?>
-										 					<input type="checkbox" id="id_status" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" id="id_status" name="id_status" value="0">
+											 				<input type="checkbox" name="id_status" value="0">
 										 				<?php }?>														
 									      				<?php break;
 												}

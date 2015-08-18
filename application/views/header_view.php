@@ -25,6 +25,7 @@
   #componente {text-transform: lowercase }
   #recurso {text-transform: lowercase }
   #tipo {text-transform: uppercase }
+  #nombre { text-transform: uppercase }
 </style>
 
 <script type="text/javascript" >

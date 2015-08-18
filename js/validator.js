@@ -99,13 +99,6 @@ $('#ModalNuevoUser').bootstrapValidator({
 					 message: 'El telefono es requerido'
 				 }
 			 }
-		 },
-		  id_status: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El status es requerido'
-				 }
-			 }
 		 }
 	 }
 });
@@ -150,13 +143,6 @@ $('#ModalEditarUser').bootstrapValidator({
 			 validators: {
 				 notEmpty: {
 					 message: 'El telefono es requerido'
-				 }
-			 }
-		 },
-		  id_status: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El status es requerido'
 				 }
 			 }
 		 }
@@ -461,13 +447,6 @@ $('#ModalEmpleadoEditar').bootstrapValidator({
 			 validators: {
 				 notEmpty: {
 					 message: 'El cargo es requerido'
-				 }
-			 }
-		 },
-		 id_status: {
-			 validators: {
-				 notEmpty: {
-					 message: 'El status es requerido'
 				 }
 			 }
 		 }

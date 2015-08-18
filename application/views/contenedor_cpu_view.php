@@ -152,7 +152,6 @@
 							    <li><a href="<?php echo base_url('bi_cpu/detalles'); ?>/<?php echo $fila->id_cpu; ?>">Ver detalles</a></li>
 							    <li><a href="" data-toggle="modal" data-target="#myModalreasignar<?php echo $fila->id_cpu; ?>">Reasignación</a></li>
 							    <li><a href="" data-toggle="modal" data-target="#myModaleditar<?php echo $fila->id_cpu; ?>">Editar</a>
-
 									
 							    </li>
 
