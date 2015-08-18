@@ -1,3 +1,4 @@
+
 <div class="panel panel-info">
   	<div class="panel-heading text-center"><h3>
 	  	<?php foreach ($cargar_empleado_detalles as $fila) :?>          

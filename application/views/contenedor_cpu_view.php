@@ -1,7 +1,7 @@
+
 <div class="panel panel-primary">
-  <div class="panel-heading text-center"><h1>CPUs</h1></div>
+  <div class="panel-heading text-center"><h1>LISTADO DE CPU's</h1></div>
   <div class="panel-body">
-	
 	      <div class="caption">
 	      	<nav class="navbar navbar-default">
 			  <div class="container-fluid">
