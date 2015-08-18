@@ -1,7 +1,7 @@
 <div class="panel panel-primary">
   	<div class="panel-heading text-center"><h3>
 	  	<?php foreach ($cargar_cpu_detalles as $fila) :?>          
-			      	<p>No. Inventario: <b> <?php echo $fila->num_inventario; ?> </b></p>	
+			      	<p>CPU - No. Inventario: <b> <?php echo $fila->num_inventario; ?> </b></p>	
 		<?php endforeach; ?>
 	</h3></div>
   	<div class="panel-body">
