@@ -269,22 +269,22 @@
 												<?php 
 												switch ($fila->id_status) {
 													case FALSE:?>
-														<?php if($fila->id_status == FALSE){  ?>
-										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+														<?php if($fila->id_status == TRUE){  ?>
+										 					<input type="checkbox" name="id_status" id="id_status" value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" name="id_status" value="1">
+											 				<input type="checkbox" id="id_status" name="id_status" value="1">
 										 				<?php }?>														
 														<?php break;						
 													case TRUE:?>
-														<?php if( $fila->id_status == TRUE){  ?>
-										 					<input type="checkbox" name="id_status" value="<?php echo $fila->id_status; ?>" checked>
+														<?php if( $fila->id_status == FALSE){  ?>
+										 					<input type="checkbox" name="id_status"  id="id_status"value="<?php echo $fila->id_status; ?>" checked>
 											 				<?php } else {?>
-											 				<input type="checkbox" name="id_status" value="0">
+											 				<input type="checkbox" name="id_status" id="id_status" value="0" checked>
 										 				<?php }?>														
 									      				<?php break;
 												}
 												?>
-												</div>
+											</div>
 				      						<div class="modal-footer">
 							        			<button type="submit" class="btn btn-info">Guardar</button>
 							      			</div>   
