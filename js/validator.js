@@ -15,6 +15,8 @@
  * @license     Commercial: http://bootstrapvalidator.com/license/
  *              Non-commercial: http://creativecommons.org/licenses/by-nc-nd/3.0/
  */
+$(document).ready(function() {
+
 
 $('#loginFormModalPermisosRol').bootstrapValidator({
 	 message: 'Este valor no es valido',
@@ -216,6 +218,7 @@ $('#ModalCPUNuevo').bootstrapValidator({
 		 }
 	 }
 });
+
 
 
 $('#ModalCPUEditar').bootstrapValidator({
@@ -479,3 +482,4 @@ $('#NuevoPermisosCarpeta').bootstrapValidator({
 });
 
 
+});

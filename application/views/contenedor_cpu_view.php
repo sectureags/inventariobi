@@ -1,7 +1,7 @@
+
 <div class="panel panel-primary">
-  <div class="panel-heading text-center"><h1>CPUs</h1></div>
+  <div class="panel-heading text-center"><h1>LISTADO DE CPU's</h1></div>
   <div class="panel-body">
-	
 	      <div class="caption">
 	      	<nav class="navbar navbar-default">
 			  <div class="container-fluid">
@@ -151,7 +151,10 @@
 							  <ul class="dropdown-menu" role="menu">
 							    <li><a href="<?php echo base_url('bi_cpu/detalles'); ?>/<?php echo $fila->id_cpu; ?>">Ver detalles</a></li>
 							    <li><a href="" data-toggle="modal" data-target="#myModalreasignar<?php echo $fila->id_cpu; ?>">Reasignación</a></li>
-							    <li><a href="" data-toggle="modal" data-target="#myModaleditar<?php echo $fila->id_cpu; ?>">Editar</a>
+
+							    <li><a href="" data-toggle="modal" data-id="<?php echo $fila->id_cpu; ?>" data-target="#myModaleditar<?php echo $fila->id_cpu; ?>">Editar</a>
+
+
 									
 							    </li>
 
@@ -173,7 +176,7 @@
 									      <div class="modal-body">
 									        <form id="ModalCPUEditar" role="form" action="<?php echo base_url('bi_cpu/actualizar');?>" method="post">     
 												<div class="form-group">         
-													<input type="hidden" class="form-control" name="id_cpu" value="<?php echo $fila->id_cpu; ?>" readonly>
+													<input type="hidden" class="form-control" name="id_cpu" id="id_cpu" value="<?php echo $fila->id_cpu; ?>" readonly>
 												</div>
 												<div class="form-group">   
 													<label for="num_inventario">No. Inventario</label>       
