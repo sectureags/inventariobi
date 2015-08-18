@@ -11,6 +11,7 @@
 
 <style type="text/css">
 	#nombre_completo { text-transform: uppercase; }
+  #nombre { text-transform: uppercase; }
 	#cargo { text-transform: uppercase; }
 	#correo_electonico { text-transform: lowercase }
   #username {text-transform: lowercase }
