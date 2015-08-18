@@ -35,6 +35,7 @@ class Tbl_carpetas_crud_model extends CI_Model
 
 	}
 
+
 	public function actualizar_carpetas($id,$carpetas_geaco06, $carpeta_imagenes, $capacidad_correo, $otros_servicios)
 	{
 		$data=array('carpetas_geaco06' => $carpetas_geaco06,'carpeta_imagenes' => $carpeta_imagenes,'capacidad_correo' => $capacidad_correo,'otros_servicios'=> $otros_servicios);
@@ -42,13 +43,6 @@ class Tbl_carpetas_crud_model extends CI_Model
 		$this->db->update('tbl_permiso_carpetas',$data);
 		
 	}
-
-	/*public function eliminar_internet($id)
-	{
-		$data=array('id' => $id);
-		$this->db->where('id_empleado',$id_empleado);
-		$this->db->delete('tbl_permiso_internet',$data); 
-	}*/
 
 	public function existe_carpetas($id_empleado)
 	{

@@ -8,7 +8,7 @@
 
 
   		<div class="caption">
-	    	<nav class="navbar navbar-default">
+	    	<nav class="navbar navbar-default navbar-static-top">
 			  	<div class="container-fluid">
 			   		 <div class="navbar-header">
 				      	<!-- Links -->
