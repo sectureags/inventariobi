@@ -71,7 +71,7 @@ class Internet extends CI_Controller {
 			$this->load->model('tbl_internet_crud_model'); 
 			$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$tipo_cuenta_ws,$id_empleado);
 			
-			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+			redirect(base_url('empleados/detalles').'/'.$id_empleado);
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -97,7 +97,7 @@ class Internet extends CI_Controller {
 				$this->load->model('tbl_internet_crud_model'); 
 				$nuevo = $this->tbl_internet_crud_model->agregar_internet($internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local,$tipo_cuenta_ws,$id_empleado);
 				
-				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+				redirect(base_url('empleados/detalles').'/'.$id_empleado);
 
 				}else{
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
@@ -283,7 +283,7 @@ class Internet extends CI_Controller {
 
 			$this->load->model('tbl_internet_crud_model'); 
 			$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local, $tipo_cuenta_ws);
-			redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+			redirect(base_url('empleados/detalles').'/'.$id_empleado);
 			/*$this->internet_empleado($id_empleado);*/
 		
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -312,7 +312,7 @@ class Internet extends CI_Controller {
 
 				$this->load->model('tbl_internet_crud_model'); 
 				$this->tbl_internet_crud_model->actualizar_internet($id,$internet, $messenger, $redes_sociales, $ftp,$sigue, $permiso_usuario_local, $tipo_cuenta_ws);
-				redirect(base_url('internet/internet_empleado').'/'.$id_empleado);
+				redirect(base_url('empleados/detalles').'/'.$id_empleado);
 				/*$this->internet_empleado($id_empleado);*/
 
 			}else{

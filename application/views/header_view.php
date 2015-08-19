@@ -31,7 +31,7 @@
 
 <script type="text/javascript" >
 var myRequest = getXMLHTTPRequest();
-var myRequest2 = getXMLHTTPRequest();
+
 function getXMLHTTPRequest()
 {
 
@@ -80,26 +80,6 @@ myRequest.onreadystatechange = respuestaAJAX;
 myRequest.send(null);
 }
 
-
-function ejecutar2AJAX() {
-// Declaramos una variable para guardar la informacion
-// a pasar al servidro
-
-var num_inventario=document.forms['ModalCPUNuevo'].num_inventario.value;
-//var rand=parseInt(Math.random()*99999999)+
-          //new Date().getTime();
-//Construimos la url que vamos a llamar
-var url = "http://localhost/inventariobi/bi_cpu/validar_num_inventario/" + num_inventario;
-// Abrimos la conexion de tipo GET
-myRequest2.open("GET", url, true);
-// Cuando la respuesta llegue se llamara
-// el metodo respuestaAJAX
-myRequest2.onreadystatechange = respuesta2AJAX;
-// y finalmente enviamos la peticion
-myRequest2.send(null);
-}
-
-
 function respuestaAJAX() {
     // Solo entra cuando se completa la peticion
     if(myRequest.readyState == 4) {
@@ -116,18 +96,74 @@ function respuestaAJAX() {
    
 }
 
+
+function ejecutar2AJAX() {
+// Declaramos una variable para guardar la informacion
+// a pasar al servidro
+
+var num_inventario=document.forms['ModalCPUNuevo'].num_inventario.value;
+//var rand=parseInt(Math.random()*99999999)+
+          //new Date().getTime();
+//Construimos la url que vamos a llamar
+var url = "http://localhost/inventariobi/bi_cpu/validar_num_inventario/" + num_inventario;
+// Abrimos la conexion de tipo GET
+myRequest.open("GET", url, true);
+// Cuando la respuesta llegue se llamara
+// el metodo respuestaAJAX
+myRequest.onreadystatechange = respuesta2AJAX;
+// y finalmente enviamos la peticion
+myRequest.send(null);
+}
+
+
+
+
 function respuesta2AJAX() {
     // Solo entra cuando se completa la peticion
-    if(myRequest2.readyState == 4) {
+    if(myRequest.readyState == 4) {
           // Si la respuesta HTTP es OK
-           if(myRequest2.status == 200) {
-             document.getElementById('respuesta').innerHTML= myRequest2.responseText;
+           if(myRequest.status == 200) {
+             document.getElementById('respuesta').innerHTML= myRequest.responseText;
         } else {
             // Manejamos el error con el statusText
-            document.getElementById('respuesta').innerHTML= myRequest2.status;
+            document.getElementById('respuesta').innerHTML= myRequest.status;
         }
     }else{
       document.getElementById('respuesta').innerHTML="<img src='' />";
+    }
+   
+}
+
+
+function ejecutarWINAUDIT() {
+// Declaramos una variable para guardar la informacion
+// a pasar al servidro
+
+//var codigo_empleado=document.forms['ModalEmpleadoNuevo'].codigo_empleado.value;
+//var rand=parseInt(Math.random()*99999999)+ new Date().getTime();
+//Construimos la url que vamos a llamar
+var url = "http://localhost/inventariobi/license.txt";
+// Abrimos la conexion de tipo GET
+myRequest.open("GET", url, true);
+// Cuando la respuesta llegue se llamara
+// el metodo respuestaAJAX
+myRequest.onreadystatechange = respuestaWINAUDIT;
+// y finalmente enviamos la peticion
+myRequest.send(null);
+}
+
+function respuestaWINAUDIT() {
+    // Solo entra cuando se completa la peticion
+    if(myRequest.readyState == 4) {
+          // Si la respuesta HTTP es OK
+           if(myRequest.status == 200) {
+             document.getElementById('winaudit').innerHTML= myRequest.responseText;
+        } else {
+            // Manejamos el error con el statusText
+            document.getElementById('winaudit').innerHTML= myRequest.status;
+        }
+    }else{
+      document.getElementById('winaudit').innerHTML=myRequest.status;
     }
    
 }

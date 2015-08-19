@@ -69,7 +69,7 @@ class Carpetas extends CI_Controller {
 			$this->load->model('tbl_carpetas_crud_model'); 
 			$nuevo = $this->tbl_carpetas_crud_model->agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $capacidad_correo, $otros_servicios, $id_empleado);
 			
-			redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
+			redirect(base_url('empleados/detalles').'/'.$id_empleado);
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -93,7 +93,7 @@ class Carpetas extends CI_Controller {
 				$this->load->model('tbl_carpetas_crud_model'); 
 				$nuevo = $this->tbl_carpetas_crud_model->agregar_carpetas($carpetas_geaco06, $carpeta_imagenes, $capacidad_correo, $otros_servicios, $id_empleado);
 				
-				redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
+				redirect(base_url('empleados/detalles').'/'.$id_empleado);
 
 				}else{
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
@@ -272,7 +272,7 @@ class Carpetas extends CI_Controller {
 
 			$this->load->model('tbl_carpetas_crud_model'); 
 			$this->tbl_carpetas_crud_model->actualizar_carpetas($id,$carpetas_geaco06, $carpeta_imagenes, $capacidad_correo, $otros_servicios);
-			redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
+			redirect(base_url('empleados/detalles').'/'.$id_empleado);
 			/*$this->internet_empleado($id_empleado);*/
 		}
 			else
@@ -296,7 +296,7 @@ class Carpetas extends CI_Controller {
 
 				$this->load->model('tbl_carpetas_crud_model'); 
 				$this->tbl_carpetas_crud_model->actualizar_carpetas($id,$carpetas_geaco06, $carpeta_imagenes, $capacidad_correo, $otros_servicios);
-				redirect(base_url('carpetas/carpetas_empleado').'/'.$id_empleado);
+				redirect(base_url('empleados/detalles').'/'.$id_empleado);
 				/*$this->internet_empleado($id_empleado);*/
 
 				}else{

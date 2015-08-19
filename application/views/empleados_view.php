@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-  	<div class="panel-heading text-center"><h1>EMPLEADOS</h1></div>
+  	<div class="panel-heading text-center"><h1>LISTADO DE EMPLEADOS SECTURE</h1></div>
   	<div class="panel-body">
 
   		<div class="caption">
