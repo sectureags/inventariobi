@@ -759,6 +759,168 @@ class Bi_cpu extends CI_Controller {
 	}
 
 
+	public function filtrar_por_status($status)
+	{
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+
+			$this->load->model('tbl_cpu_crud_model');
+			$this->load->model('tbl_status_cpu_model');
+			$this->load->model('tbl_empleado_crud_model');
+
+			
+
+			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_por_status($status);
+
+			
+			 
+			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+			
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+			$this->load->view('header_view');
+			//$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('contenedor_cpu_view',$data);
+			$this->load->view('footer_view');
+			
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		
+				$this->load->model('tbl_cpu_crud_model');
+				$this->load->model('tbl_status_cpu_model');
+				$this->load->model('tbl_empleado_crud_model');
+
+				
+
+				$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_por_status($status);
+
+				
+				 
+				$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+				
+				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+				$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				$this->load->view('contenedor_cpu_view',$data);
+				$this->load->view('footer_view');
+
+			}else{
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+
+				$this->load->model('tbl_cpu_crud_model');
+				$this->load->model('tbl_status_cpu_model');
+				$this->load->model('tbl_empleado_crud_model');
+
+				
+
+				$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_por_status($status);
+
+				
+				 
+				$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+				
+				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+				$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+
+			}				
+			
+		}
+				
+	}
+
+	public function buscar_inventario()
+	{
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+
+			$num_inventario = $this->input->post('num_inventario');//con este post de codeigniter se hacen una serie de validaciones para que no vallan a ingresar errores
+
+			$this->load->model('tbl_cpu_crud_model');
+			$this->load->model('tbl_status_cpu_model');
+			$this->load->model('tbl_empleado_crud_model');
+
+			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->buscar_inventario($num_inventario);
+			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+			$this->load->view('header_view');
+				//$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('contenedor_cpu_view',$data);
+			$this->load->view('footer_view');
+
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+					$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+					$data['username'] = USER;
+					$data['rol'] = ROL;
+			 		$data['get_all'] = $this->permisos_model->get_all();
+
+					$num_inventario = $this->input->post('num_inventario');//con este post de codeigniter se hacen una serie de validaciones para que no vallan a ingresar errores
+
+					$this->load->model('tbl_cpu_crud_model');
+					$this->load->model('tbl_status_cpu_model');
+					$this->load->model('tbl_empleado_crud_model');
+
+					$data['cargar_cpu'] = $this->tbl_cpu_crud_model->buscar_inventario($num_inventario);
+					$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+					$this->load->view('header_view');
+						//$this->load->view('cabecera_view');
+					$this->load->view('menu_view');
+					$this->load->view('contenedor_cpu_view',$data);
+					$this->load->view('footer_view');
+				
+			}else{
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+
+				$num_inventario = $this->input->post('num_inventario');//con este post de codeigniter se hacen una serie de validaciones para que no vallan a ingresar errores
+
+				$this->load->model('tbl_cpu_crud_model');
+				$this->load->model('tbl_status_cpu_model');
+				$this->load->model('tbl_empleado_crud_model');
+
+				$data['cargar_cpu'] = $this->tbl_cpu_crud_model->buscar_inventario($num_inventario);
+				$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
+				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+				$this->load->view('header_view');
+					//$this->load->view('cabecera_view');
+				$this->load->view('menu_view');
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
+		}
+	}
 }
 
 /* End of file welcome.php */

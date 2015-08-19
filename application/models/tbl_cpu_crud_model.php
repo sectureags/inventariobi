@@ -31,6 +31,17 @@ class Tbl_cpu_crud_model extends CI_Model
 		return $res->result(); 
 	}
 
+	public function cargar_por_status($status)
+	{
+		
+		$this->db->from('tbl_cpu');
+		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
+		$this->db->where('tbl_cpu.status',$status);
+		$res=$this->db->get();
+		return $res->result(); 
+	}
+
 	public function agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado)
 	{
 		$data=array('num_inventario' => $num_inventario,
@@ -103,6 +114,16 @@ class Tbl_cpu_crud_model extends CI_Model
 		$this->db->where('id_cpu',$id_cpu);
 		$this->db->limit(1);
 		$res=$this->db->get('tbl_cpu');
+		return $res->result(); 
+	}
+
+	public function buscar_inventario($num_inventario)
+	{
+		$this->db->from('tbl_cpu');
+		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
+		$this->db->where('tbl_cpu.num_inventario',$num_inventario);
+		$res=$this->db->get();
 		return $res->result(); 
 	}
 } 

@@ -84,7 +84,7 @@
 							 	<option value="Todos">Todos</option>      
 								</select>
 							</div>
-						</button> 
+						 
 				     	</form>
 			        </li>
 			        <li><form class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('users/filtrar_por_usuario');?>">
@@ -100,13 +100,7 @@
 					     	</div> 
 				     	</form>
 				     </li>			        
-			      </ul>
-			      <form class="navbar-form navbar-left" role="search">
-			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="Username">
-			        </div>
-			        <button type="submit" class="btn btn-default">Buscar</span></button>
-			      </form>			      
+			      </ul>			      
 			      <ul class="nav navbar-nav navbar-right">
 			        <li></li>
 			      </ul>

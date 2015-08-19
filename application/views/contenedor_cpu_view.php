@@ -87,33 +87,27 @@
 			    </div>
 			    <div>
 			      <ul class="nav navbar-nav">
-			        
 			        <li class="dropdown">
 			          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Filtrar por:
 			          <span class="caret"></span></a>
 			          <ul class="dropdown-menu">
-			            <li><a href="#">Marca</a></li>
-			            <li><a href="#">Modelo</a></li>
-			            <li><a href="#">Status</a></li>
-			          </ul>
-			        </li>
+			          	<li class="dropdown-header">Status</li>
+			            	<?php foreach ($cargar_status as $st) :?> 
+								<li><a href="<?php echo base_url('bi_cpu/filtrar_por_status');?>/<?php echo $st->id; ?>"><?php echo $st->nombre;?></a></li> 
+							<?php endforeach; ?>
+			            </li>
+			            <li role="separator" class="divider"></li>
+			            <li><a href="<?php echo base_url('bi_cpu/index');?>">Todos</a></li>
+			        </ul>
+			        </ul>
 
-			        <li class="dropdown">
-			          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ordenar por:
-			          <span class="caret"></span></a>
-			          <ul class="dropdown-menu">
-			            <li><a href="#">No. Inventario</a></li>
-			            <li><a href="#">Host Name</a></li>
-			            <li><a href="#">Empleado</a></li>
-			          </ul>
-			        </li>
-			      </ul>
-			      <form class="navbar-form navbar-left" role="search">
+			      <form class="navbar-form navbar-left" role="search" action="<?php echo base_url('bi_cpu/buscar_inventario');?>" method="post">
 			        <div class="form-group">
-			          <input type="text" class="form-control" placeholder="No. Inventario">
+			          <input type="text" class="form-control" placeholder="No. Inventario" name="num_inventario" id="num_inventario">
 			        </div>
 			        <button type="submit" class="btn btn-default">Buscar</span></button>
 			      </form>
+
 			      <ul class="nav navbar-nav navbar-right">
 			        <li></li>
 			      </ul>
