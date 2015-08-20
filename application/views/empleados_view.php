@@ -104,32 +104,16 @@
 					</div>
 
 					<div>
-				      	<ul class="nav navbar-nav">
-					        <li class="dropdown">
-					          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Filtrar por:
-					          <span class="caret"></span></a>
-					          <ul class="dropdown-menu">
-					            <li><a href="#">x</a></li>
-					            <li><a href="#">Y</a></li>
-					          </ul>
-					        </li>
-
-					        <li class="dropdown">
-					          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ordenar por:
-					          <span class="caret"></span></a>
-					          <ul class="dropdown-menu">
-					            <li><a href="#">No. Empleado</a></li>
-					            <li><a href="#">Nombre Ascendente</a></li>
-					            <li><a href="#">Nombre Descendente</a></li>
-					          </ul>
-					        </li>
-				      	</ul>
-				      	<form class="navbar-form navbar-left" role="search">
+				      
+				      	<form class="navbar-form navbar-left" role="search" action="<?php echo base_url('empleados/buscar_empleado');?>" method="post">
 					        <div class="form-group">
-					          <input type="text" class="form-control" placeholder="Nombre">
+					          <input type="text" class="form-control" placeholder="Nombre" name="nombre_completo" id="nombre_completo">
 					        </div>
-				        <button type="submit" class="btn btn-default">Buscar</span></button>
-				      	</form>
+					        <button type="submit" class="btn btn-default">Buscar</span></button>
+					    </form>
+
+					    <a class="navbar-brand"  href="<?php echo base_url('empleados/index');?>">Mostrar Todos</a>
+
 				        <ul class="nav navbar-nav navbar-right">
 				            <li></li>
 				        </ul>
