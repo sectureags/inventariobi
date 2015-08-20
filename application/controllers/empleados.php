@@ -431,6 +431,67 @@ class Empleados extends CI_Controller {
 		}
 	
 	}
+
+	public function buscar_empleado()
+	{
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+
+			$nombre_completo = $this->input->post('nombre_completo');
+
+			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->buscar_empleado($nombre_completo);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+			$this->load->view('header_view');
+			//$this->load->view('cabecera_view');
+			$this->load->view('menu_view');
+			$this->load->view('empleados_view',$data);
+			$this->load->view('footer_view');
+			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+			else
+			{
+				$metodo = $this->uri->segment(2); // Metodo de la URL
+				$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+				if ($tiene_permiso == TRUE) {
+					
+					// EL USUARIO SI TIENE ACCESO AL METODO
+					$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+					$data['username'] = USER;
+					$data['rol'] = ROL;
+			 		$data['get_all'] = $this->permisos_model->get_all();
+
+			 		$nombre_completo = $this->input->post('nombre_completo');
+
+					$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->buscar_empleado($nombre_completo);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+					$this->load->view('header_view');
+					//$this->load->view('cabecera_view');
+					$this->load->view('menu_view');
+					$this->load->view('empleados_view',$data);
+					$this->load->view('footer_view');
+
+					}
+					else{
+					$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+					$data['username'] = USER;
+					$data['rol'] = ROL;
+					$data['get_all'] = $this->permisos_model->get_all();
+
+					$nombre_completo = $this->input->post('nombre_completo');
+
+					$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->buscar_empleado($nombre_completo);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+					$this->load->view('header_view');
+					//$this->load->view('cabecera_view');
+					$this->load->view('menu_view');
+					$this->load->view('sorry_view',$data);
+					$this->load->view('footer_view');
+			}
+		}	
+	}
 }
 
 /* End of file welcome.php */

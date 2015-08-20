@@ -79,6 +79,17 @@ class Tbl_empleado_crud_model extends CI_Model
 		$res=$this->db->get('tbl_empleados');
 		return $res->result(); 
 	}
+
+	public function buscar_empleado($nombre_completo)
+	{
+		
+		$this->db->select('*');
+		$this->db->from('tbl_empleados');
+		$this->db->like('nombre_completo',$nombre_completo);
+		$res=$this->db->get();
+		return $res->result(); 
+	
+	}
 } 
 
 ?>
