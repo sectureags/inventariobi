@@ -82,6 +82,7 @@ class Bi_cpu extends CI_Controller {
 
 			$this->load->model('tbl_empleado_crud_model'); 
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+			$data['combo_empleados'] = $this->tbl_empleado_crud_model->combo_empleados();
 			$this->load->model('tbl_status_cpu_model'); 
 			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
 
@@ -109,6 +110,7 @@ class Bi_cpu extends CI_Controller {
 
 		 		$this->load->model('tbl_empleado_crud_model'); 
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+				$data['combo_empleados'] = $this->tbl_empleado_crud_model->combo_empleados();
 				$this->load->model('tbl_status_cpu_model'); 
 				$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
 

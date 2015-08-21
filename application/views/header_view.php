@@ -70,7 +70,7 @@ var codigo_empleado=document.forms['ModalEmpleadoNuevo'].codigo_empleado.value;
 var rand=parseInt(Math.random()*99999999)+
           new Date().getTime();
 //Construimos la url que vamos a llamar
-var url = "http://localhost/inventariobi/empleados/validar_codigo_empleado/" + codigo_empleado;
+var url = "<?php echo base_url('empleados/validar_codigo_empleado');?>/" + codigo_empleado;
 // Abrimos la conexion de tipo GET
 myRequest.open("GET", url, true);
 // Cuando la respuesta llegue se llamara
@@ -105,7 +105,7 @@ var num_inventario=document.forms['ModalCPUNuevo'].num_inventario.value;
 //var rand=parseInt(Math.random()*99999999)+
           //new Date().getTime();
 //Construimos la url que vamos a llamar
-var url = "http://localhost/inventariobi/bi_cpu/validar_num_inventario/" + num_inventario;
+var url = "<?php echo base_url('bi_cpu/validar_num_inventario');?>/" + num_inventario;
 // Abrimos la conexion de tipo GET
 myRequest.open("GET", url, true);
 // Cuando la respuesta llegue se llamara
@@ -114,9 +114,6 @@ myRequest.onreadystatechange = respuesta2AJAX;
 // y finalmente enviamos la peticion
 myRequest.send(null);
 }
-
-
-
 
 function respuesta2AJAX() {
     // Solo entra cuando se completa la peticion
@@ -142,7 +139,7 @@ function ejecutarWINAUDIT() {
 //var codigo_empleado=document.forms['ModalEmpleadoNuevo'].codigo_empleado.value;
 //var rand=parseInt(Math.random()*99999999)+ new Date().getTime();
 //Construimos la url que vamos a llamar
-var url = "http://localhost/inventariobi/license.txt";
+var url = "<?php echo base_url();?>/license.txt";
 // Abrimos la conexion de tipo GET
 myRequest.open("GET", url, true);
 // Cuando la respuesta llegue se llamara

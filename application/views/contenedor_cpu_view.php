@@ -66,7 +66,7 @@
 										<div class="form-group">
 											<label for="id_empleado">Empleado</label>   
 											<select class="form-control" name="id_empleado" id="id_empleado">
-											    <?php foreach ($cargar_empleados as $empleados) :?>      
+											    <?php foreach ($combo_empleados as $empleados) :?>      
 											 	<option value="<?php echo $empleados->id_empleado; ?>"><?php echo $empleados->nombre_completo;?></option>                 
 											 	<?php endforeach; ?>       
 											</select>  
@@ -219,7 +219,7 @@
 												<div class="form-group">
 													<label for="id_empleado">Empleado</label>   
 													<select class="form-control" name="id_empleado" id="id_empleado">
-													    <?php foreach ($cargar_empleados as $empleados) :?> 
+													    <?php foreach ($combo_empleados as $empleados) :?> 
 														    <?php if($fila->id_empleado == $empleados->id_empleado){  ?>     
 														 		<option value="<?php echo $empleados->id_empleado; ?>" selected><?php echo $empleados->nombre_completo;?></option>  
 														 	<?php } else {?> 
@@ -288,7 +288,7 @@
 												<div class="form-group"> 
 													<label for="id_empleado">Empleado</label>   
 													<select class="form-control" name="id_empleado">
-													    <?php foreach ($cargar_empleados as $empleados) :?> 
+													    <?php foreach ($combo_empleados as $empleados) :?> 
 														    <?php if($fila->id_empleado == $empleados->id_empleado){  ?>     
 														 		<option value="<?php echo $empleados->id_empleado; ?>" selected><?php echo $empleados->nombre_completo;?></option>  
 														 	<?php } else {?> 

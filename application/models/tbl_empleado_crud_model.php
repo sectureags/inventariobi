@@ -13,6 +13,14 @@ class Tbl_empleado_crud_model extends CI_Model
 
 	}
 
+	public function combo_empleados()
+	{
+		$this->db->where('id_status',1);
+		$res=$this->db->get('tbl_empleados');
+		return $res->result(); 
+
+	}	
+
 	public function codigos_empleado(){
 		$this->db->select('codigo_empleado');
 		$res=$this->db->get('tbl_empleados');
