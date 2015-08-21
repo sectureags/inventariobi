@@ -96,7 +96,9 @@ class Welcome extends CI_Controller {
 					 	break;
 					 	
 					 	default:
-					 	echo "El rol no existe. Solicitalo a tu Administrador";
+						 	$this->load->view('header_view');				
+							$this->load->view('505_view');
+							$this->load->view('footer_view');
 					 		//redirect('welcome/logout');
 					 	break;
 					 }
@@ -104,11 +106,15 @@ class Welcome extends CI_Controller {
 
 			}
 
-			echo "No tienes un rol asignado. Solicitalo a tu Administrador";
+				$this->load->view('header_view');				
+				$this->load->view('505_view');
+				$this->load->view('footer_view');
 	
 		}else{
 
-		echo "No existes en la Base de datos o tu usuario esta desactivado. Ve con tu administrador";
+				$this->load->view('header_view');				
+				$this->load->view('505_view');
+				$this->load->view('footer_view');
 		//redirect('welcome/logout');
 		}
 		
