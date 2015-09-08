@@ -179,7 +179,7 @@
 
 											<div class="form-group">     
 												<label for="codigo_empleado">Codigo Empleado</label>       
-												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado" value="<?php echo $fila->codigo_empleado; ?>" readonly>
+												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado" value="<?php echo $fila->codigo_empleado; ?>">
 											</div>
 											<div class="form-group">       
 												<label for="nombre_completo">Nombre Completo</label>       
