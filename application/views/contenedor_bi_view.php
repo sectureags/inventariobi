@@ -13,5 +13,17 @@
 		</div>
 	</div>  
 
+	<div class="col-md-4" >
+		<div id="modulobi">
+			<div class="panel panel-primary">
+			  <div class="panel-heading"><h1>Discos Duros</h1></div>
+			  <div class="panel-body"><small>Modulo Discos Duros</small></div>
+			  <div class="caption">
+		        <p><a href="#" class="btn btn-default btn-lg" role="button">Entrar</a></p>
+		      </div>
+			</div>	      
+		</div>
+	</div>
+
 </div>
 </div>
