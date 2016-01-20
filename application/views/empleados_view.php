@@ -19,7 +19,7 @@
 								        <h4 class="modal-title">Ingresar Nuevo Empleado</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<form id="ModalEmpleadoNuevo" role="form" action="<?php echo base_url('empleados/crear');?>" method="post">     
+							        	<form id="ModalEmpleadoNuevo" name="ModalEmpleadoNuevo" role="form" action="<?php echo base_url('empleados/crear');?>" method="post">     
 											<div class="form-group">       
 												<label for="codigo_empleado">Codigo Empleado</label>       
 												<input type="text" class="form-control" name="codigo_empleado" id="codigo_empleado" onblur='ejecutarAJAX()' required>
@@ -33,7 +33,13 @@
 											</div>
 											 <div class="form-group">
 											  <label for="unidad">Unidad Administrativa:</label>
-											  <?php $unidades = array('SECTURE','PLAZA DE LAS 3 CENTURIAS','OFICINA DE ATENCION AL VISITANTE EN PALACIO','OCV','PARTICULAR'); ?>
+											  <?php $unidades = array(
+											  				'SECTURE',
+											  				'PLAZA DE LAS 3 CENTURIAS',
+											  				'OFICINA DE ATENCION AL VISITANTE EN PALACIO',
+											  				'OCV',
+											  				'PARTICULAR'
+											  	); ?>
 											  <select class="form-control" name="unidad" id="unidad">
 											  	<?php foreach ($unidades as $key => $value) {?>
 													<option value="<?php echo $key ;?>"><?php echo $value ;?></option>
@@ -72,7 +78,8 @@
 														'DIR. DE PLANEACION ESTADISTICA E INFORMATICA',
 														'DIR. DE PROMOCION Y FOMENTO',
 														'DIR. PLAZA TRES CENTURIAS',
-														'OFICINA DEL SECRETARIO'														
+														'OFICINA DEL SECRETARIO',
+														'OFICINA DE CONGRESOS Y VISITANTES'
 												);?>
 											  <select class="form-control" name="area" id="area">
 											  	<?php foreach ($areas as $key => $value) {?>
@@ -159,7 +166,8 @@
 							<?php break;
 					}
 					?>
-					<td><a href="" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">Editar</a><b>
+					<td>
+						<a href="" class="btn btn-large btn-primary" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">Editar</a><b>
 
 				      	<!-- Modal -->
 						<div id="miModal<?php echo $fila->id_empleado; ?>" class="modal fade" role="dialog">
@@ -313,7 +321,7 @@
 						<!-- Modal -->
 
 
-					<td><a href="<?php echo base_url('empleados/detalles'); ?>/<?php echo $fila->id_empleado; ?>">Ver detalles</a></td>
+					<td><a class="btn btn-large btn-primary" href="<?php echo base_url('empleados/detalles'); ?>/<?php echo $fila->id_empleado; ?>">Ver detalles</a></td>
 						
 					</tr>
 					

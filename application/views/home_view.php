@@ -1,36 +1,49 @@
-<div id="myCarousel" class="carousel slide">
-		  			<ol class="carousel-indicators">
-		  				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		  				<li data-target="#myCarousel" data-slide-to="1"></li>
-		  				<li data-target="#myCarousel" data-slide-to="2"></li>
-		  			</ol>
+<div class="container">
 
-		  			<div class="carousel-inner">
-		  				<div class="item active">
-		  					<img src="<?php echo base_url(); ?>img/img_car/1.jpg" alt="">
-		  					<div class="carousel-caption">
-		  				</div>
-		  				</div>
+	    <section id="wizard">
+			  <div class="page-header">
+	            <h1>Captura Rápida de Computadoras</h1>
+	          </div>
 
-			  			<div class="item">
-			  				<img src="<?php echo base_url(); ?>img/img_car/2.jpg" alt="">
-			  				<div class="carousel-caption">
-			  				</div>
-			  			</div>
-						
-						<div class="item">
-			  				<img src="<?php echo base_url(); ?>img/img_car/3.jpg" alt="">
-			  				<div class="carousel-caption">
-			  				</div>
-			  			</div>
+				    <form id="commentForm" method="get" action="" class="form-horizontal">
+				    <div id="rootwizard">
+				    	<ul>
+				    	  	<li><a href="#tab1" data-toggle="tab">Primero</a></li>
+				    		<li><a href="#tab2" data-toggle="tab">Segundo</a></li>
+				    		<li><a href="#tab3" data-toggle="tab">Tercero</a></li>
+				    	</ul>
+				    	<div class="tab-content">
+				    	    <div class="tab-pane" id="tab1">
+				    	    	
+				     
+				    			  <div class="control-group">
+				    			    <label class="control-label" for="name">Num Inventario</label>
+				    			    <div class="controls">
+				    			      <input type="text" id="namefield" name="namefield" class="required">
+				    			    </div>
+				    			  </div>
+				    	    </div>
+				    	    <div class="tab-pane" id="tab2">
+				    	      <div class="control-group">
+				    			    <label class="control-label" for="url">Num de Serie</label>
+				    			    <div class="controls">
+				    			      <input type="text" id="urlfield" name="urlfield" class="required url">
+				    			    </div>
+				    			  </div>
+				    	    </div>
+				    		<div class="tab-pane" id="tab3">
+				    			3
+				    	    </div>
+				    		<ul class="pager wizard">
+				    			<li class="previous first" style="display:none;"><a href="#">Primero</a></li>
+				    			<li class="previous"><a href="#">Previo</a></li>
+				    			<li class="next last" style="display:none;"><a href="#">Ultimo</a></li>
+				    		  	<li class="next"><a href="#">Siguiente</a></li>
+				    		</ul>
+				    	</div>	
+				    </div>
+				    </form>
 
-		  			</div>
-		  			<!--Botones laterales del Slider-->
-		  			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-		  				<span class="glyphicon glyphicon-chevron-left"></span>
-		  			</a>
-		  			<a class="right carousel-control" href="#myCarousel" data-slide="next">
-		  				<span class="glyphicon glyphicon-chevron-right"></span>
-		  			</a>
+			</section>
 
 </div>

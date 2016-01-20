@@ -13,7 +13,7 @@ class Permisos extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
@@ -21,6 +21,7 @@ class Permisos extends CI_Controller {
 		define('SUCCESS',$this->session->userdata('success'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
+	    
 	    //
   		$this->load->model('permisos_model');
   		$this->load->model('tbl_roles_model');
@@ -45,7 +46,7 @@ class Permisos extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_permisos_view',$data);
 			//$this->load->view('pie_view');
 			$this->load->view('footer_view');
@@ -64,7 +65,7 @@ class Permisos extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view',$data);
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_permisos_view',$data);
 				//$this->load->view('pie_view');
 				$this->load->view('footer_view');
@@ -77,7 +78,7 @@ class Permisos extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view',$data);
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				//$this->load->view('pie_view');
 				$this->load->view('footer_view');
@@ -115,7 +116,7 @@ class Permisos extends CI_Controller {
 						$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 						$this->load->view('header_view');
 						//$this->load->view('cabecera_view',$data);
-						$this->load->view('menu_view');
+						$this->load->view('menu_view',$data);
 						$this->load->view('sorry_view',$data);
 						//$this->load->view('pie_view');
 						$this->load->view('footer_view');
@@ -130,7 +131,7 @@ class Permisos extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view',$data);
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('sorry_view',$data);
 			//$this->load->view('pie_view');
 			$this->load->view('footer_view'); 
@@ -166,7 +167,7 @@ class Permisos extends CI_Controller {
 						$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 						$this->load->view('header_view');
 						//$this->load->view('cabecera_view',$data);
-						$this->load->view('menu_view');
+						$this->load->view('menu_view',$data);
 						$this->load->view('sorry_view',$data);
 						//$this->load->view('pie_view');
 						$this->load->view('footer_view');
@@ -181,7 +182,7 @@ class Permisos extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view',$data);
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('sorry_view',$data);
 			//$this->load->view('pie_view');
 			$this->load->view('footer_view');
@@ -203,7 +204,7 @@ class Permisos extends CI_Controller {
 		    ); 
 		    //Guarda el arreglo de datos en la base de datos
 			$agregar = $this->permisos_model->insert_entry($crearpermiso);
-			redirect(base_url('permisos/index'), 'refresh');
+			redirect(base_url('permisos'));
 
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -232,7 +233,7 @@ class Permisos extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->filtro_roles($tipo_rol);
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view',$data);
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				//$this->load->view('pie_view');
 				$this->load->view('footer_view');

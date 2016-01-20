@@ -25,7 +25,7 @@ class Empleados extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
@@ -45,11 +45,11 @@ class Empleados extends CI_Controller {
 	}
 
 	/**
-	* Valida el campo del Codigo del Empleado en el formulario de alta
+	* Valida el campo del Codigo del Empleado en el formulario de alta y envia datos via AJAX, ver footer_view function ejecutarAJAX()
 	*/
-	public function validar_codigo_empleado($codigo_empleado = null){
+	public function validar_codigo_empleado($codigo_empleado = 0){
 
-		if ( isset($codigo_empleado)) {
+		if ( isset($codigo_empleado) AND $codigo_empleado > 0 ) {
 
 			$codigos_empleado=$this->tbl_empleado_crud_model->codigos_empleado();
 			$arrayName = array();
@@ -81,7 +81,7 @@ class Empleados extends CI_Controller {
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('empleados_view',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -100,7 +100,7 @@ class Empleados extends CI_Controller {
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('empleados_view',$data);
 				$this->load->view('footer_view');
 			}else{
@@ -112,7 +112,7 @@ class Empleados extends CI_Controller {
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -350,7 +350,7 @@ class Empleados extends CI_Controller {
 		}	
 			
 	}
-
+ 
 	public function detalles($id_empleado)
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
@@ -362,17 +362,19 @@ class Empleados extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include			
+			$this->load->model('tbl_monitor_crud_model');
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$this->load->model('tbl_internet_crud_model');
 			$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 
 			$data['cargar_cpu_empleado'] = $this->tbl_cpu_crud_model->cargar_cpu_empleado($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model			
+			$data['cargar_monitor_empleado'] = $this->tbl_monitor_crud_model->get_monitores($id_empleado);
 			$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 
 			$this->load->view('header_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -400,7 +402,7 @@ class Empleados extends CI_Controller {
 				
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				//$this->load->view('menu_detalles_empleado_view',$data);
 				$this->load->view('contenedor_super_detalles_empleado_view',$data);
 				$this->load->view('footer_view');
@@ -423,7 +425,7 @@ class Empleados extends CI_Controller {
 				
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -447,7 +449,7 @@ class Empleados extends CI_Controller {
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->buscar_empleado($nombre_completo);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('empleados_view',$data);
 			$this->load->view('footer_view');
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -469,7 +471,7 @@ class Empleados extends CI_Controller {
 					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->buscar_empleado($nombre_completo);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					$this->load->view('empleados_view',$data);
 					$this->load->view('footer_view');
 
@@ -486,7 +488,7 @@ class Empleados extends CI_Controller {
 					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->buscar_empleado($nombre_completo);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					$this->load->view('sorry_view',$data);
 					$this->load->view('footer_view');
 			}

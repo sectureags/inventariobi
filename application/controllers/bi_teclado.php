@@ -28,7 +28,7 @@ class Bi_teclado extends CI_Controller {
 	{ 
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		else
 		{
@@ -36,7 +36,7 @@ class Bi_teclado extends CI_Controller {
 			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$this->load->view('header_view');
 			$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_cpu_view',$data);
 			$this->load->view('footer_view');
 		}

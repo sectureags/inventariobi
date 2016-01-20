@@ -25,7 +25,7 @@ class Internet extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
@@ -142,7 +142,7 @@ class Internet extends CI_Controller {
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado); 
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			//$this->load->view('menu_detalles_empleado_view',$data);
 			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('internet_empleado_view',$data);
@@ -157,7 +157,7 @@ class Internet extends CI_Controller {
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados($id_empleado);   
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			//$this->load->view('menu_detalles_empleado_view',$data);
 			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('sin_internet_empleado_view',$data);
@@ -189,7 +189,7 @@ class Internet extends CI_Controller {
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado); 
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			//$this->load->view('menu_detalles_empleado_view',$data);
 			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('internet_empleado_view',$data);
@@ -204,7 +204,7 @@ class Internet extends CI_Controller {
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados($id_empleado);   
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			//$this->load->view('menu_detalles_empleado_view',$data);
 			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('sin_internet_empleado_view',$data);
@@ -229,7 +229,7 @@ class Internet extends CI_Controller {
 					$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado); 
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					//$this->load->view('menu_detalles_empleado_view',$data);
 					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 					$this->load->view('sorry_view',$data);
@@ -244,7 +244,7 @@ class Internet extends CI_Controller {
 					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados($id_empleado);   
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					//$this->load->view('menu_detalles_empleado_view',$data);
 					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 					$this->load->view('sorry_view',$data);
@@ -353,7 +353,7 @@ class Internet extends CI_Controller {
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			//$this->load->view('menu_detalles_empleado_view',$data);
 			//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 			$this->load->view('internet_empleado_view',$data);
@@ -378,7 +378,7 @@ class Internet extends CI_Controller {
 				$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				//$this->load->view('menu_detalles_empleado_view',$data);
 				//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 				$this->load->view('internet_empleado_view',$data);
@@ -396,7 +396,7 @@ class Internet extends CI_Controller {
 				$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				//$this->load->view('menu_detalles_empleado_view',$data);
 				//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 				$this->load->view('sorry_view',$data);

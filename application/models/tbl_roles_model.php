@@ -6,10 +6,14 @@ class Tbl_roles_model extends CI_Model
 		parent:: __construct();
 	}
 
-	public function cargar_roles()
+	public function cargar_roles($id_tipo = 1)
 	{
-		$res=$this->db->get('tbl_tipo_rol');////cuando agrego get solo hago referencia al select
-		return $res->result();
+		if ( isset($id_tipo) && $id_tipo == 1 ) {
+			$this->db->where('id_tipo !=',$id_tipo);
+			$res=$this->db->get('tbl_tipo_rol');////cuando agrego get solo hago referencia al select
+			return $res->result();
+		}
+		
 	}
 
 } 

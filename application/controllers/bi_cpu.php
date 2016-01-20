@@ -25,16 +25,18 @@ class Bi_cpu extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
 		define('ROL',$this->session->userdata('rol'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
+	    
 	    //
 	    $this->load->model('permisos_model');
   		$this->load->model('tbl_cpu_crud_model');
+  		$this->load->model('tbl_ipconfig_crud_model');
   		$this->load->model('tbl_roles_model');
   		$this->load->model('tbl_status_cpu_model');
   		/*
@@ -69,7 +71,337 @@ class Bi_cpu extends CI_Controller {
 
 	}
 
+	/**
+	* Obtiene los registros de Discos Duros del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function dd_cpu($id_cpu){
 
+		$fields = $this->db->list_fields('tbl_dd');		
+
+		$this->load->model('tbl_dd_crud_model');
+		$dds = $this->tbl_dd_crud_model->get_dds($id_cpu);
+		
+		if ( empty($dds) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>DISCOS DUROS</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE DISCOS DUROS ASOCIADOS A ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<div class='panel panel-info'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>DISCOS DUROS</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							foreach ($fields as $field)
+							{
+								echo "<th>";
+							    echo $field;
+							    echo "</th>";
+							}
+							echo "</tr>";
+							echo "<tr>";	
+							foreach ($dds as $dd)
+							{									
+								foreach ($fields as $field)
+								{
+								echo "<td>";
+							    echo $dd[$field];
+							    echo "</td>";
+								}
+								echo "</tr>";
+							}							
+				echo "</table></div></div>";
+			}
+	}	
+
+	/**
+	* Obtiene los registros de Memorias RAM del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function ram_cpu($id_cpu){
+
+		$fields = $this->db->list_fields('tbl_ram');		
+
+		$this->load->model('tbl_ram_crud_model');
+		$dds = $this->tbl_ram_crud_model->get_rams($id_cpu);
+		if ( empty($dds) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>MEMORIAS RAM</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE MEMORIAS RAM EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-info'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>MEMORIAS RAM</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							foreach ($fields as $field)
+							{
+								echo "<th>";
+							    echo $field;
+							    echo "</th>";
+							}
+							echo "</tr>";
+							echo "<tr>";	
+							foreach ($dds as $dd)
+							{									
+								foreach ($fields as $field)
+								{
+								echo "<td>";
+							    echo $dd[$field];
+							    echo "</td>";
+								}
+								echo "</tr>";
+							}							
+				echo "</table></div></div>";
+			}
+	}	
+
+	/**
+	* Obtiene los registros de IPCONFIG del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function ipconfig_cpu($id_cpu){
+
+		$fieldseth = $this->db->list_fields('tbl_ipconfig');		
+
+		$this->load->model('tbl_ipconfig_crud_model');
+		$eth = $this->tbl_ipconfig_crud_model->get_ipconfigs($id_cpu);
+		if ( empty($eth) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>CONFIGURACION RED IPv4</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE CONFIGURACION RED IPv4 EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-info'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>CONFIGURACION RED IPv4</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							
+							
+							echo "<th>INTERFACE</th>";
+							echo "<th>MAC</th>";
+							echo "<th>IP</th>";
+							
+							
+							echo "</tr>";
+							echo "<tr>";	
+							foreach ($eth as $dd)
+							{									
+							
+							    echo "<td>";
+							    echo $dd['interface'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['mac'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['ip'];
+							    echo "</td>";
+							
+								echo "</tr>";
+							}							
+				echo "</table></div></div>";
+			}
+	}	
+
+	/**
+	* Obtiene los registros de PROCESADOR del id_cpu correspondiente y los manda a AJAX
+	*/
+	public function procesador_cpu($id_cpu){
+
+		$fieldseth = $this->db->list_fields('tbl_procesador');		
+
+		$this->load->model('tbl_procesador_crud_model');
+		$eth = $this->tbl_procesador_crud_model->get_procesadores($id_cpu);
+		if ( empty($eth) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>PROCESADOR</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DEL PROCESADOR EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-info'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>PROCESADOR</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							
+							
+							echo "<th>TIPO</th>";
+							echo "<th>MARCA</th>";
+							echo "<th>NOMBRE</th>";
+							
+							
+							echo "</tr>";
+							echo "<tr>";	
+							foreach ($eth as $dd)
+							{									
+								
+							    echo "<td>";
+							    echo $dd['tipo'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['marca_proc'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['procesador'];
+							    echo "</td>";
+							    
+								echo "</tr>";
+							}							
+				echo "</table></div></div>";
+			}
+	}		
+
+	/**
+	* Obtiene los registros de SISTEMAS OPERATIVOS del id_cpu correspondiente y los manda a AJAX
+	
+	public function so_cpu($id_cpu){
+
+		$fieldseth = $this->db->list_fields('tbl_so');		
+
+		$this->load->model('tbl_so_crud_model');
+		$eth = $this->tbl_so_crud_model->get_sos($id_cpu);
+		if ( empty($eth) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>SISTEMAS OPERATIVOS</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DEL SISTEMA OPERATIVO EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-info'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>SISTEMAS OPERATIVOS</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							
+							
+							echo "<th>TIPO</th>";
+							echo "<th>MARCA</th>";
+							echo "<th>NOMBRE</th>";
+							
+							
+							echo "</tr>";
+							echo "<tr>";	
+							foreach ($eth as $dd)
+							{									
+								
+							    echo "<td>";
+							    echo $dd['tipo'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['marca_so'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['so'];
+							    echo "</td>";
+							    
+								echo "</tr>";
+							}							
+				echo "</table></div></div>";
+			}
+	}		*/
+
+	/**
+	* Obtiene los registros de PROGRAMAS del id_cpu correspondiente y los manda a AJAX
+	
+	public function prog_cpu($id_cpu){
+
+		$fieldseth = $this->db->list_fields('tbl_prog');		
+
+		$this->load->model('tbl_so_crud_model');
+		$eth = $this->tbl_prog_crud_model->get_programas($id_cpu);
+		if ( empty($eth) ) {
+			
+			echo "	<div class='panel panel-danger'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>PROGRAMAS</h3>
+					  </div>
+					  <div class='panel-body'>
+					    <h3>NO SE ENCONTRARON REGISTROS DE PROGRAMAS EN ESTE CPU.</h3>
+					  </div>
+					</div>
+				";
+
+		}else{
+
+				echo "<p><div class='panel panel-info'>
+					  <div class='panel-heading'>
+					    <h3 class='panel-title'>PROGRAMAS</h3>
+					  </div>
+					  <div class='panel-body'>
+					  	<table class='table'><tr>";
+							
+							
+							echo "<th>TIPO</th>";
+							echo "<th>MARCA</th>";
+							echo "<th>NOMBRE</th>";
+							
+							
+							echo "</tr>";
+							echo "<tr>";	
+							foreach ($eth as $dd)
+							{									
+								
+							    echo "<td>";
+							    echo $dd['tipo'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['marca_prog'];
+							    echo "</td>";
+							    echo "<td>";
+							    echo $dd['programa'];
+							    echo "</td>";
+							    
+								echo "</tr>";
+							}							
+				echo "</table></div></div>";
+			}
+	}		
+*/
 	public function index()
 	{ 
 		// Si tienes Rol de SuperAdministrador entras sin permisos
@@ -85,13 +417,11 @@ class Bi_cpu extends CI_Controller {
 			$data['combo_empleados'] = $this->tbl_empleado_crud_model->combo_empleados();
 			$this->load->model('tbl_status_cpu_model'); 
 			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
-
-			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			
 			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			
 			$this->load->view('header_view');
-			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_cpu_view',$data);
 			$this->load->view('footer_view');
 
@@ -113,13 +443,11 @@ class Bi_cpu extends CI_Controller {
 				$data['combo_empleados'] = $this->tbl_empleado_crud_model->combo_empleados();
 				$this->load->model('tbl_status_cpu_model'); 
 				$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
-
-				$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			
 				$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 				
 				$this->load->view('header_view');
-				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_cpu_view',$data);
 				$this->load->view('footer_view');
 
@@ -139,7 +467,7 @@ class Bi_cpu extends CI_Controller {
 				
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -545,7 +873,7 @@ class Bi_cpu extends CI_Controller {
 		
 	}
 
-	public function detalles($id_cpu)
+	public function detalles($id_cpu) // Se recibe por la URL el id_del CPU
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -556,11 +884,15 @@ class Bi_cpu extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+			//$this->load->model('tbl_dd_crud_model'); // Model para administracion de Discos Duros
+			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();
 			$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
+			
+			//$data['cargar_detalles_dd'] = $this->tbl_dd_crud_model->get_dds($id_cpu);
 			
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			//$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_cpu',$data);
 			$this->load->view('footer_view');
@@ -578,11 +910,12 @@ class Bi_cpu extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		
 		 		$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
+				$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();
 				$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
 				
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				//$this->load->view('menu_detalles_empleado_view',$data);
 				$this->load->view('contenedor_super_detalles_cpu',$data);
 				$this->load->view('footer_view');
@@ -598,7 +931,7 @@ class Bi_cpu extends CI_Controller {
 				
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -631,7 +964,7 @@ class Bi_cpu extends CI_Controller {
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				//$this->load->view('menu_detalles_empleado_view',$data);
 				//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 				$this->load->view('cpu_empleado_view',$data);
@@ -649,7 +982,7 @@ class Bi_cpu extends CI_Controller {
 				$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				//$this->load->view('menu_detalles_empleado_view',$data);
 				//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 				$this->load->view('sin_cpu_empleado_view',$data);
@@ -684,7 +1017,7 @@ class Bi_cpu extends CI_Controller {
 					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					//$this->load->view('menu_detalles_empleado_view',$data);
 					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 					$this->load->view('cpu_empleado_view',$data);
@@ -702,7 +1035,7 @@ class Bi_cpu extends CI_Controller {
 					$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					//$this->load->view('menu_detalles_empleado_view',$data);
 					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 					$this->load->view('sin_cpu_empleado_view',$data);
@@ -731,7 +1064,7 @@ class Bi_cpu extends CI_Controller {
 					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					//$this->load->view('menu_detalles_empleado_view',$data);
 					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 					$this->load->view('sorry_view',$data);
@@ -749,7 +1082,7 @@ class Bi_cpu extends CI_Controller {
 					$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);  
 					$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					//$this->load->view('menu_detalles_empleado_view',$data);
 					//$this->load->view('contenedor_super_detalles_empleado_view',$data);
 					$this->load->view('sorry_view',$data);
@@ -785,7 +1118,7 @@ class Bi_cpu extends CI_Controller {
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_cpu_view',$data);
 			$this->load->view('footer_view');
 			
@@ -815,7 +1148,7 @@ class Bi_cpu extends CI_Controller {
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_cpu_view',$data);
 				$this->load->view('footer_view');
 
@@ -840,7 +1173,7 @@ class Bi_cpu extends CI_Controller {
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 
@@ -870,7 +1203,7 @@ class Bi_cpu extends CI_Controller {
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 			$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_cpu_view',$data);
 			$this->load->view('footer_view');
 
@@ -896,7 +1229,7 @@ class Bi_cpu extends CI_Controller {
 					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 					$this->load->view('header_view');
 						//$this->load->view('cabecera_view');
-					$this->load->view('menu_view');
+					$this->load->view('menu_view',$data);
 					$this->load->view('contenedor_cpu_view',$data);
 					$this->load->view('footer_view');
 				
@@ -917,7 +1250,7 @@ class Bi_cpu extends CI_Controller {
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 				$this->load->view('header_view');
 					//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}

@@ -1,17 +1,20 @@
- <div id="inventario" class="container text-center" >
+<div class="container" >
 <div class="row">
+	<?php $modulos = array('cpus', 'discos_duros','memorias_ram','monitores','ipconfigs','procesadores','sistemas_operativos','programas'); 
 
-	<div class="col-md-4" >
-		<div id="modulobi">
-			<div class="panel panel-primary">
-			  <div class="panel-heading"><h1>CPUs</h1></div>
-			  <div class="panel-body"><small>Desktops, Laptops, Servidores</small></div>
-			  <div class="caption">
-		        <p><a href="<?php echo base_url('bi_cpu/index');?>" class="btn btn-default btn-lg" role="button">Entrar</a></p>
-		      </div>
-			</div>	      
-		</div>
-	</div>  
+	foreach ($modulos as $modulo) { ?>
+		<div class="col-md-3" >
+			<div id="modulobi">
+				<div class="panel panel-primary text-center">
+				  <div class="panel-heading"><h3><?php echo $modulo;?></h3></div>
+				  <div class="panel-body"><small></small></div>
+				  <div class="caption">
+			        <p><a href="<?php echo base_url($modulo);?>" class="btn btn-default btn-lg" role="button">Entrar</a></p>
+			      </div>
+				</div>	      
+			</div>
+		</div>		
+	<?php } ?>
 
 </div>
 </div>

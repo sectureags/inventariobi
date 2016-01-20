@@ -6,10 +6,25 @@ class Tbl_cpu_crud_model extends CI_Model
 		parent:: __construct();
 	}
 
+	public function get_cpu( $id_cpu = FALSE)
+	{
+		if ( isset($id_cpu) && empty($id_cpu) ) {
+			// Si isset es FALSE entonces solicitamos TODOS los registros
+			$query = $this->db->get('tbl_cpu');
+			return $query->result();
+		}
+		// Si isset es VERDADERO entonces solicitamos UN registro por el id_cpu
+		$this->db->where('id_cpu',$id_cpu);
+		$query = $this->db->get('tbl_cpu');
+		return $query->result_array(); 		
+	}
+
 	public function cargar_cpu()
 	{
 		$this->db->from('tbl_cpu');
-		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
+		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado','left');
+		$this->db->join('tbl_ipconfig', 'tbl_cpu.id_cpu=tbl_ipconfig.id_cpu','left');
+		$this->db->join('tbl_procesador', 'tbl_cpu.id_cpu=tbl_procesador.id_cpu','left');
 		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
 		$res=$this->db->get();
 		return $res->result(); 

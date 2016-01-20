@@ -67,8 +67,8 @@
 						  	<label for="id_tipo">Filtrar por Rol</label> 
 							<select class="form-control" name="id_tipo" id="id_tipo" onchange="this.form.submit()"><!--Cuando detectes un cambio en tus selects traeme los datos de la seleccion-->
 							<option>Roles</option>
-						    <?php foreach ($cargar_roles as $rol) :?>      
-						 	<option value="<?php echo $rol->id_tipo; ?>"><?php echo $rol->descripcion;?></option>                 
+						    <?php foreach ($cargar_roles as $rol) :?>
+						 		<option value="<?php echo $rol->id_tipo; ?>"><?php echo $rol->descripcion;?></option>                 
 						 	<?php endforeach; ?>       
 							</select>
 						</div>
@@ -114,10 +114,10 @@
 					  		
 					  		echo "<td class='text-center'>";
 					  		if ($value->permiso != TRUE) { ?>
-					  			<a href="<?php echo base_url('permisos/activar/'.$value->id) ;?>">Activar</a>
+					  			<a class="btn btn-danger danger" href="<?php echo base_url('permisos/activar/'.$value->id) ;?>">NO PERMITIDO</a>
 					  			
 					  		<?php } else { ?>				  		
-					  			<a href="<?php echo base_url('permisos/desactivar/'.$value->id) ;?>">Desactivar</a>
+					  			<a class="btn btn-success success" href="<?php echo base_url('permisos/desactivar/'.$value->id) ;?>">PERMITIDO</a>
 					  			
 					  		<?php }	
 					  		echo "</td>";

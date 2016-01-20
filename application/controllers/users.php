@@ -25,13 +25,14 @@ class Users extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
 		define('ROL',$this->session->userdata('rol'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
+	    
 	    //
 	    $this->load->model('permisos_model');
   		$this->load->model('tbl_user_crud_model');
@@ -59,7 +60,7 @@ class Users extends CI_Controller {
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('users_view',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -80,7 +81,7 @@ class Users extends CI_Controller {
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('users_view',$data);
 				$this->load->view('footer_view');
 			}else{
@@ -94,7 +95,7 @@ class Users extends CI_Controller {
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}
@@ -299,7 +300,7 @@ class Users extends CI_Controller {
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('users_view',$data);
 			$this->load->view('footer_view');
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -330,7 +331,7 @@ class Users extends CI_Controller {
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('users_view',$data);
 				$this->load->view('footer_view');
 				}
@@ -354,7 +355,7 @@ class Users extends CI_Controller {
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}
@@ -386,7 +387,7 @@ class Users extends CI_Controller {
 			$this->load->model('tbl_roles_model');
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('users_view',$data);
 			$this->load->view('footer_view');
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -416,7 +417,7 @@ class Users extends CI_Controller {
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('users_view',$data);
 				$this->load->view('footer_view');
 				}
@@ -440,7 +441,7 @@ class Users extends CI_Controller {
 				$this->load->model('tbl_roles_model');
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}

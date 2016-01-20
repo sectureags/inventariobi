@@ -27,7 +27,7 @@ class Home extends CI_Controller {
 		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
-			redirect(base_url('welcome/logout')); 
+			redirect(base_url('entrar')); 
 		}
 		// Se Definen constantes para facilitar la programacion
 		define("SUPERROL", 1); // "SuperAdministrador"
@@ -56,7 +56,7 @@ class Home extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');  ///se manda llamar a la vista///
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('home_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -73,7 +73,7 @@ class Home extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');  ///se manda llamar a la vista///
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('home_view');
 				$this->load->view('footer_view');
 			}else{
@@ -84,7 +84,7 @@ class Home extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');  ///se manda llamar a la vista///
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -103,7 +103,7 @@ class Home extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -120,7 +120,7 @@ class Home extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_view');
 				$this->load->view('footer_view');
 			}else{
@@ -131,7 +131,7 @@ class Home extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -150,7 +150,7 @@ class Home extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_bi_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -167,7 +167,7 @@ class Home extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_bi_view');	
 				$this->load->view('footer_view');
 			}else{
@@ -178,7 +178,7 @@ class Home extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -198,7 +198,7 @@ class Home extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_reportes_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -215,7 +215,7 @@ class Home extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_reportes_view');	
 				$this->load->view('footer_view');
 			}else{
@@ -226,7 +226,7 @@ class Home extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				
@@ -246,7 +246,7 @@ class Home extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$this->load->view('header_view');
 			//$this->load->view('cabecera_view');
-			$this->load->view('menu_view');
+			$this->load->view('menu_view',$data);
 			$this->load->view('contenedor_empleados_view');
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
@@ -263,7 +263,7 @@ class Home extends CI_Controller {
 		 		$data['get_all'] = $this->permisos_model->get_all();
 		 		$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('contenedor_empleados_view');	
 				$this->load->view('footer_view');
 			}else{
@@ -274,7 +274,7 @@ class Home extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$this->load->view('header_view');
 				//$this->load->view('cabecera_view');
-				$this->load->view('menu_view');
+				$this->load->view('menu_view',$data);
 				$this->load->view('sorry_view',$data);
 				$this->load->view('footer_view');
 			}				

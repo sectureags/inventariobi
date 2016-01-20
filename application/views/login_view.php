@@ -32,7 +32,7 @@
 			<div id="lateral"> <!--Contenido lateral "login a la pagina"-->
 				<aside class="Ingresar">
 					<article id="Ilogo">
-						LOGO
+						<a href="<?php echo base_url(); ?>autowinaudit2015.bat" class="btn btn-primary" role="button">Descarga Winaudit</a>
 					</article>
 
 					<article id="Iform">

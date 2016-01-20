@@ -31,7 +31,7 @@ class Welcome extends CI_Controller {
 
 		$ci_session= $this->session->userdata('user_data');
 		if (empty($ci_session)===FALSE) {
-			redirect('welcome/logout');
+			redirect('entrar');
 		}
 			
 		$this->load->model('tbl_user_model');
@@ -61,14 +61,14 @@ class Welcome extends CI_Controller {
 					{
 					 	case 1://Rol SuperAdministrador
 							$newdata= array(
-								'username' => $username, 
+								'username' => $username,
 								'rol' => $id_tipo,
 								'id_status' => 1,
 								'success' => TRUE,
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
-					 		redirect('home/index');
+					 		redirect('inicio'); //Mapeado
 					 	break;
 
 					 	case 2://Rol Administrador
@@ -80,7 +80,7 @@ class Welcome extends CI_Controller {
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
-					 		redirect('home/index');
+					 		redirect('inicio');//Mapeado
 					 	break;
 
 					 	case 3://Rol Capturista
@@ -92,14 +92,14 @@ class Welcome extends CI_Controller {
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
-					 		redirect('home/index');
+					 		redirect('inicio');//Mapeado
 					 	break;
 					 	
 					 	default:
 						 	$this->load->view('header_view');				
 							$this->load->view('505_view');
 							$this->load->view('footer_view');
-					 		//redirect('welcome/logout');
+					 		//redirect('entrar');
 					 	break;
 					 }
 
@@ -115,7 +115,7 @@ class Welcome extends CI_Controller {
 				$this->load->view('header_view');				
 				$this->load->view('505_view');
 				$this->load->view('footer_view');
-		//redirect('welcome/logout');
+		//redirect('entrar');
 		}
 		
 	}
