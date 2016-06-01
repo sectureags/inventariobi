@@ -59,7 +59,7 @@
 											<label for="status">Status</label> 
 											<select class="form-control" name="status" id="status">
 											    <?php foreach ($cargar_status as $st) :?>      
-											 	<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option>                 
+											 	<option value="<?php echo $st->id_status_cpu; ?>"><?php echo $st->nombre;?></option>                 
 											 	<?php endforeach; ?>       
 											</select>
 										</div>    
@@ -93,7 +93,7 @@
 			          <ul class="dropdown-menu">
 			          	<li class="dropdown-header">Status</li>
 			            	<?php foreach ($cargar_status as $st) :?> 
-								<li><a href="<?php echo base_url('bi_cpu/filtrar_por_status');?>/<?php echo $st->id; ?>"><?php echo $st->nombre;?></a></li> 
+								<li><a href="<?php echo base_url('bi_cpu/filtrar_por_status');?>/<?php echo $st->id_status_cpu; ?>"><?php echo $st->nombre;?></a></li> 
 							<?php endforeach; ?>
 			            </li>
 			            <li role="separator" class="divider"></li>
@@ -142,7 +142,15 @@
 						<td> <?php echo $fila->ip; ?></td>
 						<td> <?php echo $fila->mac; ?></td>
 						<td><a href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>"><?php echo $fila->nombre_completo; ?></a></td>
-						<td><?php echo $fila->nombre; ?></td>
+						<td>
+							
+							<?php foreach ($cargar_status as $st) :?>  
+							    <?php if($fila->status == $st->id_status_cpu){  ?>    
+							 		<?php echo $st->nombre;?>
+							 	<?php } ?>               
+						 	<?php endforeach; ?> 
+							
+						</td>
 						<td>
 
 						<div class="btn-group" role="group">
@@ -211,10 +219,10 @@
 													<label for="status">Status</label> 
 													<select class="form-control" name="status" id="status">
 													    <?php foreach ($cargar_status as $st) :?>  
-														    <?php if($fila->status == $st->id){  ?>    
-														 		<option value="<?php echo $st->id; ?>" selected><?php echo $st->nombre;?></option> 
+														    <?php if($fila->status == $st->id_status_cpu){  ?>    
+														 		<option value="<?php echo $st->id_status_cpu; ?>" selected><?php echo $st->nombre;?></option> 
 														 	<?php } else {?> 
-														 		<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option> 
+														 		<option value="<?php echo $st->id_status_cpu; ?>"><?php echo $st->nombre;?></option> 
 														 	<?php }?>               
 													 	<?php endforeach; ?>       
 													</select>
@@ -280,10 +288,10 @@
 													<label for="status">Status</label> 
 													<select class="form-control" name="status">
 													    <?php foreach ($cargar_status as $st) :?>  
-														    <?php if($fila->status == $st->id){  ?>    
-														 		<option value="<?php echo $st->id; ?>" selected><?php echo $st->nombre;?></option> 
+														    <?php if($fila->status == $st->id_status_cpu){  ?>    
+														 		<option value="<?php echo $st->id_status_cpu; ?>" selected><?php echo $st->nombre;?></option> 
 														 	<?php } else {?> 
-														 		<option value="<?php echo $st->id; ?>"><?php echo $st->nombre;?></option> 
+														 		<option value="<?php echo $st->id_status_cpu; ?>"><?php echo $st->nombre;?></option> 
 														 	<?php }?>               
 													 	<?php endforeach; ?>       
 													</select>

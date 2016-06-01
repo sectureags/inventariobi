@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/inventariobi/';
+$config['base_url']	= 'http://10.1.17.224/inventariobi/';
 
 /*
 |--------------------------------------------------------------------------

@@ -40,7 +40,7 @@
 											<label for="id_cpu">Asignar a Computadora</label> 
 											<select class="form-control" name="id_cpu" id="id_cpu">
 											    <?php foreach ($cargar_cpus_lista as $st) :?>      
-											 	<option value="<?php echo $st->id_cpu; ?>">Computadora: <?php echo $st->marca_proc;?> <?php echo $st->modelo;?> [<?php echo $st->hostname;?>]</option>                 
+											 	<option value="<?php echo $st->id_cpu; ?>">Computadora: <?php echo $st->marca;?> <?php echo $st->modelo;?> [<?php echo $st->hostname;?>]</option>                 
 											 	<?php endforeach; ?>       
 											</select>
 						 			</div> 

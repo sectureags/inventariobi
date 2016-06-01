@@ -25,7 +25,7 @@ class Tbl_cpu_crud_model extends CI_Model
 		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado','left');
 		$this->db->join('tbl_ipconfig', 'tbl_cpu.id_cpu=tbl_ipconfig.id_cpu','left');
 		$this->db->join('tbl_procesador', 'tbl_cpu.id_cpu=tbl_procesador.id_cpu','left');
-		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id_status_cpu','left');
 		$res=$this->db->get();
 		return $res->result(); 
 	}
@@ -41,7 +41,7 @@ class Tbl_cpu_crud_model extends CI_Model
 		$this->db->from('tbl_cpu');
 		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
 		$this->db->where('tbl_cpu.id_empleado',$id_empleado);
-		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id_status_cpu');
 		$res=$this->db->get();
 		return $res->result(); 
 	}
@@ -51,26 +51,36 @@ class Tbl_cpu_crud_model extends CI_Model
 		
 		$this->db->from('tbl_cpu');
 		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
-		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id_status_cpu');
 		$this->db->where('tbl_cpu.status',$status);
 		$res=$this->db->get();
 		return $res->result(); 
 	}
 
-	public function agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado)
+	public function agregar( $cpu = FALSE )
 	{
-		$data=array('num_inventario' => $num_inventario,
-					'marca' => $marca,
-					'modelo' => $modelo,
-					'hostname' => $hostname,
-					'num_serie' => $num_serie,
-					'tipo' => $tipo, 
-					'ubicacion'=>$ubicacion,
-					'categoria' => $categoria, 
-					'status' => $status,
-					'id_empleado'=>$id_empleado);
-		$nuevo = $this->db->insert('tbl_cpu', $data);
+		if ( isset($cpu) && !empty($cpu) ) {			
+			$query = $this->db->insert('tbl_cpu', $cpu);
+			$nuevo = $this->db->insert_id();
+			return $nuevo;
+		}
+
+		return NULL;
 	}
+
+
+	public function agregarrapido( $cpu )
+	{
+				
+			$query = $this->db->insert('tbl_cpu', $cpu);
+			$nuevo = $this->db->insert_id();
+			return $nuevo;
+			
+	}
+
+
+
+
 
 	public function existe_cpu_empleado($id_empleado)
 	{
@@ -88,22 +98,17 @@ class Tbl_cpu_crud_model extends CI_Model
 		}
 	}
 	
-	public function actualizar_cpu($id_cpu,$num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado)
+	public function actualizar_cpu($cpu = FALSE)
 	{
-		$data=array('num_inventario' => $num_inventario,
-					'marca' => $marca,
-					'modelo' => $modelo,
-					'hostname' => $hostname,
-					'num_serie' => $num_serie,
-					'tipo' => $tipo, 
-					'ubicacion'=>$ubicacion,
-					'categoria' => $categoria, 
-					'status' => $status,
-					'id_empleado'=>$id_empleado);
+		if ( isset($cpu) && !empty($cpu) ) {
+			
+			$this->db->where('id_cpu',$cpu['id_cpu']);	
+			$query = $this->db->update('tbl_cpu', $cpu);
+			return true;
+		}
 
-		$id_cpu=$_POST['id_cpu'];
-		$this->db->where('id_cpu',$id_cpu);
-		$this->db->update('tbl_cpu',$data);
+		return NULL;
+
 	}
 
 
@@ -136,7 +141,7 @@ class Tbl_cpu_crud_model extends CI_Model
 	{
 		$this->db->from('tbl_cpu');
 		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado');
-		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id');
+		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id_status_cpu');
 		$this->db->where('tbl_cpu.num_inventario',$num_inventario);
 		$res=$this->db->get();
 		return $res->result(); 

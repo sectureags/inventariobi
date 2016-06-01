@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Bi_monitor extends CI_Controller {
+class Bi_telefono extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -32,10 +32,10 @@ class Bi_monitor extends CI_Controller {
 		define('ROL',$this->session->userdata('rol'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
-	    define('TITULO',"MONITORES");
+	    define('TITULO',"TELEFONOS");
 	    //
 	    $this->load->model('permisos_model');
-  		$this->load->model('tbl_monitor_crud_model');
+  		$this->load->model('tbl_telefono_crud_model');
   		$this->load->model('tbl_empleado_crud_model');
   		$this->load->model('tbl_roles_model');
   		/*
@@ -46,7 +46,7 @@ class Bi_monitor extends CI_Controller {
   		*/
 	}
 
-	public function index($id_monitor = false)
+	public function index($id_telefono = false)
 	{ 
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -57,15 +57,15 @@ class Bi_monitor extends CI_Controller {
 			$data['title'] = TITULO;
 			$data['get_all'] = $this->permisos_model->get_all();
 
-			$data['fields'] = $this->db->list_fields('tbl_monitor');
+			$data['fields'] = $this->db->list_fields('tbl_telefono');
 			
-			$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista($id_monitor);
+			$data['cargar_lista_telefonos'] = $this->tbl_telefono_crud_model->lista($id_telefono);
 			
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 			
 			$this->load->view('header_view');
 			$this->load->view('menu_view',$data);
-			$this->load->view('monitor_view',$data);
+			$this->load->view('telefono_view',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -80,15 +80,15 @@ class Bi_monitor extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 
-		 		$data['fields'] = $this->db->list_fields('tbl_monitor');
+		 		$data['fields'] = $this->db->list_fields('tbl_telefono');
 
-		 		$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+		 		$data['cargar_lista_telefonos'] = $this->tbl_telefono_crud_model->lista();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 				
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 
 				$this->load->view('header_view');
 				$this->load->view('menu_view',$data);
-				$this->load->view('monitor_view',$data);
+				$this->load->view('telefono_view',$data);
 				$this->load->view('footer_view');
 			}else{
 				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
@@ -115,21 +115,22 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$data['title'] = TITULO;
 
-			$monitor = array(
+			$telefono = array(
 				'categoria' => $this->input->post('categoria'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
 				'num_serie' => $this->input->post('num_serie'),
+				'mac_add' => $this->input->post('mac_add'),
 				'num_inventario' => $this->input->post('num_inventario'),
 				'id_empleado' => $this->input->post('id_empleado'),
 				'status' => $this->input->post('status')
 			);			
 
-			$nuevo = $this->tbl_monitor_crud_model->agrega($monitor);
+			$nuevo = $this->tbl_telefono_crud_model->agrega($telefono);
 
 			if ( isset($nuevo) && is_int($nuevo) > 0 ) {
-				redirect(base_url('monitores'));
+				redirect(base_url('telefonos'));
 			}
 
 				show_404();			
@@ -149,22 +150,23 @@ class Bi_monitor extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$data['title'] = TITULO;	
 				
-				$monitor = array(
+				$telefono = array(
 					'categoria' => $this->input->post('categoria'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
 					'num_serie' => $this->input->post('num_serie'),
+					'mac_add' => $this->input->post('mac_add'),
 					'num_inventario' => $this->input->post('num_inventario'),
 					'id_empleado' => $this->input->post('id_empleado'),
 					'status' => $this->input->post('status')
 				);			
 
-				$nuevo = $this->tbl_monitor_crud_model->agrega($monitor);
+				$nuevo = $this->tbl_telefono_crud_model->agrega($telefono);
 
 				if ( isset($nuevo) && is_int($nuevo) > 0 ) {
 					
-					redirect(base_url('monitores'));
+					redirect(base_url('telefonos'));
 
 				}
 
@@ -197,23 +199,24 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$data['title'] = TITULO;
 
-			$monitor = array(
-				'id_monitor' => $this->input->post('id_monitor'),
+			$telefono = array(
+				'id_telefono' => $this->input->post('id_telefono'),
 				'categoria' => $this->input->post('categoria'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
 				'num_serie' => $this->input->post('num_serie'),
+				'mac_add' => $this->input->post('mac_add'),
 				'num_inventario' => $this->input->post('num_inventario'),
 				'id_empleado' => $this->input->post('id_empleado'),
 				'status' => $this->input->post('status')
 			);
 
-			$modificado = $this->tbl_monitor_crud_model->actualiza($monitor);
+			$modificado = $this->tbl_telefono_crud_model->actualiza($telefono);
 
 			if ( isset($modificado) && is_bool($modificado) == TRUE ) {
 				
-				redirect(base_url('monitores'));
+				redirect(base_url('telefonos'));
 
 			}
 
@@ -234,23 +237,24 @@ class Bi_monitor extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$data['title'] = TITULO;
 
-				$monitor = array(
-					'id_monitor' => $this->input->post('id_monitor'),
+				$telefono = array(
+					'id_telefono' => $this->input->post('id_telefono'),
 					'categoria' => $this->input->post('categoria'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
 					'num_serie' => $this->input->post('num_serie'),
+					'mac_add' => $this->input->post('mac_add'),
 					'num_inventario' => $this->input->post('num_inventario'),
 					'id_empleado' => $this->input->post('id_empleado'),
 					'status' => $this->input->post('status')
 				);			
 
-				$modificado = $this->tbl_monitor_crud_model->actualiza($monitor);
+				$modificado = $this->tbl_telefono_crud_model->actualiza($telefono);
 
 				if ( isset($modificado) && is_bool($modificado) == TRUE ) {
 					
-					redirect(base_url('monitores'));
+					redirect(base_url('telefonos'));
 
 				}
 
@@ -272,7 +276,7 @@ class Bi_monitor extends CI_Controller {
 		}
 	}
 
-	public function eliminar($id_monitor = false)
+	public function eliminar($id_telefono = false)
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -283,13 +287,13 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$data['title'] = TITULO;
 
-			$monitor = array('id_monitor' => $id_monitor);
+			$telefono = array('id_telefono' => $id_telefono);
 
-			$eliminado = $this->tbl_monitor_crud_model->elimina($monitor);
+			$eliminado = $this->tbl_telefono_crud_model->elimina($telefono);
 
 			if ( isset($eliminado) && is_bool($eliminado) == TRUE ) {
 				
-				redirect(base_url('monitores'));
+				redirect(base_url('telefonos'));
 
 			}
 
@@ -310,13 +314,13 @@ class Bi_monitor extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$data['title'] = TITULO;
 
-				$monitor = array('id_monitor' => $id_monitor);
+				$telefono = array('id_telefono' => $id_telefono);
 
-				$eliminado = $this->tbl_monitor_crud_model->elimina($monitor);
+				$eliminado = $this->tbl_telefono_crud_model->elimina($telefono);
 
 				if ( isset($eliminado) && is_bool($eliminado) == TRUE ) {
 					
-					redirect(base_url('monitores'));
+					redirect(base_url('telefonos'));
 
 				}
 

@@ -9,20 +9,20 @@
 			  <div class="container-fluid">
 			    <div class="navbar-header">
 			     		<!--link-->
-						<a class="navbar-brand" data-toggle="modal" href="#myModalNuevoteclado">Crear nuevo</a>
+						<a class="navbar-brand" data-toggle="modal" href="#myModalNuevotelefono">Crear nuevo</a>
 			      		<!-- Modal -->
-						<div id="myModalNuevoteclado" class="modal fade" role="dialog">
+						<div id="myModalNuevotelefono" class="modal fade" role="dialog">
 						  <div id="moduloseg" class="modal-dialog">
 
 						    <!-- Modal content-->
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        <h4 class="modal-title">Agregar Datos del teclado</h4>
+						        <h4 class="modal-title">Agregar Datos del telefono</h4>
 						      </div>
 						      <div class="modal-body">
 
-						         <form id="ModalNuevoteclado" class="" role="form" method="post" action="<?php echo base_url('bi_teclado/crear');?>">
+						         <form id="ModalNuevotelefono" class="" role="form" method="post" action="<?php echo base_url('bi_telefono/crear');?>">
 						         	<div class="form-group">       
 									  	<label for="categoria">Categoria</label>       
 										<input type="text" class="form-control" name="categoria" id="categoria" required>
@@ -42,6 +42,10 @@
 								  <div class="form-group"> 
 										<label for="num_serie">num_serie</label>       
 										<input type="text" class="form-control" name="num_serie" id="num_serie" required>
+								  </div>
+								  <div class="form-group"> 
+										<label for="mac_add">mac_add</label>       
+										<input type="text" class="form-control" name="mac_add" id="mac_add" required>
 								  </div>
 								  <div class="form-group"> 
 										<label for="num_inventario">num_inventario</label>       
@@ -120,16 +124,17 @@
 					</tr>   
 				</thead>    
 				<tbody> 
-				<?php foreach ($cargar_lista_teclados as $fila) :?>
+				<?php foreach ($cargar_lista_telefonos as $fila) :?>
 					
 					<tr>
-					<td> <?php echo $fila->id_teclado; ?></td>
+					<td> <?php echo $fila->id_telefono; ?></td>
 					<td> <?php echo $fila->num_inventario; ?></td>
 					<td> <?php echo $fila->categoria; ?></td>
 					<td> <?php	echo $fila->tipo; ?></td>
 					<td> <?php	echo $fila->marca; ?></td>
 					<td> <?php	echo $fila->modelo; ?></td>
 					<td> <?php	echo $fila->num_serie; ?></td>
+					<td> <?php echo $fila->mac_add; ?></td>
 					
 					<td> 
 						<?php 
@@ -164,25 +169,25 @@
 						      <span class="caret"></span>
 						    </button>
 						    <ul class="dropdown-menu">
-						      <li><a data-toggle="modal" data-target="#moModalEditarteclado<?php echo $fila->id_teclado; ?>">Actualizar</a></li>
-						      <li><a data-toggle="modal" data-target="#XmoModalEliminarteclado<?php echo $fila->id_teclado; ?>">Eliminar</a></li>
+						      <li><a data-toggle="modal" data-target="#moModalEditartelefono<?php echo $fila->id_telefono; ?>">Actualizar</a></li>
+						      <li><a data-toggle="modal" data-target="#XmoModalEliminartelefono<?php echo $fila->id_telefono; ?>">Eliminar</a></li>
 						    </ul>
 						</div>
 												<!-- Modal -->
-						<div id="moModalEditarteclado<?php echo $fila->id_teclado; ?>" class="modal fade" role="dialog">
+						<div id="moModalEditartelefono<?php echo $fila->id_telefono; ?>" class="modal fade" role="dialog">
 						  	<div id="moduloseg" class="modal-dialog">
 
 						    <!-- Modal content-->
 							    <div class="modal-content">
 							      	<div class="modal-header">
 								        <button type="button" class="close" data-dismiss="modal">&times;</button>
-								        <h4 class="modal-title">Editar teclado</h4>
+								        <h4 class="modal-title">Editar telefono</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<form id="ModalEditarteclado" role="form" action="<?php echo base_url('bi_teclado/actualizar');?>" method="post">     
+							        	<form id="ModalEditartelefono" role="form" action="<?php echo base_url('bi_telefono/actualizar');?>" method="post">     
 												<div class="form-group">    
-												<label for="id_teclado">Id</label>       
-												<input type="text" class="form-control" id="id_teclado" name="id_teclado" value="<?php echo $fila->id_teclado; ?>" required>
+												<label for="id_telefono">Id</label>       
+												<input type="text" class="form-control" id="id_telefono" name="id_telefono" value="<?php echo $fila->id_telefono; ?>" required>
 												</div>
 												<div class="form-group">       
 									  	<label for="categoria">Categoria</label>       
@@ -203,6 +208,10 @@
 								  <div class="form-group"> 
 										<label for="num_serie">num_serie</label>       
 										<input type="text" class="form-control" name="num_serie" id="num_serie" value="<?php echo $fila->num_serie; ?>" required>
+								  </div>
+								  <div class="form-group"> 
+										<label for="mac_add">mac_add</label>       
+										<input type="text" class="form-control" name="mac_add" id="mac_add" value="<?php echo $fila->mac_add; ?>" required>
 								  </div>
 								  <div class="form-group"> 
 										<label for="num_inventario">num_inventario</label>       
@@ -251,7 +260,7 @@
 						<!-- Modal -->
 
 						<!-- Modal Eliminar -->
-						<div id="XmoModalEliminarteclado<?php echo $fila->id_teclado; ?>" class="modal fade" role="dialog">
+						<div id="XmoModalEliminartelefono<?php echo $fila->id_telefono; ?>" class="modal fade" role="dialog">
 						  	<div id="moduloseg" class="modal-dialog">
 						    <!-- Modal content-->
 							    <div class="modal-content">
@@ -262,11 +271,11 @@
 							      	<div class="modal-body">				      						
 		      							<p>Está a punto de eliminar permanentemente el registro.</p>
 		      							<p>Desea eliminar el registro permanentemente?</p>
-		      							<p>ID: <?php echo $fila->id_teclado; ?></p>
+		      							<p>ID: <?php echo $fila->id_telefono; ?></p>
 							      	</div>
 							      	<div class="modal-footer">
 					                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					                    <a href="<?php echo base_url('bi_teclado/eliminar'); ?>/<?php echo $fila->id_teclado; ?>" class="btn btn-danger danger">Sí, eliminar</a>
+					                    <a href="<?php echo base_url('bi_telefono/eliminar'); ?>/<?php echo $fila->id_telefono; ?>" class="btn btn-danger danger">Sí, eliminar</a>
 					                </div>
 							    </div>
 						  	</div>

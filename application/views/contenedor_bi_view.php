@@ -1,6 +1,19 @@
 <div class="container" >
 <div class="row">
-	<?php $modulos = array('cpus', 'discos_duros','memorias_ram','monitores','ipconfigs','procesadores','sistemas_operativos','programas'); 
+	<?php $modulos = array(
+		'cpus', 
+		'discos_duros',
+		'memorias_ram',
+		'monitores',
+		'ipconfigs',
+		'procesadores',
+		'sistemas_operativos',
+		'programas',
+		'teclados',
+		'mouses',
+		'telefonos',
+		'reguladores',
+		'otros'); 
 
 	foreach ($modulos as $modulo) { ?>
 		<div class="col-md-3" >

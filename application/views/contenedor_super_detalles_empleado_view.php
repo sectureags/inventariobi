@@ -377,7 +377,7 @@
 								<table class="table table-bordered">  
 									<thead>       
 										<tr>      
-										 <th>ID</th> 
+										  
 										 <th>Num Inventario</th>         
 										 <th>Marca</th> 
 										 <th>Modelo</th> 
@@ -387,7 +387,7 @@
 									<tbody> 
 										<?php foreach ($cargar_cpu_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
 										<tr>
-										<td> <?php echo $fila->id_cpu; ?></td>
+										
 										<td> <?php echo $fila->num_inventario; ?></td>
 										<td> <?php	echo $fila->marca; ?></td>
 										<td> <?php	echo $fila->modelo; ?></td>
@@ -408,7 +408,7 @@
 								<table class="table table-bordered">  
 									<thead>       
 										<tr>      
-										 <th>ID</th>
+										 
 										 <th>Num Inventario</th> 
 										 <th>Marca</th> 
 										 <th>Modelo</th> 
@@ -419,7 +419,7 @@
 									<tbody> 
 										<?php foreach ($cargar_monitor_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
 										<tr>
-										<td> <?php echo $fila['id_monitor']; ?></td>
+										
 										<td> <?php echo $fila['num_inventario']; ?></td>
 										<td> <?php	echo $fila['marca']; ?></td>
 										<td> <?php	echo $fila['modelo']; ?></td>
@@ -441,7 +441,7 @@
 								<table class="table table-bordered">  
 									<thead>       
 										<tr>      
-										 <th>ID</th>
+										 
 										 <th>Num Inventario</th>          
 										 <th>Marca</th> 
 										 <th>Modelo</th> 
@@ -449,7 +449,17 @@
 										 
 										</tr>   
 									</thead>    
-									<tbody> 
+									<tbody>
+										<?php foreach ($cargar_teclado_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+										<tr>
+										
+										<td> <?php echo $fila['num_inventario']; ?></td>
+										<td> <?php	echo $fila['marca']; ?></td>
+										<td> <?php	echo $fila['modelo']; ?></td>
+										<td> <?php	echo $fila['num_serie']; ?></td>
+										
+										</tr>
+										<?php endforeach; ?>
 										
 									</tbody> 
 								</table>
@@ -465,7 +475,41 @@
 								<table class="table table-bordered">  
 									<thead>       
 										<tr>      
-										 <th>ID</th>
+										 
+										 <th>Num Inventario</th>          
+										 <th>Marca</th> 
+										 <th>Modelo</th> 
+										 <th>Num Serie</th> 
+										 
+										</tr>   
+									</thead>    
+									<tbody>
+										<?php foreach ($cargar_mouse_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+										<tr>
+										
+										<td> <?php echo $fila['num_inventario']; ?></td>
+										<td> <?php	echo $fila['marca']; ?></td>
+										<td> <?php	echo $fila['modelo']; ?></td>
+										<td> <?php	echo $fila['num_serie']; ?></td>
+										
+										</tr>
+										<?php endforeach; ?>
+										
+									</tbody> 
+								</table>
+							  </div>
+							</div>
+							<!-- MOUSES -->
+							<!-- TELEFONOS -->
+							<div class='panel panel-default'>
+							  <div class='panel-heading'>
+							    <h3 class='panel-title'>TELEFONOS</h3>
+							  </div>
+							  <div class='panel-body'>
+								<table class="table table-bordered">  
+									<thead>       
+										<tr>      
+										 
 										 <th>Num Inventario</th>          
 										 <th>Marca</th> 
 										 <th>Modelo</th> 
@@ -474,12 +518,79 @@
 										</tr>   
 									</thead>    
 									<tbody> 
+										<?php foreach ($cargar_telefono_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+										<tr>
+										
+										<td> <?php echo $fila['num_inventario']; ?></td>
+										<td> <?php	echo $fila['marca']; ?></td>
+										<td> <?php	echo $fila['modelo']; ?></td>
+										<td> <?php	echo $fila['num_serie']; ?></td>
+										
+										</tr>
+										<?php endforeach; ?>
 										
 									</tbody> 
 								</table>
 							  </div>
 							</div>
-							<!-- MOUSES -->
+							<!-- TELEFONOS -->
+							<!-- REGULADORES -->
+							<div class='panel panel-default'>
+							  <div class='panel-heading'>
+							    <h3 class='panel-title'>REGULADORES</h3>
+							  </div>
+							  <div class='panel-body'>
+								<table class="table table-bordered">  
+									<thead>       
+										<tr>      
+										 
+										 <th>Num Inventario</th>          
+										 <th>Marca</th> 
+										 <th>Modelo</th> 
+										 <th>Num Serie</th> 
+										 
+										</tr>   
+									</thead>    
+									<tbody> 
+										<?php foreach ($cargar_regulador_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+										<tr>
+										
+										<td> <?php echo $fila['num_inventario']; ?></td>
+										<td> <?php	echo $fila['marca']; ?></td>
+										<td> <?php	echo $fila['modelo']; ?></td>
+										<td> <?php	echo $fila['num_serie']; ?></td>
+										
+										</tr>
+										<?php endforeach; ?>
+										
+									</tbody> 
+								</table>
+							  </div>
+							</div>
+							<!-- REGULADORES -->
+							<!-- OTORS -->
+							<div class='panel panel-default'>
+							  <div class='panel-heading'>
+							    <h3 class='panel-title'>OTROS</h3>
+							  </div>
+							  <div class='panel-body'>
+								<table class="table table-bordered">  
+									<thead>       
+										<tr>      
+										 <th>Descripción</th> 										 
+										</tr>   
+									</thead>    
+									<tbody> 
+										<?php foreach ($cargar_otro_empleado as $fila) :?> <!--//es tipo un contador que entra a un arreglo y me trae todos los registros hasta que terminen-->
+											<tr>
+												<td> <?php echo $fila['descripcion']; ?></td>
+											</tr>
+										<?php endforeach; ?>										
+									</tbody> 
+								</table>
+							  </div>
+							</div>
+							<!-- OTROS -->
 		    </div><!-- resguardo -->
 		  </div>
 	</div><!-- col-md-9 -->

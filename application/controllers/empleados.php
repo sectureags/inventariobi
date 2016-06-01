@@ -363,12 +363,22 @@ class Empleados extends CI_Controller {
 			
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include			
 			$this->load->model('tbl_monitor_crud_model');
+			$this->load->model('tbl_teclado_crud_model');
+			$this->load->model('tbl_mouse_crud_model');
+			$this->load->model('tbl_telefono_crud_model');
+			$this->load->model('tbl_regulador_crud_model');
+			$this->load->model('tbl_otro_crud_model');
 			$this->load->model('tbl_empleado_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			$this->load->model('tbl_internet_crud_model');
 			$this->load->model('tbl_carpetas_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 
 			$data['cargar_cpu_empleado'] = $this->tbl_cpu_crud_model->cargar_cpu_empleado($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model			
 			$data['cargar_monitor_empleado'] = $this->tbl_monitor_crud_model->get_monitores($id_empleado);
+			$data['cargar_teclado_empleado'] = $this->tbl_teclado_crud_model->get_teclados($id_empleado);
+			$data['cargar_mouse_empleado'] = $this->tbl_mouse_crud_model->get_mouses($id_empleado);
+			$data['cargar_telefono_empleado'] = $this->tbl_telefono_crud_model->get_telefonos($id_empleado);
+			$data['cargar_regulador_empleado'] = $this->tbl_regulador_crud_model->get_reguladores($id_empleado);
+			$data['cargar_otro_empleado'] = $this->tbl_otro_crud_model->get_otros($id_empleado);
 			$data['cargar_permiso_carpetas'] = $this->tbl_carpetas_crud_model->cargar_permiso_carpetas($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 			$data['cargar_empleado_detalles'] = $this->tbl_empleado_crud_model->cargar_empleado_detalles($id_empleado);
 			$data['cargar_permiso_internet'] = $this->tbl_internet_crud_model->cargar_permiso_internet($id_empleado);  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model

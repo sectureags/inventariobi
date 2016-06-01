@@ -486,22 +486,29 @@ class Bi_cpu extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 		
-			$num_inventario=$_POST['num_inventario'];
-			$marca=$_POST['marca'];
-			$modelo=$_POST['modelo'];
-			$hostname=$_POST['hostname'];
-			$num_serie=$_POST['num_serie'];
-			$tipo=$_POST['tipo'];
-			$ubicacion=$_POST['ubicacion'];
-			$categoria=$_POST['categoria'];
-			$status=$_POST['status'];
-			$id_empleado=$_POST['id_empleado'];
+			$cpu = array(
+				'num_inventario' => $this->input->post('num_inventario'),
+				'marca' 		 => $this->input->post('marca') ,
+				'modelo' 		 => $this->input->post('modelo'),
+				'hostname' 		 => $this->input->post('hostname'),
+				'num_serie' 	 => $this->input->post('num_serie'),
+				'tipo' 			 => $this->input->post('tipo'),
+				'ubicacion' 	 => $this->input->post('ubicacion'),
+				'categoria' 	 => $this->input->post('categoria'),
+				'status' 		 => $this->input->post('status'),
+				'id_empleado' 	 => $this->input->post('id_empleado')
+			);
 
-
+			
 			$this->load->model('tbl_cpu_crud_model');
-			$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
+			$nuevo = $this->tbl_cpu_crud_model->agregar($cpu);
 				
-			$this->index();
+			if ( isset($nuevo) && is_int($nuevo) > 0 ) {
+				redirect(base_url('cpus'));
+			}
+
+			show_404();	
+			
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -516,22 +523,27 @@ class Bi_cpu extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 
-		 		$num_inventario=$_POST['num_inventario'];
-				$marca=$_POST['marca'];
-				$modelo=$_POST['modelo'];
-				$hostname=$_POST['hostname'];
-				$num_serie=$_POST['num_serie'];
-				$tipo=$_POST['tipo'];
-				$ubicacion=$_POST['ubicacion'];
-				$categoria=$_POST['categoria'];
-				$status=$_POST['status'];
-				$id_empleado=$_POST['id_empleado'];
+		 		$cpu = array(
+				'num_inventario' => $this->input->post('num_inventario'),
+				'marca' 		 => $this->input->post('marca') ,
+				'modelo' 		 => $this->input->post('modelo'),
+				'hostname' 		 => $this->input->post('hostname'),
+				'num_serie' 	 => $this->input->post('num_serie'),
+				'tipo' 			 => $this->input->post('tipo'),
+				'ubicacion' 	 => $this->input->post('ubicacion'),
+				'categoria' 	 => $this->input->post('categoria'),
+				'status' 		 => $this->input->post('status'),
+				'id_empleado' 	 => $this->input->post('id_empleado')
+			);
 
+			$this->load->model('tbl_cpu_crud_model');
+			$nuevo = $this->tbl_cpu_crud_model->agregar($cpu);
+				
+			if ( isset($nuevo) && is_int($nuevo) > 0 ) {
+				redirect(base_url('cpus'));
+			}
 
-				$this->load->model('tbl_cpu_crud_model');
-				$nuevo = $this->tbl_cpu_crud_model->agregar_cpu($num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
-					
-				$this->index();
+			show_404();	
 
 				}
 				else{
@@ -539,25 +551,93 @@ class Bi_cpu extends CI_Controller {
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 				$data['get_all'] = $this->permisos_model->get_all();
-
-				$num_inventario=$_POST['num_inventario'];
-				$marca=$_POST['marca'];
-				$modelo=$_POST['modelo'];
-				$hostname=$_POST['hostname'];
-				$num_serie=$_POST['num_serie'];
-				$tipo=$_POST['tipo'];
-				$ubicacion=$_POST['ubicacion'];
-				$categoria=$_POST['categoria'];
-				$status=$_POST['status'];
-				$id_empleado=$_POST['id_empleado'];
-
-
-				$this->load->model('tbl_cpu_crud_model');
 				$this->load->view('sorry_view',$data);
 			}				
 			
 		}
 	}
+
+	public function crearrapido()
+	{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+			# code...
+			$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+		
+			$cpu = array(
+				'num_inventario' => $this->input->post('num_inventario'),
+				'marca' 		 => $this->input->post('marca') ,
+				'modelo' 		 => $this->input->post('modelo'),				
+				'num_serie' 	 => $this->input->post('num_serie'),
+				'tipo' 			 => $this->input->post('tipo'),				
+				'status' 		 => $this->input->post('status'),
+				'ubicacion' 	 => 'SECTURE',
+				'categoria' 	 => 'SECTURE',
+				'hostname' 	 	 => 'SECTURE'.$this->input->post('num_inventario').'D',
+				'id_empleado' 	 => $this->input->post('id_empleado')
+			);
+
+			#var_dump($cpu);
+			#die();
+
+			
+			$this->load->model('tbl_cpu_crud_model');
+			$nuevo = $this->tbl_cpu_crud_model->agregarrapido($cpu);
+				
+			if ( isset($nuevo) && is_int($nuevo) ) {
+				redirect(base_url('cpus'));
+			}
+
+			show_404();	
+			
+
+			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+
+		 		$cpu = array(
+					'num_inventario' => $this->input->post('num_inventario'),
+					'marca' 		 => $this->input->post('marca') ,
+					'modelo' 		 => $this->input->post('modelo'),				
+					'num_serie' 	 => $this->input->post('num_serie'),
+					'tipo' 			 => $this->input->post('tipo'),				
+					'status' 		 => $this->input->post('status'),
+					'id_empleado' 	 => $this->input->post('id_empleado')
+				);
+
+			$this->load->model('tbl_cpu_crud_model');
+			$nuevo = $this->tbl_cpu_crud_model->agregarrapido($cpu);
+				
+			if ( isset($nuevo) && is_int($nuevo) > 0 ) {
+				redirect(base_url('cpus'));
+			}
+
+			show_404();	
+
+				}
+				else{
+				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$this->load->view('sorry_view',$data);
+			}				
+			
+		}
+	}
+
 
 	public function editar()
 	{
@@ -574,21 +654,23 @@ class Bi_cpu extends CI_Controller {
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
 
-			$id_cpu=$_POST['id_cpu'];
-			$num_inventario=$_POST['num_inventario'];
-			$marca=$_POST['marca'];
-			$modelo=$_POST['modelo'];
-			$hostname=$_POST['hostname'];
-			$num_serie=$_POST['num_serie'];
-			$tipo=$_POST['tipo'];
-			$ubicacion=$_POST['ubicacion'];
-			$categoria=$_POST['categoria'];
-			$status=$_POST['status'];
-			$id_empleado=$_POST['id_empleado'];
+			$cpu = array(
+				'id_cpu' 		 => $this->input->post('id_cpu'),
+				'num_inventario' => $this->input->post('num_inventario'),
+				'marca' 		 => $this->input->post('marca') ,
+				'modelo' 		 => $this->input->post('modelo'),
+				'hostname' 		 => $this->input->post('hostname'),
+				'num_serie' 	 => $this->input->post('num_serie'),
+				'tipo' 			 => $this->input->post('tipo'),
+				'ubicacion' 	 => $this->input->post('ubicacion'),
+				'categoria' 	 => $this->input->post('categoria'),
+				'status' 		 => $this->input->post('status'),
+				'id_empleado' 	 => $this->input->post('id_empleado')
+			);
 
 			$this->load->model('tbl_cpu_crud_model'); 
-			$this->tbl_cpu_crud_model->actualizar_cpu($id_cpu,$num_inventario,$marca,$modelo,$hostname,$num_serie,$tipo,$ubicacion,$categoria,$status,$id_empleado);
-			redirect('bi_cpu/index');
+			$this->tbl_cpu_crud_model->actualizar_cpu($cpu);
+			redirect(base_url('cpus'));
 
 			}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -886,16 +968,14 @@ class Bi_cpu extends CI_Controller {
 			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
 			//$this->load->model('tbl_dd_crud_model'); // Model para administracion de Discos Duros
 			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();
+
 			$data['cargar_cpu_detalles'] = $this->tbl_cpu_crud_model->cargar_cpu_detalles($id_cpu);
 			
-			//$data['cargar_detalles_dd'] = $this->tbl_dd_crud_model->get_dds($id_cpu);
-			
 			$this->load->view('header_view');
-			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view',$data);
-			//$this->load->view('menu_detalles_empleado_view',$data);
 			$this->load->view('contenedor_super_detalles_cpu',$data);
 			$this->load->view('footer_view');
+
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{

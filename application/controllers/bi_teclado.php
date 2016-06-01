@@ -22,56 +22,322 @@ class Bi_teclado extends CI_Controller {
 		parent::__construct();
 		$this->load->library('session');
 		$this->load->library('encrypt');
-	}
-
-	public function index()
-	{ 
+		// Si la sesion no tiene datos, redireccionarlo fuera del sistema
 		$ci_session= $this->session->userdata('username');
 		if (empty($ci_session)===TRUE) {
 			redirect(base_url('entrar')); 
 		}
+		// Se Definen constantes para facilitar la programacion
+		define("SUPERROL", 1); // "SuperAdministrador"
+		define('ROL',$this->session->userdata('rol'));
+	    define('COMPONENTE',$this->uri->segment(1));
+	    define('USER',$this->session->userdata('username'));
+	    define('TITULO',"TECLADOS");
+	    //
+	    $this->load->model('permisos_model');
+  		$this->load->model('tbl_teclado_crud_model');
+  		$this->load->model('tbl_empleado_crud_model');
+  		$this->load->model('tbl_roles_model');
+  		/*
+  		* Tabla de Roles:
+  		* 1.- Super Administrador
+  		* 2.- Administrador
+  		* 3.- Capturista
+  		*/
+	}
+
+	public function index($id_teclado = false)
+	{ 
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['title'] = TITULO;
+			$data['get_all'] = $this->permisos_model->get_all();
+
+			$data['fields'] = $this->db->list_fields('tbl_teclado');
+			
+			$data['cargar_lista_teclados'] = $this->tbl_teclado_crud_model->lista($id_teclado);
+			
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+			
+			$this->load->view('header_view');
+			$this->load->view('menu_view',$data);
+			$this->load->view('teclado_view',$data);
+			$this->load->view('footer_view');
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
-			$this->load->model('tbl_cpu_crud_model'); //mando llamar al model 'tbl_user_crud_model' como un tipo include
-			$data['cargar_cpu'] = $this->tbl_cpu_crud_model->cargar_cpu();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
-			$this->load->view('header_view');
-			$this->load->view('cabecera_view');
-			$this->load->view('menu_view',$data);
-			$this->load->view('contenedor_cpu_view',$data);
-			$this->load->view('footer_view');
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+
+		 		$data['fields'] = $this->db->list_fields('tbl_teclado');
+
+		 		$data['cargar_lista_teclados'] = $this->tbl_teclado_crud_model->lista();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+				
+				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+
+				$this->load->view('header_view');
+				$this->load->view('menu_view',$data);
+				$this->load->view('teclado_view',$data);
+				$this->load->view('footer_view');
+			}else{
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+			
+				$this->load->view('header_view');
+				$this->load->view('menu_view',$data);
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
 		}
 	}
 
 	public function crear()
 	{
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
 
-	}
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$data['title'] = TITULO;
 
-	public function editar()
-	{
-		
+			$teclado = array(
+				'categoria' => $this->input->post('categoria'),
+				'tipo' => $this->input->post('tipo'),
+				'marca' => $this->input->post('marca'),
+				'modelo' => $this->input->post('modelo'),
+				'num_serie' => $this->input->post('num_serie'),
+				'num_inventario' => $this->input->post('num_inventario'),
+				'id_empleado' => $this->input->post('id_empleado'),
+				'status' => $this->input->post('status')
+			);			
+
+			$nuevo = $this->tbl_teclado_crud_model->agrega($teclado);
+
+			if ( isset($nuevo) && is_int($nuevo) > 0 ) {
+				redirect(base_url('teclados'));
+			}
+
+				show_404();			
+			
+			//$this->index();
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$data['title'] = TITULO;	
+				
+				$teclado = array(
+					'categoria' => $this->input->post('categoria'),
+					'tipo' => $this->input->post('tipo'),
+					'marca' => $this->input->post('marca'),
+					'modelo' => $this->input->post('modelo'),
+					'num_serie' => $this->input->post('num_serie'),
+					'num_inventario' => $this->input->post('num_inventario'),
+					'id_empleado' => $this->input->post('id_empleado'),
+					'status' => $this->input->post('status')
+				);			
+
+				$nuevo = $this->tbl_teclado_crud_model->agrega($teclado);
+
+				if ( isset($nuevo) && is_int($nuevo) > 0 ) {
+					
+					redirect(base_url('teclados'));
+
+				}
+
+				show_404();			
+
+				}else{
+				
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$data['title'] = TITULO;
+
+		 		$this->load->view('header_view');
+				$this->load->view('menu_view',$data);
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
+		}
 	}
 
 	public function actualizar()
 	{
-		
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$data['title'] = TITULO;
+
+			$teclado = array(
+				'id_teclado' => $this->input->post('id_teclado'),
+				'categoria' => $this->input->post('categoria'),
+				'tipo' => $this->input->post('tipo'),
+				'marca' => $this->input->post('marca'),
+				'modelo' => $this->input->post('modelo'),
+				'num_serie' => $this->input->post('num_serie'),
+				'num_inventario' => $this->input->post('num_inventario'),
+				'id_empleado' => $this->input->post('id_empleado'),
+				'status' => $this->input->post('status')
+			);
+
+			$modificado = $this->tbl_teclado_crud_model->actualiza($teclado);
+
+			if ( isset($modificado) && is_bool($modificado) == TRUE ) {
+				
+				redirect(base_url('teclados'));
+
+			}
+
+				show_404();			
+			
+			//$this->index();
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$data['title'] = TITULO;
+
+				$teclado = array(
+					'id_teclado' => $this->input->post('id_teclado'),
+					'categoria' => $this->input->post('categoria'),
+					'tipo' => $this->input->post('tipo'),
+					'marca' => $this->input->post('marca'),
+					'modelo' => $this->input->post('modelo'),
+					'num_serie' => $this->input->post('num_serie'),
+					'num_inventario' => $this->input->post('num_inventario'),
+					'id_empleado' => $this->input->post('id_empleado'),
+					'status' => $this->input->post('status')
+				);			
+
+				$modificado = $this->tbl_teclado_crud_model->actualiza($teclado);
+
+				if ( isset($modificado) && is_bool($modificado) == TRUE ) {
+					
+					redirect(base_url('teclados'));
+
+				}
+
+					show_404();			
+
+				}else{
+				
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$data['title'] = TITULO;
+
+		 		$this->load->view('header_view');
+				$this->load->view('menu_view',$data);
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
+		}
 	}
 
-	public function eliminar()
+	public function eliminar($id_teclado = false)
 	{
-		
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['get_all'] = $this->permisos_model->get_all();
+			$data['title'] = TITULO;
+
+			$teclado = array('id_teclado' => $id_teclado);
+
+			$eliminado = $this->tbl_teclado_crud_model->elimina($teclado);
+
+			if ( isset($eliminado) && is_bool($eliminado) == TRUE ) {
+				
+				redirect(base_url('teclados'));
+
+			}
+
+				show_404();			
+			
+			//$this->index();
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+			// SI EL USUARIO TIENE ACCESO AL METODO
+			
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+				$data['get_all'] = $this->permisos_model->get_all();
+				$data['title'] = TITULO;
+
+				$teclado = array('id_teclado' => $id_teclado);
+
+				$eliminado = $this->tbl_teclado_crud_model->elimina($teclado);
+
+				if ( isset($eliminado) && is_bool($eliminado) == TRUE ) {
+					
+					redirect(base_url('teclados'));
+
+				}
+
+					show_404();			
+
+				}else{
+				
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+		 		$data['title'] = TITULO;
+
+		 		$this->load->view('header_view');
+				$this->load->view('menu_view',$data);
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
+		}
 	}
 
-	public function detalles()
-	{
-		
-	}
-
-	public function teclado_empleado($id_empleado)
-	{
-	
-	}
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
+/* End of file bi_dd.php */
+/* Location: ./application/controllers/bi_dd.php */

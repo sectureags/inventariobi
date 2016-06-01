@@ -9,20 +9,20 @@
 			  <div class="container-fluid">
 			    <div class="navbar-header">
 			     		<!--link-->
-						<a class="navbar-brand" data-toggle="modal" href="#myModalNuevoteclado">Crear nuevo</a>
+						<a class="navbar-brand" data-toggle="modal" href="#myModalNuevomouse">Crear nuevo</a>
 			      		<!-- Modal -->
-						<div id="myModalNuevoteclado" class="modal fade" role="dialog">
+						<div id="myModalNuevomouse" class="modal fade" role="dialog">
 						  <div id="moduloseg" class="modal-dialog">
 
 						    <!-- Modal content-->
 						    <div class="modal-content">
 						      <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal">&times;</button>
-						        <h4 class="modal-title">Agregar Datos del teclado</h4>
+						        <h4 class="modal-title">Agregar Datos del mouse</h4>
 						      </div>
 						      <div class="modal-body">
 
-						         <form id="ModalNuevoteclado" class="" role="form" method="post" action="<?php echo base_url('bi_teclado/crear');?>">
+						         <form id="ModalNuevomouse" class="" role="form" method="post" action="<?php echo base_url('bi_mouse/crear');?>">
 						         	<div class="form-group">       
 									  	<label for="categoria">Categoria</label>       
 										<input type="text" class="form-control" name="categoria" id="categoria" required>
@@ -120,10 +120,10 @@
 					</tr>   
 				</thead>    
 				<tbody> 
-				<?php foreach ($cargar_lista_teclados as $fila) :?>
+				<?php foreach ($cargar_lista_mouses as $fila) :?>
 					
 					<tr>
-					<td> <?php echo $fila->id_teclado; ?></td>
+					<td> <?php echo $fila->id_mouse; ?></td>
 					<td> <?php echo $fila->num_inventario; ?></td>
 					<td> <?php echo $fila->categoria; ?></td>
 					<td> <?php	echo $fila->tipo; ?></td>
@@ -164,25 +164,25 @@
 						      <span class="caret"></span>
 						    </button>
 						    <ul class="dropdown-menu">
-						      <li><a data-toggle="modal" data-target="#moModalEditarteclado<?php echo $fila->id_teclado; ?>">Actualizar</a></li>
-						      <li><a data-toggle="modal" data-target="#XmoModalEliminarteclado<?php echo $fila->id_teclado; ?>">Eliminar</a></li>
+						      <li><a data-toggle="modal" data-target="#moModalEditarmouse<?php echo $fila->id_mouse; ?>">Actualizar</a></li>
+						      <li><a data-toggle="modal" data-target="#XmoModalEliminarmouse<?php echo $fila->id_mouse; ?>">Eliminar</a></li>
 						    </ul>
 						</div>
 												<!-- Modal -->
-						<div id="moModalEditarteclado<?php echo $fila->id_teclado; ?>" class="modal fade" role="dialog">
+						<div id="moModalEditarmouse<?php echo $fila->id_mouse; ?>" class="modal fade" role="dialog">
 						  	<div id="moduloseg" class="modal-dialog">
 
 						    <!-- Modal content-->
 							    <div class="modal-content">
 							      	<div class="modal-header">
 								        <button type="button" class="close" data-dismiss="modal">&times;</button>
-								        <h4 class="modal-title">Editar teclado</h4>
+								        <h4 class="modal-title">Editar mouse</h4>
 							      	</div>
 							      	<div class="modal-body">
-							        	<form id="ModalEditarteclado" role="form" action="<?php echo base_url('bi_teclado/actualizar');?>" method="post">     
+							        	<form id="ModalEditarmouse" role="form" action="<?php echo base_url('bi_mouse/actualizar');?>" method="post">     
 												<div class="form-group">    
-												<label for="id_teclado">Id</label>       
-												<input type="text" class="form-control" id="id_teclado" name="id_teclado" value="<?php echo $fila->id_teclado; ?>" required>
+												<label for="id_mouse">Id</label>       
+												<input type="text" class="form-control" id="id_mouse" name="id_mouse" value="<?php echo $fila->id_mouse; ?>" required>
 												</div>
 												<div class="form-group">       
 									  	<label for="categoria">Categoria</label>       
@@ -251,7 +251,7 @@
 						<!-- Modal -->
 
 						<!-- Modal Eliminar -->
-						<div id="XmoModalEliminarteclado<?php echo $fila->id_teclado; ?>" class="modal fade" role="dialog">
+						<div id="XmoModalEliminarmouse<?php echo $fila->id_mouse; ?>" class="modal fade" role="dialog">
 						  	<div id="moduloseg" class="modal-dialog">
 						    <!-- Modal content-->
 							    <div class="modal-content">
@@ -262,11 +262,11 @@
 							      	<div class="modal-body">				      						
 		      							<p>Está a punto de eliminar permanentemente el registro.</p>
 		      							<p>Desea eliminar el registro permanentemente?</p>
-		      							<p>ID: <?php echo $fila->id_teclado; ?></p>
+		      							<p>ID: <?php echo $fila->id_mouse; ?></p>
 							      	</div>
 							      	<div class="modal-footer">
 					                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-					                    <a href="<?php echo base_url('bi_teclado/eliminar'); ?>/<?php echo $fila->id_teclado; ?>" class="btn btn-danger danger">Sí, eliminar</a>
+					                    <a href="<?php echo base_url('bi_mouse/eliminar'); ?>/<?php echo $fila->id_mouse; ?>" class="btn btn-danger danger">Sí, eliminar</a>
 					                </div>
 							    </div>
 						  	</div>

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Bi_monitor extends CI_Controller {
+class Bi_mouse extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -32,10 +32,10 @@ class Bi_monitor extends CI_Controller {
 		define('ROL',$this->session->userdata('rol'));
 	    define('COMPONENTE',$this->uri->segment(1));
 	    define('USER',$this->session->userdata('username'));
-	    define('TITULO',"MONITORES");
+	    define('TITULO',"MOUSES");
 	    //
 	    $this->load->model('permisos_model');
-  		$this->load->model('tbl_monitor_crud_model');
+  		$this->load->model('tbl_mouse_crud_model');
   		$this->load->model('tbl_empleado_crud_model');
   		$this->load->model('tbl_roles_model');
   		/*
@@ -46,7 +46,7 @@ class Bi_monitor extends CI_Controller {
   		*/
 	}
 
-	public function index($id_monitor = false)
+	public function index($id_mouse = false)
 	{ 
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -57,15 +57,15 @@ class Bi_monitor extends CI_Controller {
 			$data['title'] = TITULO;
 			$data['get_all'] = $this->permisos_model->get_all();
 
-			$data['fields'] = $this->db->list_fields('tbl_monitor');
+			$data['fields'] = $this->db->list_fields('tbl_mouse');
 			
-			$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista($id_monitor);
+			$data['cargar_lista_mouses'] = $this->tbl_mouse_crud_model->lista($id_mouse);
 			
 			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 			
 			$this->load->view('header_view');
 			$this->load->view('menu_view',$data);
-			$this->load->view('monitor_view',$data);
+			$this->load->view('mouse_view',$data);
 			$this->load->view('footer_view');
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
@@ -80,15 +80,15 @@ class Bi_monitor extends CI_Controller {
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
 
-		 		$data['fields'] = $this->db->list_fields('tbl_monitor');
+		 		$data['fields'] = $this->db->list_fields('tbl_mouse');
 
-		 		$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
+		 		$data['cargar_lista_mouses'] = $this->tbl_mouse_crud_model->lista();  //aqui ejecuto el metodo 'cargar_users' de la clase ''tbla_user_crud_model
 				
 				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
 
 				$this->load->view('header_view');
 				$this->load->view('menu_view',$data);
-				$this->load->view('monitor_view',$data);
+				$this->load->view('mouse_view',$data);
 				$this->load->view('footer_view');
 			}else{
 				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
@@ -115,7 +115,7 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$data['title'] = TITULO;
 
-			$monitor = array(
+			$mouse = array(
 				'categoria' => $this->input->post('categoria'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
@@ -126,10 +126,10 @@ class Bi_monitor extends CI_Controller {
 				'status' => $this->input->post('status')
 			);			
 
-			$nuevo = $this->tbl_monitor_crud_model->agrega($monitor);
+			$nuevo = $this->tbl_mouse_crud_model->agrega($mouse);
 
 			if ( isset($nuevo) && is_int($nuevo) > 0 ) {
-				redirect(base_url('monitores'));
+				redirect(base_url('mouses'));
 			}
 
 				show_404();			
@@ -149,7 +149,7 @@ class Bi_monitor extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$data['title'] = TITULO;	
 				
-				$monitor = array(
+				$mouse = array(
 					'categoria' => $this->input->post('categoria'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
@@ -160,11 +160,11 @@ class Bi_monitor extends CI_Controller {
 					'status' => $this->input->post('status')
 				);			
 
-				$nuevo = $this->tbl_monitor_crud_model->agrega($monitor);
+				$nuevo = $this->tbl_mouse_crud_model->agrega($mouse);
 
 				if ( isset($nuevo) && is_int($nuevo) > 0 ) {
 					
-					redirect(base_url('monitores'));
+					redirect(base_url('mouses'));
 
 				}
 
@@ -197,8 +197,8 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$data['title'] = TITULO;
 
-			$monitor = array(
-				'id_monitor' => $this->input->post('id_monitor'),
+			$mouse = array(
+				'id_mouse' => $this->input->post('id_mouse'),
 				'categoria' => $this->input->post('categoria'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
@@ -209,11 +209,11 @@ class Bi_monitor extends CI_Controller {
 				'status' => $this->input->post('status')
 			);
 
-			$modificado = $this->tbl_monitor_crud_model->actualiza($monitor);
+			$modificado = $this->tbl_mouse_crud_model->actualiza($mouse);
 
 			if ( isset($modificado) && is_bool($modificado) == TRUE ) {
 				
-				redirect(base_url('monitores'));
+				redirect(base_url('mouses'));
 
 			}
 
@@ -234,8 +234,8 @@ class Bi_monitor extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$data['title'] = TITULO;
 
-				$monitor = array(
-					'id_monitor' => $this->input->post('id_monitor'),
+				$mouse = array(
+					'id_mouse' => $this->input->post('id_mouse'),
 					'categoria' => $this->input->post('categoria'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
@@ -246,11 +246,11 @@ class Bi_monitor extends CI_Controller {
 					'status' => $this->input->post('status')
 				);			
 
-				$modificado = $this->tbl_monitor_crud_model->actualiza($monitor);
+				$modificado = $this->tbl_mouse_crud_model->actualiza($mouse);
 
 				if ( isset($modificado) && is_bool($modificado) == TRUE ) {
 					
-					redirect(base_url('monitores'));
+					redirect(base_url('mouses'));
 
 				}
 
@@ -272,7 +272,7 @@ class Bi_monitor extends CI_Controller {
 		}
 	}
 
-	public function eliminar($id_monitor = false)
+	public function eliminar($id_mouse = false)
 	{
 		// Si tienes Rol de SuperAdministrador entras sin permisos
 		if (ROL == SUPERROL) {
@@ -283,13 +283,13 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 			$data['title'] = TITULO;
 
-			$monitor = array('id_monitor' => $id_monitor);
+			$mouse = array('id_mouse' => $id_mouse);
 
-			$eliminado = $this->tbl_monitor_crud_model->elimina($monitor);
+			$eliminado = $this->tbl_mouse_crud_model->elimina($mouse);
 
 			if ( isset($eliminado) && is_bool($eliminado) == TRUE ) {
 				
-				redirect(base_url('monitores'));
+				redirect(base_url('mouses'));
 
 			}
 
@@ -310,13 +310,13 @@ class Bi_monitor extends CI_Controller {
 				$data['get_all'] = $this->permisos_model->get_all();
 				$data['title'] = TITULO;
 
-				$monitor = array('id_monitor' => $id_monitor);
+				$mouse = array('id_mouse' => $id_mouse);
 
-				$eliminado = $this->tbl_monitor_crud_model->elimina($monitor);
+				$eliminado = $this->tbl_mouse_crud_model->elimina($mouse);
 
 				if ( isset($eliminado) && is_bool($eliminado) == TRUE ) {
 					
-					redirect(base_url('monitores'));
+					redirect(base_url('mouses'));
 
 				}
 

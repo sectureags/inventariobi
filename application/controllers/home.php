@@ -37,6 +37,8 @@ class Home extends CI_Controller {
 	    //
   		$this->load->model('permisos_model');
  		$this->load->model('tbl_roles_model');
+ 		$this->load->model('tbl_empleado_crud_model');
+ 		$this->load->model('tbl_status_cpu_model');
   		/*
   		* Tabla de Roles:
   		* 1.- Super Administrador
@@ -54,6 +56,9 @@ class Home extends CI_Controller {
 			$data['username'] = USER;
 			$data['rol'] = ROL;
 			$data['get_all'] = $this->permisos_model->get_all();
+			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+			$data['combo_empleados'] = $this->tbl_empleado_crud_model->combo_empleados();
+			$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
 			$this->load->view('header_view');  ///se manda llamar a la vista///
 			//$this->load->view('cabecera_view');
 			$this->load->view('menu_view',$data);
@@ -68,6 +73,9 @@ class Home extends CI_Controller {
 
 				// EL USUARIO SI TIENE ACCESO AL METODO
 				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
+				$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
+				$data['combo_empleados'] = $this->tbl_empleado_crud_model->combo_empleados();
+				$data['cargar_status'] = $this->tbl_status_cpu_model->cargar_status();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 		 		$data['get_all'] = $this->permisos_model->get_all();
@@ -78,7 +86,6 @@ class Home extends CI_Controller {
 				$this->load->view('footer_view');
 			}else{
 
-				$data['cargar_roles'] = $this->tbl_roles_model->cargar_roles();
 				$data['username'] = USER;
 				$data['rol'] = ROL;
 				$data['get_all'] = $this->permisos_model->get_all();
