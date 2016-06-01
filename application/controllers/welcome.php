@@ -68,7 +68,7 @@ class Welcome extends CI_Controller {
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
-					 		redirect('inicio'); //Mapeado
+					 		redirect('empleados'); //Mapeado
 					 	break;
 
 					 	case 2://Rol Administrador
@@ -80,7 +80,7 @@ class Welcome extends CI_Controller {
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
-					 		redirect('inicio');//Mapeado
+					 		redirect('empleados');//Mapeado
 					 	break;
 
 					 	case 3://Rol Capturista
@@ -92,7 +92,7 @@ class Welcome extends CI_Controller {
 								'logged_in'=> TRUE);
 							$this->session->set_userdata($newdata);
 							$this->input->set_cookie($newdata);
-					 		redirect('inicio');//Mapeado
+					 		redirect('empleados');//Mapeado
 					 	break;
 					 	
 					 	default:

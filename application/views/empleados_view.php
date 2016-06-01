@@ -139,8 +139,8 @@
 					 <th>Correo Electronico</th> 
 					 <th>No. Extension</th>
 					 <th>Activo</th> 
-					 <th>Accion</th>
-					 <th>Detalles</th> 
+					 <th colspan="2">Accion</th>
+					  
 
 				</tr>   
 			</thead>    
@@ -167,7 +167,7 @@
 					}
 					?>
 					<td>
-						<a href="" class="btn btn-large btn-primary" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">Editar</a><b>
+						<a href="" class="btn btn-large btn-primary" data-toggle="modal" data-target="#miModal<?php echo $fila->id_empleado; ?>">Actualizar</a><b>
 
 				      	<!-- Modal -->
 						<div id="miModal<?php echo $fila->id_empleado; ?>" class="modal fade" role="dialog">
@@ -321,7 +321,7 @@
 						<!-- Modal -->
 
 
-					<td><a class="btn btn-large btn-primary" href="<?php echo base_url('empleados/detalles'); ?>/<?php echo $fila->id_empleado; ?>">Ver detalles</a></td>
+					<td><a class="btn btn-large btn-primary" href="<?php echo base_url('empleados/detalles'); ?>/<?php echo $fila->id_empleado; ?>">Bienes Informáticos</a></td>
 						
 					</tr>
 					
