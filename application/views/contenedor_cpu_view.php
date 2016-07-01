@@ -122,10 +122,9 @@
 						 <th>No. Inventario</th>         
 						 <th>Tipo</th>         
 						 <th>Marca (modelo)</th> 
-						 <th>Procesador</th> 						
+						  						
 						 <th>HostName</th> 
-						 <th>Ip</th> 
-						 <th>Mac Add</th> 
+						 
 						 <th>Nombre Empleado</th>
 						 <th>Status</th>
 						 <th>Operaciones</th> 
@@ -137,18 +136,19 @@
 						<td> <?php echo $fila->num_inventario; ?></td>
 						<td> <?php echo $fila->tipo; ?></td>
 						<td> <?php echo $fila->marca; ?> (<?php	echo $fila->modelo; ?>)</td>
-						<td> <?php echo $fila->marca_proc; ?> <?php echo $fila->procesador; ?> </td>
+						
 						<td> <?php echo $fila->hostname; ?></td>
-						<td> <?php echo $fila->ip; ?></td>
-						<td> <?php echo $fila->mac; ?></td>
+						
 						<td><a href="<?php echo base_url('empleados/detalles');?>/<?php echo $fila->id_empleado; ?>"><?php echo $fila->nombre_completo; ?></a></td>
 						<td>
 							
-							<?php foreach ($cargar_status as $st) :?>  
-							    <?php if($fila->status == $st->id_status_cpu){  ?>    
-							 		<?php echo $st->nombre;?>
-							 	<?php } ?>               
-						 	<?php endforeach; ?> 
+							<?php 
+							foreach ($cargar_status as $st) : 
+								if($fila->status == $st->id_status_cpu){  
+									echo $st->nombre;
+								} 
+							endforeach; 
+							?> 
 							
 						</td>
 						<td>

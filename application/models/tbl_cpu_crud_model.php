@@ -22,10 +22,10 @@ class Tbl_cpu_crud_model extends CI_Model
 	public function cargar_cpu()
 	{
 		$this->db->from('tbl_cpu');
-		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado','left');
-		$this->db->join('tbl_ipconfig', 'tbl_cpu.id_cpu=tbl_ipconfig.id_cpu','left');
-		$this->db->join('tbl_procesador', 'tbl_cpu.id_cpu=tbl_procesador.id_cpu','left');
-		$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id_status_cpu','left');
+		$this->db->join('tbl_empleados', 'tbl_cpu.id_empleado=tbl_empleados.id_empleado','inner');
+		#$this->db->join('tbl_ipconfig', 'tbl_cpu.id_cpu=tbl_ipconfig.id_cpu','left');
+		#$this->db->join('tbl_procesador', 'tbl_cpu.id_cpu=tbl_procesador.id_cpu','left');
+		#$this->db->join('status_cpus','tbl_cpu.status=status_cpus.id_status_cpu','left');
 		$res=$this->db->get();
 		return $res->result(); 
 	}
