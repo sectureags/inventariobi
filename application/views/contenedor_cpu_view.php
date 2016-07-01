@@ -325,7 +325,11 @@
 					<?php endforeach; ?>
 				</tbody> 
 			</table>  
-
-
+			<?php
+			if ( empty($cargar_cpu) ) { ?>
+				<div class="text-center alert alert-warning">
+				  <strong>Aviso!</strong> No se encontraron registros en el sistema.
+				</div>
+			<?php } ?>
   	</div>
 </div>
