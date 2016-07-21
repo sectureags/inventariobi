@@ -75,56 +75,12 @@
 				    	      <div>
 
 						         <form id="Nuevomonitor" class="" role="form" method="post" action="<?php echo base_url('bi_monitor/crear');?>">
-						         	<div class="form-group">       
-									  	<label for="categoria">Categoria</label>       
-										<input type="text" class="form-control" name="categoria" id="categoria" required>
-									</div>
-									<div class="form-group">       
-									  	<label for="tipo">Tipo</label>       
-										<input type="text" class="form-control" name="tipo" id="tipo" required>
-									</div>
-								  <div class="form-group">
-									   	<label for="marca">Marca</label>       
-										<input type="text" class="form-control" name="marca" id="marca" required> 
-								  </div>
-								  <div class="form-group">
-								  		<label for="modelo">Modelo</label>       
-										<input type="text" class="form-control" name="modelo" id="modelo" required>
-								  </div>
-								  <div class="form-group"> 
-										<label for="num_serie">num_serie</label>       
-										<input type="text" class="form-control" name="num_serie" id="num_serie" required>
-								  </div>
-								  <div class="form-group"> 
-										<label for="num_inventario">num_inventario</label>       
-										<input type="text" class="form-control" name="num_inventario" id="num_inventario" required>
-								  </div>
+						         	
+					      		  	<?php $this->load->view('form-captura-rapida'); ?>
 								  
-					      		  <div class="form-group">      
-											<label for="id_empleado">Asignar a Empleado</label> 
-											<select class="form-control" name="id_empleado" id="id_empleado">
-											    <?php foreach ($cargar_empleados as $st) :?>      
-											 	<option value="<?php echo $st->id_empleado; ?>">Empleado: <?php echo $st->nombre_completo;?> [<?php echo $st->codigo_empleado;?>]</option>                 
-											 	<?php endforeach; ?>       
-											</select>
-										</div> 
-								  
-									
-
-									<div class="form-group">        
-												  
-												
-														<label for="status">Instalado</label>
-										 					<input type="radio" name="status" value="1">
-											 			<label for="status">No instalado</label>
-											 				<input type="radio" name="status" value="0">
-										 		
-												</div>
-					      		  
-								  
-								  <div class="modal-footer">
+								    <div class="modal-footer">
 						          		<button type="submit" class="btn btn-primary">Guardar</button>
-						      	  </div>
+						      	    </div>
 								</form>
 						      </div>
 				    	    </div>
@@ -136,47 +92,7 @@
 
 						         <form id="Nuevoteclado" class="" role="form" method="post" action="<?php echo base_url('bi_teclado/crear');?>">
 						         	
-									<div class="form-group">       
-									  	<label for="tipo">Tipo</label>       
-										<input type="text" class="form-control" name="tipo" id="tipo" required>
-									</div>
-								  <div class="form-group">
-									   	<label for="marca">Marca</label>       
-										<input type="text" class="form-control" name="marca" id="marca" required> 
-								  </div>
-								  <div class="form-group">
-								  		<label for="modelo">Modelo</label>       
-										<input type="text" class="form-control" name="modelo" id="modelo" required>
-								  </div>
-								  <div class="form-group"> 
-										<label for="num_serie">num_serie</label>       
-										<input type="text" class="form-control" name="num_serie" id="num_serie" required>
-								  </div>
-								  <div class="form-group"> 
-										<label for="num_inventario">num_inventario</label>       
-										<input type="text" class="form-control" name="num_inventario" id="num_inventario" required>
-								  </div>
-								  
-					      		  <div class="form-group">      
-											<label for="id_empleado">Asignar a Empleado</label> 
-											<select class="form-control" name="id_empleado" id="id_empleado">
-											    <?php foreach ($cargar_empleados as $st) :?>      
-											 	<option value="<?php echo $st->id_empleado; ?>">Empleado: <?php echo $st->nombre_completo;?> [<?php echo $st->codigo_empleado;?>]</option>                 
-											 	<?php endforeach; ?>       
-											</select>
-										</div> 
-								  
-									
-
-									<div class="form-group">        
-												  
-												
-														<label for="status">Instalado</label>
-										 					<input type="radio" name="status" value="1">
-											 			<label for="status">No instalado</label>
-											 				<input type="radio" name="status" value="0">
-										 		
-												</div>
+									<?php $this->load->view('form-captura-rapida'); ?>
 					      		  
 								  
 								  <div class="modal-footer">
@@ -193,41 +109,7 @@
 
 						         <form id="Nuevomouse" class="" role="form" method="post" action="<?php echo base_url('bi_mouse/crear');?>">
 						         	
-									<div class="form-group">       
-									  	<label for="tipo">Tipo</label>       
-										<input type="text" class="form-control" name="tipo" id="tipo" required>
-									</div>
-								  <div class="form-group">
-									   	<label for="marca">Marca</label>       
-										<input type="text" class="form-control" name="marca" id="marca" required> 
-								  </div>
-								  <div class="form-group">
-								  		<label for="modelo">Modelo</label>       
-										<input type="text" class="form-control" name="modelo" id="modelo" required>
-								  </div>
-								  <div class="form-group"> 
-										<label for="num_serie">num_serie</label>       
-										<input type="text" class="form-control" name="num_serie" id="num_serie" required>
-								  </div>
-								  <div class="form-group"> 
-										<label for="num_inventario">num_inventario</label>       
-										<input type="text" class="form-control" name="num_inventario" id="num_inventario" required>
-								  </div>
-								  
-					      		  <div class="form-group">      
-										<label for="id_empleado">Asignar a Empleado</label> 
-										<select class="form-control" name="id_empleado" id="id_empleado">
-											<?php foreach ($cargar_empleados as $st) :?>      
-											 	<option value="<?php echo $st->id_empleado; ?>">Empleado: <?php echo $st->nombre_completo;?> [<?php echo $st->codigo_empleado;?>]</option>                 
-											<?php endforeach; ?>       
-										</select>
-									</div> 
-									<div class="form-group">												
-										<label for="status">Instalado</label>
-						 					<input type="radio" name="status" value="1">
-							 			<label for="status">No instalado</label>
-							 				<input type="radio" name="status" value="0">										 		
-									</div>
+									<?php $this->load->view('form-captura-rapida'); ?>
 								  
 								  <div class="modal-footer">
 						          		<button type="submit" class="btn btn-primary">Guardar</button>
@@ -244,45 +126,7 @@
 
 						         <form id="Nuevotelefono" class="" role="form" method="post" action="<?php echo base_url('bi_telefono/crear');?>">
 						         	
-									<div class="form-group">       
-									  	<label for="tipo">Tipo</label>       
-										<input type="text" class="form-control" name="tipo" id="tipo" required>
-									</div>
-									<div class="form-group">
-										   	<label for="marca">Marca</label>       
-											<input type="text" class="form-control" name="marca" id="marca" required> 
-									</div>
-									<div class="form-group">
-									  		<label for="modelo">Modelo</label>       
-											<input type="text" class="form-control" name="modelo" id="modelo" required>
-									</div>
-									<div class="form-group"> 
-											<label for="num_serie">num_serie</label>       
-											<input type="text" class="form-control" name="num_serie" id="num_serie" required>
-									</div>
-									<div class="form-group"> 
-											<label for="mac_add">mac_add</label>       
-											<input type="text" class="form-control" name="mac_add" id="mac_add" required>
-									</div>
-									<div class="form-group"> 
-											<label for="num_inventario">num_inventario</label>       
-											<input type="text" class="form-control" name="num_inventario" id="num_inventario" required>
-									</div>
-								  
-					      		  <div class="form-group">      
-										<label for="id_empleado">Asignar a Empleado</label> 
-										<select class="form-control" name="id_empleado" id="id_empleado">
-											<?php foreach ($cargar_empleados as $st) :?>      
-											 	<option value="<?php echo $st->id_empleado; ?>">Empleado: <?php echo $st->nombre_completo;?> [<?php echo $st->codigo_empleado;?>]</option>                 
-											<?php endforeach; ?>       
-										</select>
-									</div>
-									<div class="form-group">												
-										<label for="status">Instalado</label>
-						 					<input type="radio" name="status" value="1">
-							 			<label for="status">No instalado</label>
-							 				<input type="radio" name="status" value="0">										 		
-									</div>
+									<?php $this->load->view('form-captura-rapida'); ?>
 								  
 								  <div class="modal-footer">
 						          		<button type="submit" class="btn btn-primary">Guardar</button>
@@ -299,42 +143,7 @@
 
 						         <form id="Nuevoregulador" class="" role="form" method="post" action="<?php echo base_url('bi_regulador/crear');?>">
 						         	
-									<div class="form-group">       
-									  	<label for="tipo">Tipo</label>       
-										<input type="text" class="form-control" name="tipo" id="tipo" required>
-									</div>
-									<div class="form-group">
-										   	<label for="marca">Marca</label>       
-											<input type="text" class="form-control" name="marca" id="marca" required> 
-									</div>
-									<div class="form-group">
-									  		<label for="modelo">Modelo</label>       
-											<input type="text" class="form-control" name="modelo" id="modelo" required>
-									</div>
-									<div class="form-group"> 
-											<label for="num_serie">num_serie</label>       
-											<input type="text" class="form-control" name="num_serie" id="num_serie" required>
-									</div>
-									
-									<div class="form-group"> 
-											<label for="num_inventario">num_inventario</label>       
-											<input type="text" class="form-control" name="num_inventario" id="num_inventario" required>
-									</div>
-								  
-					      		  <div class="form-group">      
-										<label for="id_empleado">Asignar a Empleado</label> 
-										<select class="form-control" name="id_empleado" id="id_empleado">
-											<?php foreach ($cargar_empleados as $st) :?>      
-											 	<option value="<?php echo $st->id_empleado; ?>">Empleado: <?php echo $st->nombre_completo;?> [<?php echo $st->codigo_empleado;?>]</option>                 
-											<?php endforeach; ?>       
-										</select>
-									</div>
-									<div class="form-group">												
-										<label for="status">Instalado</label>
-						 					<input type="radio" name="status" value="1">
-							 			<label for="status">No instalado</label>
-							 				<input type="radio" name="status" value="0">										 		
-									</div>
+									<?php $this->load->view('form-captura-rapida'); ?>
 								  
 								  <div class="modal-footer">
 						          		<button type="submit" class="btn btn-primary">Guardar</button>
@@ -351,42 +160,7 @@
 
 						         <form id="Nuevootro" class="" role="form" method="post" action="<?php echo base_url('bi_otro/crear');?>">
 						         	
-									<div class="form-group">       
-									  	<label for="tipo">Tipo</label>       
-										<input type="text" class="form-control" name="tipo" id="tipo" required>
-									</div>
-									<div class="form-group">
-										   	<label for="marca">Marca</label>       
-											<input type="text" class="form-control" name="marca" id="marca" required> 
-									</div>
-									<div class="form-group">
-									  		<label for="modelo">Modelo</label>       
-											<input type="text" class="form-control" name="modelo" id="modelo" required>
-									</div>
-									<div class="form-group"> 
-											<label for="num_serie">num_serie</label>       
-											<input type="text" class="form-control" name="num_serie" id="num_serie" required>
-									</div>
-									
-									<div class="form-group"> 
-											<label for="num_inventario">num_inventario</label>       
-											<input type="text" class="form-control" name="num_inventario" id="num_inventario" required>
-									</div>
-								  
-					      		  <div class="form-group">      
-										<label for="id_empleado">Asignar a Empleado</label> 
-										<select class="form-control" name="id_empleado" id="id_empleado">
-											<?php foreach ($cargar_empleados as $st) :?>      
-											 	<option value="<?php echo $st->id_empleado; ?>">Empleado: <?php echo $st->nombre_completo;?> [<?php echo $st->codigo_empleado;?>]</option>                 
-											<?php endforeach; ?>       
-										</select>
-									</div>
-									<div class="form-group">												
-										<label for="status">Instalado</label>
-						 					<input type="radio" name="status" value="1">
-							 			<label for="status">No instalado</label>
-							 				<input type="radio" name="status" value="0">										 		
-									</div>
+									<?php $this->load->view('form-captura-rapida'); ?>
 								  
 								  <div class="modal-footer">
 						          		<button type="submit" class="btn btn-primary">Guardar</button>

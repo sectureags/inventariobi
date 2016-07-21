@@ -116,7 +116,7 @@ class Bi_monitor extends CI_Controller {
 			$data['title'] = TITULO;
 
 			$monitor = array(
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -150,7 +150,7 @@ class Bi_monitor extends CI_Controller {
 				$data['title'] = TITULO;	
 				
 				$monitor = array(
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
@@ -199,7 +199,7 @@ class Bi_monitor extends CI_Controller {
 
 			$monitor = array(
 				'id_monitor' => $this->input->post('id_monitor'),
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -236,7 +236,7 @@ class Bi_monitor extends CI_Controller {
 
 				$monitor = array(
 					'id_monitor' => $this->input->post('id_monitor'),
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
