@@ -116,7 +116,7 @@ class Bi_teclado extends CI_Controller {
 			$data['title'] = TITULO;
 
 			$teclado = array(
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -150,7 +150,7 @@ class Bi_teclado extends CI_Controller {
 				$data['title'] = TITULO;	
 				
 				$teclado = array(
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
@@ -199,7 +199,7 @@ class Bi_teclado extends CI_Controller {
 
 			$teclado = array(
 				'id_teclado' => $this->input->post('id_teclado'),
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -236,7 +236,7 @@ class Bi_teclado extends CI_Controller {
 
 				$teclado = array(
 					'id_teclado' => $this->input->post('id_teclado'),
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
