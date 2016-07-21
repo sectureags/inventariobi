@@ -116,7 +116,7 @@ class Bi_mouse extends CI_Controller {
 			$data['title'] = TITULO;
 
 			$mouse = array(
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -150,7 +150,7 @@ class Bi_mouse extends CI_Controller {
 				$data['title'] = TITULO;	
 				
 				$mouse = array(
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
@@ -199,7 +199,7 @@ class Bi_mouse extends CI_Controller {
 
 			$mouse = array(
 				'id_mouse' => $this->input->post('id_mouse'),
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -236,7 +236,7 @@ class Bi_mouse extends CI_Controller {
 
 				$mouse = array(
 					'id_mouse' => $this->input->post('id_mouse'),
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
