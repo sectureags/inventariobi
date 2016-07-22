@@ -116,7 +116,7 @@ class Bi_telefono extends CI_Controller {
 			$data['title'] = TITULO;
 
 			$telefono = array(
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -151,7 +151,7 @@ class Bi_telefono extends CI_Controller {
 				$data['title'] = TITULO;	
 				
 				$telefono = array(
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
@@ -201,7 +201,7 @@ class Bi_telefono extends CI_Controller {
 
 			$telefono = array(
 				'id_telefono' => $this->input->post('id_telefono'),
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -239,7 +239,7 @@ class Bi_telefono extends CI_Controller {
 
 				$telefono = array(
 					'id_telefono' => $this->input->post('id_telefono'),
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
