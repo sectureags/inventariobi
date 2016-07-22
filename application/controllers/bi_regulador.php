@@ -116,7 +116,7 @@ class Bi_regulador extends CI_Controller {
 			$data['title'] = TITULO;
 
 			$regulador = array(
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -150,7 +150,7 @@ class Bi_regulador extends CI_Controller {
 				$data['title'] = TITULO;	
 				
 				$regulador = array(
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
@@ -199,7 +199,7 @@ class Bi_regulador extends CI_Controller {
 
 			$regulador = array(
 				'id_regulador' => $this->input->post('id_regulador'),
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -236,7 +236,7 @@ class Bi_regulador extends CI_Controller {
 
 				$regulador = array(
 					'id_regulador' => $this->input->post('id_regulador'),
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
