@@ -116,7 +116,7 @@ class Bi_otro extends CI_Controller {
 			$data['title'] = TITULO;
 
 			$otro = array(
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -150,7 +150,7 @@ class Bi_otro extends CI_Controller {
 				$data['title'] = TITULO;	
 				
 				$otro = array(
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
@@ -199,7 +199,7 @@ class Bi_otro extends CI_Controller {
 
 			$otro = array(
 				'id_otro' => $this->input->post('id_otro'),
-				'categoria' => $this->input->post('categoria'),
+				'ubicacion' => $this->input->post('ubicacion'),
 				'tipo' => $this->input->post('tipo'),
 				'marca' => $this->input->post('marca'),
 				'modelo' => $this->input->post('modelo'),
@@ -236,7 +236,7 @@ class Bi_otro extends CI_Controller {
 
 				$otro = array(
 					'id_otro' => $this->input->post('id_otro'),
-					'categoria' => $this->input->post('categoria'),
+					'ubicacion' => $this->input->post('ubicacion'),
 					'tipo' => $this->input->post('tipo'),
 					'marca' => $this->input->post('marca'),
 					'modelo' => $this->input->post('modelo'),
