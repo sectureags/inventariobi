@@ -46,12 +46,12 @@
 			      		<a href="<?php echo base_url('monitores');?>">Recargar</a>
 			      	</li>
 			      	<li>
-						<form  class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('users/filtrar_por_rol');?>">
-							<div class="form-group">       
-					
-							</div>
-						 
-				     	</form>
+						<form class="navbar-form navbar-left" role="search" action="<?php echo base_url('bi_monitor/buscar_inventario');?>" method="post">
+					        <div class="form-group">
+					          <input type="text" class="form-control" placeholder="No. Inventario" name="num_inventario" id="num_inventario">
+					        </div>
+					        <button type="submit" class="btn btn-default">Buscar</span></button>
+					    </form>
 			        </li>
 			        
 			      </ul>			      
@@ -190,8 +190,20 @@
 
 					
 				<?php endforeach; ?>
-			</tbody> 
+
+
+			</tbody>
 			</table> 
+
+			<?php 
+					if (empty($cargar_lista_monitores)) {
+						echo "<tr>";
+						echo "<span class='success'>";
+						echo "Ingrese un numero de Inventario valido";
+						echo "</span>";
+						echo "</tr>";
+					}
+				 ?>
 
 
 

@@ -6,7 +6,7 @@ class Tbl_monitor_crud_model extends CI_Model
 		parent:: __construct();
 	}
 
-	public function lista( $id_monitor )
+	public function lista( $id_monitor = NULL)
 	{
 		if ( isset($id_monitor) && empty($id_monitor) ) {
 			// Si isset es FALSE entonces solicitamos TODOS los registros
@@ -68,6 +68,18 @@ class Tbl_monitor_crud_model extends CI_Model
 		}
 
 		return NULL;		
+	}
+
+	public function buscar( $monitor = NULL)
+	{
+		if ( isset($monitor) && !empty($monitor) ) {
+			
+			$this->db->where('num_inventario',$monitor['num_inventario']);
+			$query = $this->db->get('tbl_monitor');
+			return $query->result();
+		}
+
+		
 	}
 
 
