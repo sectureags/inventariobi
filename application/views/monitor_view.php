@@ -46,13 +46,28 @@
 			      		<a href="<?php echo base_url('monitores');?>">Recargar</a>
 			      	</li>
 			      	<li>
-						<form class="navbar-form navbar-left" role="search" action="<?php echo base_url('bi_monitor/buscar_inventario');?>" method="post">
-					        <div class="form-group">
-					          <input type="text" class="form-control" placeholder="No. Inventario" name="num_inventario" id="num_inventario">
-					        </div>
-					        <button type="submit" class="btn btn-default">Buscar</span></button>
-					    </form>
-			        </li>
+			      	
+			      		<?php
+			      			if (validation_errors()) {
+			      				echo "<p>";
+			      				echo validation_errors();
+			      				echo "</p>";
+			      				
+			      			} else { ?>
+							
+				      			<form class="navbar-form navbar-left" role="search" action="<?php echo base_url('bi_monitor/buscar_inventario');?>" method="post">
+							        <div class="form-group">
+							          <input type="text" class="form-control" placeholder="No. Inventario" name="num_inventario" id="num_inventario" value="" size="10" autocomplete="off">
+							        </div>
+							        <button type="submit" class="btn btn-default">Buscar</span></button>
+							    </form>						    
+			      				
+			      		<?php	}
+			      		?>
+					
+					</li>	
+
+			        
 			        
 			      </ul>			      
 			      <ul class="nav navbar-nav navbar-right">
@@ -193,19 +208,7 @@
 
 
 			</tbody>
-			</table> 
-
-			<?php 
-					if (empty($cargar_lista_monitores)) {
-						echo "<tr>";
-						echo "<span class='success'>";
-						echo "Ingrese un numero de Inventario valido";
-						echo "</span>";
-						echo "</tr>";
-					}
-				 ?>
-
-
+			</table>
 
 	</div>
 </div>

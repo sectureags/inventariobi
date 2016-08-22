@@ -349,21 +349,36 @@ class Bi_monitor extends CI_Controller {
 			$data['title'] = TITULO;
 			$data['get_all'] = $this->permisos_model->get_all();
 
-			$data['fields'] = $this->db->list_fields('tbl_monitor');
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('num_inventario', 'num_inventario', 'required|min_length[5]|max_length[10]');
 
-			$monitor = array(
-				'num_inventario' => $this->input->post('num_inventario')
-			);
+			if ($this->form_validation->run() == FALSE ) {
+					$data['fields'] = $this->db->list_fields('tbl_monitor');
+					$monitor = array(
+						'num_inventario' => $this->input->post('num_inventario')
+					);					
+					$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->buscar($monitor);
+					#$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista($id_monitor);					
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();					
+					$this->load->view('header_view');
+					$this->load->view('menu_view',$data);
+					$this->load->view('monitor_view',$data);
+					$this->load->view('footer_view');
+			} else {
+					$data['fields'] = $this->db->list_fields('tbl_monitor');
+					$monitor = array(
+						'num_inventario' => $this->input->post('num_inventario')
+					);					
+					$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->buscar($monitor);
+					#$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista($id_monitor);					
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();					
+					$this->load->view('header_view');
+					$this->load->view('menu_view',$data);
+					$this->load->view('monitor_view',$data);
+					$this->load->view('footer_view');
+			}
 			
-			$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->buscar($monitor);
-			#$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista($id_monitor);
-			
-			$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();
-			
-			$this->load->view('header_view');
-			$this->load->view('menu_view',$data);
-			$this->load->view('monitor_view',$data);
-			$this->load->view('footer_view');
+
 		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
 		else
 		{
