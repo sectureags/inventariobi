@@ -350,12 +350,12 @@ class Bi_monitor extends CI_Controller {
 			$data['get_all'] = $this->permisos_model->get_all();
 
 			$this->load->library('form_validation');
-			$this->form_validation->set_rules('num_inventario', 'num_inventario', 'required|min_length[5]|max_length[10]');
+			$this->form_validation->set_rules('num_inventario', 'Número de Inventario', 'required|min_length[5]|max_length[10]|numeric');
 
 			if ($this->form_validation->run() == FALSE ) {
 					$data['fields'] = $this->db->list_fields('tbl_monitor');
 					$monitor = array(
-						'num_inventario' => $this->input->post('num_inventario')
+						'num_inventario' => trim($this->input->post('num_inventario'))
 					);					
 					$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->buscar($monitor);
 					#$data['cargar_lista_monitores'] = $this->tbl_monitor_crud_model->lista($id_monitor);					
