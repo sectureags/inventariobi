@@ -70,6 +70,17 @@ class Tbl_mouse_crud_model extends CI_Model
 		return NULL;		
 	}
 
+	public function buscar( $mouse = NULL)
+	{
+		if ( isset($mouse) && !empty($mouse) ) {
+			
+			$this->db->where('num_inventario',$mouse['num_inventario']);
+			$query = $this->db->get('tbl_mouse');
+			return $query->result();
+		}
+	}
+
+
 
 
 } 
