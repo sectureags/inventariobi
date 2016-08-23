@@ -70,6 +70,16 @@ class Tbl_telefono_crud_model extends CI_Model
 		return NULL;		
 	}
 
+	public function buscar( $telefono = NULL)
+	{
+		if ( isset($telefono) && !empty($telefono) ) {
+			
+			$this->db->where('num_inventario',$telefono['num_inventario']);
+			$query = $this->db->get('tbl_telefono');
+			return $query->result();
+		}	
+	}
+
 
 
 } 
