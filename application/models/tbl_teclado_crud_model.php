@@ -70,6 +70,16 @@ class Tbl_teclado_crud_model extends CI_Model
 		return NULL;		
 	}
 
+	public function buscar( $teclado = NULL)
+	{
+		if ( isset($teclado) && !empty($teclado) ) {
+			
+			$this->db->where('num_inventario',$teclado['num_inventario']);
+			$query = $this->db->get('tbl_teclado');
+			return $query->result();
+		}	
+	}
+
 
 
 } 
