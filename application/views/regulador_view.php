@@ -45,12 +45,23 @@
 			      		<a href="<?php echo base_url('reguladores');?>">Recargar</a>
 			      	</li>
 			      	<li>
-						<form  class="navbar-form navbar-right" role="form" method="post" action="<?php echo base_url('users/filtrar_por_rol');?>">
-							<div class="form-group">       
-					
-							</div>
-						 
-				     	</form>
+						<?php
+			      			if (validation_errors()) {
+			      				echo "<p>";
+			      				echo validation_errors();
+			      				echo "</p>";
+			      				
+			      			} else { ?>
+							
+				      			<form class="navbar-form navbar-left" role="search" action="<?php echo base_url('bi_regulador/buscar_inventario');?>" method="post">
+							        <div class="form-group">
+							          <input type="text" class="form-control" placeholder="No. Inventario" name="num_inventario" id="num_inventario" value="" size="10" autocomplete="off">
+							        </div>
+							        <button type="submit" class="btn btn-default">Buscar</span></button>
+							    </form>						    
+			      				
+			      		<?php	}
+			      		?>
 			        </li>
 			        
 			      </ul>			      

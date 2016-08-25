@@ -70,6 +70,16 @@ class Tbl_regulador_crud_model extends CI_Model
 		return NULL;		
 	}
 
+	public function buscar( $regulador = NULL)
+	{
+		if ( isset($regulador) && !empty($regulador) ) {
+			
+			$this->db->where('num_inventario',$regulador['num_inventario']);
+			$query = $this->db->get('tbl_regulador');
+			return $query->result();
+		}	
+	}
+
 
 
 } 

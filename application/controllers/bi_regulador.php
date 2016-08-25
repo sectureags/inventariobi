@@ -338,6 +338,103 @@ class Bi_regulador extends CI_Controller {
 		}
 	}
 
+	public function buscar_inventario()
+	{ 
+		// Si tienes Rol de SuperAdministrador entras sin permisos
+		if (ROL == SUPERROL) {
+
+			$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+			$data['username'] = USER;
+			$data['rol'] = ROL;
+			$data['title'] = TITULO;
+			$data['get_all'] = $this->permisos_model->get_all();
+
+			$this->load->library('form_validation');
+			$this->form_validation->set_rules('num_inventario', 'Número de Inventario', 'required|min_length[5]|max_length[10]|numeric');
+
+			if ($this->form_validation->run() == FALSE ) {
+					$data['fields'] = $this->db->list_fields('tbl_regulador');
+					$regulador = array(
+						'num_inventario' => trim($this->input->post('num_inventario'))
+					);					
+					$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->buscar($regulador);
+					#$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->lista($id_regulador);					
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();					
+					$this->load->view('header_view');
+					$this->load->view('menu_view',$data);
+					$this->load->view('regulador_view',$data);
+					$this->load->view('footer_view');
+			} else {
+					$data['fields'] = $this->db->list_fields('tbl_regulador');
+					$regulador = array(
+						'num_inventario' => $this->input->post('num_inventario')
+					);					
+					$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->buscar($regulador);
+					#$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->lista($id_regulador);					
+					$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();					
+					$this->load->view('header_view');
+					$this->load->view('menu_view',$data);
+					$this->load->view('regulador_view',$data);
+					$this->load->view('footer_view');
+			}
+			
+
+		}// Pero si no eres SuperAdministrador, te vamos a verificar tus permisos de acceso al Controler y Metodo
+		else
+		{
+			$metodo = $this->uri->segment(2); // Metodo de la URL
+			$tiene_permiso = $this->permisos_model->verify_metodo(ROL,COMPONENTE,$metodo);
+			if ($tiene_permiso == TRUE) {
+				
+				// EL USUARIO SI TIENE ACCESO AL METODO
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+
+		 		$this->load->library('form_validation');
+				$this->form_validation->set_rules('num_inventario', 'Número de Inventario', 'required|min_length[5]|max_length[10]|numeric');
+
+					if ($this->form_validation->run() == FALSE ) {
+							$data['fields'] = $this->db->list_fields('tbl_regulador');
+							$regulador = array(
+								'num_inventario' => trim($this->input->post('num_inventario'))
+							);					
+							$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->buscar($regulador);
+							#$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->lista($id_regulador);					
+							$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();					
+							$this->load->view('header_view');
+							$this->load->view('menu_view',$data);
+							$this->load->view('regulador_view',$data);
+							$this->load->view('footer_view');
+					} else {
+							$data['fields'] = $this->db->list_fields('tbl_regulador');
+							$regulador = array(
+								'num_inventario' => $this->input->post('num_inventario')
+							);					
+							$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->buscar($regulador);
+							#$data['cargar_lista_reguladores'] = $this->tbl_regulador_crud_model->lista($id_regulador);					
+							$data['cargar_empleados'] = $this->tbl_empleado_crud_model->cargar_empleados();					
+							$this->load->view('header_view');
+							$this->load->view('menu_view',$data);
+							$this->load->view('regulador_view',$data);
+							$this->load->view('footer_view');
+					}
+
+			} else {
+				$data['cargar_roles']= $this->tbl_roles_model->cargar_roles();
+				$data['username'] = USER;
+				$data['rol'] = ROL;
+		 		$data['get_all'] = $this->permisos_model->get_all();
+			
+				$this->load->view('header_view');
+				$this->load->view('menu_view',$data);
+				$this->load->view('sorry_view',$data);
+				$this->load->view('footer_view');
+			}
+		}
+	}
+
 }
 /* End of file bi_dd.php */
 /* Location: ./application/controllers/bi_dd.php */
