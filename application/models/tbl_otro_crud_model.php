@@ -71,6 +71,18 @@ class Tbl_otro_crud_model extends CI_Model
 		return NULL;		
 	}
 
+	public function buscar( $otro = NULL)
+	{
+		if ( isset($otro) && !empty($otro) ) {
+			
+			$this->db->where('num_inventario',$otro['num_inventario']);
+			$query = $this->db->get('tbl_otro');
+			return $query->result();
+		}
+
+		
+	}
+
 
 
 } 
